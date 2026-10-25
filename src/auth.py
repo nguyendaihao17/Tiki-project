@@ -99,6 +99,13 @@ def user_count():
     return row["count"]
 
 
+def admin_count():
+    initialize_auth_store()
+    with closing(_connect()) as connection:
+        row = connection.execute("SELECT COUNT(*) AS count FROM users WHERE role = 'admin'").fetchone()
+    return row["count"]
+
+
 def create_initial_admin(username, display_name, password):
     """Tạo admin đầu tiên đúng một lần, an toàn khi có nhiều phiên khởi tạo."""
     normalized, error = _validate_username(username)
@@ -114,7 +121,7 @@ def create_initial_admin(username, display_name, password):
     try:
         with closing(_connect()) as connection:
             connection.execute("BEGIN IMMEDIATE")
-            count = connection.execute("SELECT COUNT(*) AS count FROM users").fetchone()["count"]
+            count = connection.execute("SELECT COUNT(*) AS count FROM users WHERE role = 'admin'").fetchone()["count"]
             if count:
                 connection.rollback()
                 return False, "Tài khoản quản trị đầu tiên đã được tạo."
@@ -314,11 +321,12 @@ def login_sidebar():
             else:
                 _set_session_user(user)
         account_count = user_count()
+        has_admin = admin_count() > 0
     except sqlite3.Error:
         st.error("Không thể mở kho tài khoản. Kiểm tra quyền truy cập tệp dữ liệu người dùng.")
         return False
 
-    if account_count == 0:
+    if not has_admin:
         st.title("Thiết lập TikiLens")
         setup_key = _initial_admin_setup_key()
         if not setup_key or len(setup_key) < 16:
@@ -327,7 +335,10 @@ def login_sidebar():
             st.code('initial_admin_setup_key = "một-khóa-riêng-dài-và-khó-đoán"', language="toml")
             return False
 
-        st.info("Tạo tài khoản quản trị viên đầu tiên. Khóa thiết lập chỉ dùng để bảo vệ bước này.")
+        if account_count:
+            st.info("Chưa có quản trị viên. Tài khoản Người dùng hiện có sẽ được giữ nguyên.")
+        else:
+            st.info("Tạo tài khoản quản trị viên đầu tiên. Khóa thiết lập chỉ dùng để bảo vệ bước này.")
         with st.form("initial_admin_setup"):
             provided_key = st.text_input("Khóa thiết lập", type="password")
             username = st.text_input("Tên đăng nhập", placeholder="VD: admin")
@@ -443,8 +454,8 @@ def check_permission(required_role):
 
 
 def _bootstrap_admin_from_terminal():
-    if user_count():
-        print("Kho tài khoản đã có người dùng; không thể tạo Admin đầu tiên.")
+    if admin_count():
+        print("Kho tài khoản đã có Quản trị viên; không thể tạo Admin đầu tiên.")
         return 1
 
     print("Tạo tài khoản Admin đầu tiên. Mật khẩu tối thiểu 12 ký tự.")

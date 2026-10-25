@@ -53,6 +53,17 @@ class RegistrationTests(unittest.TestCase):
         self.assertFalse(_matches_initial_admin_setup_key("", "setup-key"))
         self.assertFalse(_matches_initial_admin_setup_key("setup-key", ""))
 
+    def test_initial_admin_can_be_created_after_standard_users_exist(self):
+        with closing(sqlite3.connect(self.database)) as connection:
+            connection.execute("DELETE FROM users")
+            connection.commit()
+        self.assertTrue(register_user("member", "Member", "SafePassword123!")[0])
+
+        success, _ = create_initial_admin("admin", "Admin", "AdminPassword123!")
+
+        self.assertTrue(success)
+        self.assertEqual(authenticate("admin", "AdminPassword123!")["role"], "admin")
+
 
 if __name__ == "__main__":
     unittest.main()
