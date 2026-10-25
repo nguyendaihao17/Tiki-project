@@ -127,7 +127,7 @@ Nếu PowerShell không cho phép kích hoạt môi trường ảo, có thể g�
 
 ## Tài khoản và cấu hình cục bộ
 
-- Không có tài khoản/mật khẩu mặc định hoặc tài khoản mẫu trong mã nguồn. Tạo Admin đầu tiên bằng `python -m src.auth`; sau đó trang đăng ký công khai chỉ tạo tài khoản quyền Người dùng.
+- Không có tài khoản/mật khẩu mặc định hoặc tài khoản mẫu trong mã nguồn. Khi triển khai Streamlit Cloud, thêm `initial_admin_setup_key` (tối thiểu 16 ký tự) vào Secrets để mở biểu mẫu tạo Admin đầu tiên; sau đó trang đăng ký công khai chỉ tạo tài khoản quyền Người dùng. Khi chạy cục bộ, có thể dùng `python -m src.auth`.
 - Tài khoản được lưu trong SQLite tại `data/users.sqlite3`; mật khẩu được băm bằng bcrypt.
 - Đổi vị trí cơ sở dữ liệu tài khoản bằng biến môi trường `TIKI_AUTH_DB_PATH`.
 - Có thể đổi tên database đích khi phục hồi bằng `TIKI_RESTORE_TEST_DB_NAME`, nhưng giá trị phải khác database nhóm và kết thúc bằng `_restore_test`.

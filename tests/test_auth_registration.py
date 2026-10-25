@@ -6,7 +6,13 @@ from contextlib import closing
 from pathlib import Path
 from unittest.mock import patch
 
-from src.auth import authenticate, create_initial_admin, register_user, user_count
+from src.auth import (
+    _matches_initial_admin_setup_key,
+    authenticate,
+    create_initial_admin,
+    register_user,
+    user_count,
+)
 
 
 class RegistrationTests(unittest.TestCase):
@@ -40,6 +46,12 @@ class RegistrationTests(unittest.TestCase):
         self.assertFalse(success)
         self.assertIn("đã tồn tại", message)
         self.assertEqual(user_count(), 2)
+
+    def test_initial_admin_setup_key_requires_an_exact_non_empty_match(self):
+        self.assertTrue(_matches_initial_admin_setup_key("setup-key", "setup-key"))
+        self.assertFalse(_matches_initial_admin_setup_key("wrong-key", "setup-key"))
+        self.assertFalse(_matches_initial_admin_setup_key("", "setup-key"))
+        self.assertFalse(_matches_initial_admin_setup_key("setup-key", ""))
 
 
 if __name__ == "__main__":

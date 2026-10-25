@@ -1,4 +1,5 @@
 import getpass
+import hmac
 from html import escape
 import os
 import re
@@ -64,6 +65,26 @@ def _validate_password(password):
 
 def _hash_password(password):
     return bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt())
+
+
+def _matches_initial_admin_setup_key(provided_key, configured_key):
+    return (
+        isinstance(provided_key, str)
+        and isinstance(configured_key, str)
+        and bool(configured_key)
+        and hmac.compare_digest(provided_key, configured_key)
+    )
+
+
+def _initial_admin_setup_key():
+    key = os.environ.get("TIKI_INITIAL_ADMIN_SETUP_KEY")
+    if key:
+        return key
+    try:
+        key = st.secrets.get("initial_admin_setup_key")
+    except FileNotFoundError:
+        return None
+    return key if isinstance(key, str) and key else None
 
 
 def _require_admin():
@@ -299,8 +320,37 @@ def login_sidebar():
 
     if account_count == 0:
         st.title("Thiết lập TikiLens")
-        st.info("Chưa có tài khoản. Người quản trị chạy lệnh sau trên máy chủ, sau đó tải lại trang để đăng nhập.")
-        st.code("python -m src.auth", language="powershell")
+        setup_key = _initial_admin_setup_key()
+        if not setup_key or len(setup_key) < 16:
+            st.error("Ứng dụng chưa có khóa thiết lập quản trị viên hợp lệ.")
+            st.caption("Trong Streamlit Cloud, mở Settings → Secrets và thêm khóa riêng tối thiểu 16 ký tự.")
+            st.code('initial_admin_setup_key = "một-khóa-riêng-dài-và-khó-đoán"', language="toml")
+            return False
+
+        st.info("Tạo tài khoản quản trị viên đầu tiên. Khóa thiết lập chỉ dùng để bảo vệ bước này.")
+        with st.form("initial_admin_setup"):
+            provided_key = st.text_input("Khóa thiết lập", type="password")
+            username = st.text_input("Tên đăng nhập", placeholder="VD: admin")
+            display_name = st.text_input("Tên hiển thị", placeholder="VD: Quản trị viên")
+            password = st.text_input("Mật khẩu", type="password", help="Ít nhất 12 ký tự, tối đa 72 byte.")
+            confirmation = st.text_input("Nhập lại mật khẩu", type="password")
+            submitted = st.form_submit_button("Tạo tài khoản quản trị", type="primary")
+        if submitted:
+            if not _matches_initial_admin_setup_key(provided_key, setup_key):
+                st.error("Khóa thiết lập không đúng.")
+            elif password != confirmation:
+                st.error("Hai mật khẩu chưa khớp.")
+            else:
+                try:
+                    success, message = create_initial_admin(username, display_name, password)
+                except sqlite3.Error:
+                    st.error("Không thể tạo tài khoản lúc này. Vui lòng thử lại sau.")
+                else:
+                    if success:
+                        st.success(message)
+                        st.rerun()
+                    else:
+                        st.error(message)
         return False
 
     if not st.session_state.authenticated:
