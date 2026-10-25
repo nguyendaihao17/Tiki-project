@@ -74,10 +74,6 @@ def _build_model(df_products):
 
 def show(df_products):
     st.title("Dự báo số lượng bán")
-    st.warning(
-        "Dữ liệu hiện tại là ảnh chụp sản phẩm, không có chuỗi doanh số theo ngày/tháng. "
-        "Mô hình bên dưới ước tính số lượng bán từ thuộc tính sản phẩm, không dự báo doanh số tương lai theo thời gian."
-    )
     if df_products.empty:
         st.warning("Không có dữ liệu sản phẩm.")
         return
