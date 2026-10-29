@@ -1,3 +1,4 @@
+import altair as alt
 import pandas as pd
 import streamlit as st
 from sklearn.cluster import KMeans
@@ -11,6 +12,20 @@ FEATURE_COLUMNS = [
     "review_count",
     "average_rating",
 ]
+
+
+def _cluster_size_table(
+    records: pd.DataFrame, entity_column: str, output_column: str
+) -> pd.DataFrame:
+    """Return a compact, consistently sorted distribution for cluster charts."""
+    if records.empty or "cluster" not in records.columns or entity_column not in records.columns:
+        return pd.DataFrame(columns=["Cụm", output_column])
+    return (
+        records.groupby("cluster", as_index=False)
+        .agg(**{output_column: (entity_column, "size")})
+        .rename(columns={"cluster": "Cụm"})
+        .sort_values("Cụm")
+    )
 
 
 def _seller_features(df_products: pd.DataFrame) -> pd.DataFrame:
@@ -120,6 +135,35 @@ def _show_seller_clustering(df_products: pd.DataFrame) -> None:
     metrics[1].metric("Số nhóm", f"{cluster_count}")
     metrics[2].metric("Đặc trưng", f"{len(FEATURE_COLUMNS)}")
 
+    scatter_column, distribution_column = st.columns((3, 2))
+    with scatter_column:
+        st.subheader("Bản đồ phân cụm nhà bán")
+        scatter = alt.Chart(eligible).mark_circle(opacity=0.75, stroke="white", strokeWidth=0.5).encode(
+            x=alt.X("estimated_revenue:Q", title="Doanh thu ước tính", scale=alt.Scale(zero=False)),
+            y=alt.Y("quantity_sold:Q", title="Số lượng đã bán", scale=alt.Scale(zero=False)),
+            size=alt.Size("product_count:Q", title="Số sản phẩm", scale=alt.Scale(range=[45, 360])),
+            color=alt.Color("cluster:N", title="Cụm", scale=alt.Scale(scheme="tableau10")),
+            tooltip=[
+                alt.Tooltip("seller_id:N", title="Mã nhà bán"),
+                alt.Tooltip("cluster:N", title="Cụm"),
+                alt.Tooltip("estimated_revenue:Q", title="Doanh thu ước tính", format=",.0f"),
+                alt.Tooltip("quantity_sold:Q", title="Đã bán", format=",.0f"),
+                alt.Tooltip("product_count:Q", title="Sản phẩm", format=",.0f"),
+                alt.Tooltip("average_rating:Q", title="Điểm đánh giá", format=".2f"),
+            ],
+        ).properties(height=330).interactive()
+        st.altair_chart(scatter, use_container_width=True)
+    with distribution_column:
+        st.subheader("Quy mô từng cụm")
+        seller_sizes = _cluster_size_table(eligible, "seller_id", "Nhà bán")
+        distribution = alt.Chart(seller_sizes).mark_bar(cornerRadiusEnd=4).encode(
+            x=alt.X("Cụm:O", title="Cụm"),
+            y=alt.Y("Nhà bán:Q", title="Số nhà bán"),
+            color=alt.Color("Cụm:N", legend=None, scale=alt.Scale(scheme="tableau10")),
+            tooltip=["Cụm:O", alt.Tooltip("Nhà bán:Q", format=",.0f")],
+        ).properties(height=330)
+        st.altair_chart(distribution, use_container_width=True)
+
     st.subheader("Hồ sơ các nhóm nhà bán")
     st.dataframe(
         clusters.style.format(
@@ -193,6 +237,35 @@ def _show_customer_clustering(df_reviews: pd.DataFrame) -> None:
     metrics[0].metric("Khách hàng được phân cụm", f"{len(eligible):,}")
     metrics[1].metric("Số nhóm", f"{cluster_count}")
     metrics[2].metric("Đặc trưng", f"{len(feature_columns)}")
+
+    scatter_column, distribution_column = st.columns((3, 2))
+    with scatter_column:
+        st.subheader("Bản đồ phân cụm khách hàng")
+        scatter = alt.Chart(eligible).mark_circle(opacity=0.75, stroke="white", strokeWidth=0.5).encode(
+            x=alt.X("average_rating:Q", title="Điểm đánh giá trung bình", scale=alt.Scale(domain=[1, 5])),
+            y=alt.Y("review_count:Q", title="Số lượt đánh giá", scale=alt.Scale(zero=False)),
+            size=alt.Size("unique_products:Q", title="Sản phẩm đã đánh giá", scale=alt.Scale(range=[45, 360])),
+            color=alt.Color("cluster:N", title="Cụm", scale=alt.Scale(scheme="tableau10")),
+            tooltip=[
+                alt.Tooltip("customer_id:N", title="Mã khách hàng"),
+                alt.Tooltip("cluster:N", title="Cụm"),
+                alt.Tooltip("average_rating:Q", title="Điểm trung bình", format=".2f"),
+                alt.Tooltip("review_count:Q", title="Lượt đánh giá", format=",.0f"),
+                alt.Tooltip("unique_products:Q", title="Sản phẩm đã đánh giá", format=",.0f"),
+                alt.Tooltip("negative_review_rate:Q", title="Tỷ lệ tiêu cực", format=".1%"),
+            ],
+        ).properties(height=330).interactive()
+        st.altair_chart(scatter, use_container_width=True)
+    with distribution_column:
+        st.subheader("Quy mô từng cụm")
+        customer_sizes = _cluster_size_table(eligible, "customer_id", "Khách hàng")
+        distribution = alt.Chart(customer_sizes).mark_bar(cornerRadiusEnd=4).encode(
+            x=alt.X("Cụm:O", title="Cụm"),
+            y=alt.Y("Khách hàng:Q", title="Số khách hàng"),
+            color=alt.Color("Cụm:N", legend=None, scale=alt.Scale(scheme="tableau10")),
+            tooltip=["Cụm:O", alt.Tooltip("Khách hàng:Q", format=",.0f")],
+        ).properties(height=330)
+        st.altair_chart(distribution, use_container_width=True)
 
     st.subheader("Hồ sơ các nhóm khách hàng")
     st.dataframe(

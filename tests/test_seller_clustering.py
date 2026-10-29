@@ -2,7 +2,7 @@ import unittest
 
 import pandas as pd
 
-from webapp.clustering_page import _customer_features, _seller_features
+from webapp.clustering_page import _cluster_size_table, _customer_features, _seller_features
 
 
 class SellerClusteringFeatureTests(unittest.TestCase):
@@ -44,6 +44,16 @@ class SellerClusteringFeatureTests(unittest.TestCase):
         self.assertEqual(features.loc["customer-a", "unique_products"], 2)
         self.assertEqual(features.loc["customer-a", "average_rating"], 3.0)
         self.assertEqual(features.loc["customer-a", "negative_review_rate"], 0.5)
+
+    def test_builds_cluster_size_table_for_visualization(self):
+        records = pd.DataFrame(
+            {"cluster": [2, 0, 2, 1], "seller_id": ["a", "b", "c", "d"]}
+        )
+
+        sizes = _cluster_size_table(records, "seller_id", "Nhà bán")
+
+        self.assertEqual(sizes["Cụm"].tolist(), [0, 1, 2])
+        self.assertEqual(sizes["Nhà bán"].tolist(), [1, 1, 2])
 
 
 if __name__ == "__main__":
