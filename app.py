@@ -78,21 +78,23 @@ st.markdown("""
   [data-testid="stMetricLabel"] { color: #60738a; font-size: .8rem; font-weight: 650; }
   [data-testid="stMetricValue"] { color: #115eac; font-size: 1.72rem; font-weight: 740; }
   [data-testid="stVerticalBlockBorderWrapper"] { background: #ffffff; border-color: #dce6ef; border-radius: 8px; }
-  [data-testid="stTabs"] [data-baseweb="tab-list"] {
-    background: #eaf3ff; border: 1px solid #d6e7fb; border-radius: 10px;
+  [data-testid="stTabs"] [role="tablist"] {
+    background: #edf5ff; border: 1px solid #d6e7fb; border-radius: 10px;
     gap: .4rem; overflow-x: auto; padding: .35rem; scrollbar-width: thin;
   }
-  [data-testid="stTabs"] button {
+  [data-testid="stTabs"] [role="tab"] {
     background: #ffffff; border: 1px solid #d6e7fb; border-radius: 7px;
-    color: #174b80; font-weight: 650; padding: .58rem .8rem; white-space: nowrap;
+    color: #174b80; flex: 0 0 auto; font-weight: 650; min-height: 2.35rem;
+    padding: .58rem .8rem; white-space: nowrap;
   }
-  [data-testid="stTabs"] button p { color: inherit; }
-  [data-testid="stTabs"] button:hover { background: #f2f8ff; color: #0758b4; }
-  [data-testid="stTabs"] button[aria-selected="true"] {
-    background: #0b74e5; border-color: #0b74e5; color: #ffffff;
-    box-shadow: 0 2px 7px rgba(11, 116, 229, .2);
+  [data-testid="stTabs"] [role="tab"] p { color: inherit; }
+  [data-testid="stTabs"] [role="tab"]:hover { background: #f2f8ff; color: #0758b4; }
+  [data-testid="stTabs"] [role="tab"][aria-selected="true"] {
+    background: #e4f1ff; border-color: #8fc3ff; color: #0758b4;
+    box-shadow: 0 1px 5px rgba(11, 116, 229, .14);
   }
-  [data-testid="stTabs"] button[aria-selected="true"] p { color: #ffffff; }
+  [data-testid="stTabs"] [role="tab"][aria-selected="true"] p { color: #0758b4; }
+  [data-testid="stTabs"] [role="tab"]:focus-visible { outline: 2px solid #0b74e5; outline-offset: 2px; }
   [data-testid="stTabs"] [data-baseweb="tab-highlight"],
   [data-testid="stTabs"] [data-baseweb="tab-border"] { display: none; }
   [data-testid="stDataFrame"] { border: 1px solid #dce6ef; border-radius: 8px; overflow: hidden; }
