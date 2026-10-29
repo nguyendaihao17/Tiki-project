@@ -28,18 +28,86 @@ st.set_page_config(
 st.markdown("""
 <style>
   :root { color-scheme: light; }
-  .stApp { background: #f6f8fb; color: #172b4d; }
-  [data-testid="stSidebar"] { background: #eaf0f7; border-right: 1px solid #d9e2ed; }
-  [data-testid="stSidebar"] [role="radiogroup"] label { padding: .35rem .5rem; border-radius: 6px; }
-  [data-testid="stSidebar"] [role="radiogroup"] label:has(input:checked) { background: #d9eaf0; color: #0b5871; font-weight: 650; }
-  [data-testid="stMetric"] { background: #fff; border: 1px solid #dfe7ef; border-radius: 10px; padding: 16px; min-height: 112px; }
-  [data-testid="stMetricLabel"] { color: #52657b; }
-  [data-testid="stMetricValue"] { color: #113c63; }
-  [data-testid="stVerticalBlockBorderWrapper"] { border-color: #dfe7ef; }
-  h1, h2, h3 { color: #123858; letter-spacing: -.025em; }
-  .user-name { color: #123858; font-size: 1rem; font-weight: 650; margin: .25rem 0 .1rem; }
-  .login-eyebrow { margin-top: 3vh; color: #0c6282; font-size: .78rem; font-weight: 750; letter-spacing: .16em; }
-  @media (max-width: 768px) { [data-testid="stMetric"] { min-height: 96px; } }
+  .stApp { background: #f5f7fb; color: #12243b; }
+  [data-testid="stAppViewBlockContainer"] { max-width: 1540px; padding: 1.8rem 2.75rem 3rem; }
+  [data-testid="stHeader"] { background: rgba(245, 247, 251, .88); }
+  [data-testid="stSidebar"] { background: #0b2038; border-right: 1px solid #153a5d; }
+  [data-testid="stSidebar"] * { color: #e8f0f8; }
+  [data-testid="stSidebar"] [data-testid="stCaptionContainer"] p { color: #aabfd4; }
+  [data-testid="stSidebar"] hr { border-color: rgba(183, 209, 234, .2); }
+  [data-testid="stSidebar"] [role="radiogroup"] label {
+    border: 1px solid transparent;
+    border-radius: 7px;
+    margin: .16rem 0;
+    padding: .48rem .58rem;
+    transition: background .15s ease, border-color .15s ease;
+  }
+  [data-testid="stSidebar"] [role="radiogroup"] label:hover { background: rgba(255, 255, 255, .07); }
+  [data-testid="stSidebar"] [role="radiogroup"] label:has(input:checked) {
+    background: rgba(33, 168, 177, .2);
+    border-color: rgba(95, 218, 223, .28);
+    color: #ffffff;
+    font-weight: 650;
+  }
+  [data-testid="stSidebar"] [data-baseweb="radio"] > div:first-child { background: transparent; border-color: #7190ad; }
+  [data-testid="stSidebar"] button {
+    background: transparent;
+    border-color: #496987;
+    color: #edf6fb;
+  }
+  [data-testid="stSidebar"] button:hover { border-color: #65ccd1; color: #ffffff; }
+  .brand-lockup { display: flex; align-items: center; gap: .72rem; padding: .55rem 0 1.15rem; }
+  .brand-mark {
+    align-items: center; background: #16a3ad; border-radius: 7px; color: #ffffff !important;
+    display: inline-flex; font-size: .78rem; font-weight: 800; height: 2.2rem; justify-content: center;
+    letter-spacing: .04em; width: 2.2rem;
+  }
+  .brand-name { color: #ffffff !important; font-size: 1.18rem; font-weight: 760; letter-spacing: -.025em; line-height: 1.1; }
+  .brand-subtitle { color: #aabfd4 !important; font-size: .73rem; letter-spacing: .04em; margin-top: .14rem; text-transform: uppercase; }
+  .sidebar-user { border: 1px solid rgba(183, 209, 234, .18); border-radius: 7px; margin: .65rem 0 .9rem; padding: .72rem .78rem; }
+  .sidebar-user-name { color: #ffffff !important; font-size: .93rem; font-weight: 700; }
+  .sidebar-user-role { color: #9ec3d4 !important; font-size: .78rem; margin-top: .18rem; }
+  .app-header { align-items: center; border-bottom: 1px solid #dbe4ee; display: flex; justify-content: space-between; margin: -.2rem 0 1.75rem; padding-bottom: .9rem; }
+  .app-header-brand { color: #103858; font-size: .92rem; font-weight: 760; letter-spacing: .01em; }
+  .app-header-context { color: #728399; font-size: .79rem; }
+  [data-testid="stMetric"] {
+    background: #ffffff; border: 1px solid #dce6ef; border-radius: 8px; box-shadow: 0 2px 8px rgba(25, 54, 84, .04);
+    min-height: 106px; padding: 1rem 1.05rem;
+  }
+  [data-testid="stMetricLabel"] { color: #60738a; font-size: .8rem; font-weight: 650; }
+  [data-testid="stMetricValue"] { color: #103858; font-size: 1.72rem; font-weight: 740; }
+  [data-testid="stVerticalBlockBorderWrapper"] { background: #ffffff; border-color: #dce6ef; border-radius: 8px; }
+  [data-testid="stTabs"] [data-baseweb="tab-list"] { border-bottom-color: #dbe4ee; gap: 1.35rem; }
+  [data-testid="stTabs"] button { color: #61748a; font-weight: 620; padding: .55rem .1rem; }
+  [data-testid="stTabs"] button[aria-selected="true"] { color: #087f89; }
+  [data-testid="stTabs"] [data-baseweb="tab-highlight"] { background-color: #0d9ba5; height: 2px; }
+  [data-testid="stDataFrame"] { border: 1px solid #dce6ef; border-radius: 8px; overflow: hidden; }
+  [data-baseweb="select"] > div, [data-testid="stTextInput"] input, [data-testid="stNumberInput"] input {
+    border-color: #cbd9e5; border-radius: 6px;
+  }
+  [data-testid="stButton"] button, [data-testid="stFormSubmitButton"] button {
+    border-radius: 6px; font-weight: 670; min-height: 2.45rem;
+  }
+  [data-testid="stButton"] button[kind="primary"], [data-testid="stFormSubmitButton"] button[kind="primary"] {
+    background: #0a8792; border-color: #0a8792;
+  }
+  [data-testid="stButton"] button[kind="primary"]:hover, [data-testid="stFormSubmitButton"] button[kind="primary"]:hover { background: #08727b; border-color: #08727b; }
+  h1, h2, h3 { color: #102f4b; letter-spacing: -.028em; }
+  h1 { font-weight: 760; }
+  h2, h3 { font-weight: 700; }
+  [data-testid="stCaptionContainer"] p { color: #708198; }
+  .login-hero { margin: 8vh 0 1.15rem; }
+  .login-eyebrow { color: #087f89; font-size: .72rem; font-weight: 780; letter-spacing: .14em; text-transform: uppercase; }
+  .login-title { color: #102f4b; font-size: clamp(2rem, 4vw, 2.9rem); font-weight: 780; letter-spacing: -.045em; line-height: 1.06; margin: .65rem 0; }
+  .login-description { color: #60738a; font-size: 1rem; line-height: 1.65; margin: 0; max-width: 36rem; }
+  .login-card-label { color: #102f4b; font-size: .9rem; font-weight: 700; margin-bottom: .6rem; }
+  [data-testid="stVerticalBlockBorderWrapper"]:has([data-testid="stTabs"]) { box-shadow: 0 10px 30px rgba(20, 49, 79, .07); }
+  @media (max-width: 768px) {
+    [data-testid="stAppViewBlockContainer"] { padding: 1.25rem 1rem 2rem; }
+    [data-testid="stMetric"] { min-height: 92px; padding: .8rem; }
+    .app-header-context { display: none; }
+    .login-hero { margin-top: 3vh; }
+  }
 </style>
 """, unsafe_allow_html=True)
 
@@ -48,6 +116,14 @@ def main():
     is_logged_in = login_sidebar()
     if not is_logged_in:
         return
+
+    st.markdown(
+        """<div class="app-header">
+          <div class="app-header-brand">TikiLens <span style="color:#8aa0b6;font-weight:500">/ Analytics Workspace</span></div>
+          <div class="app-header-context">Phân tích thương mại điện tử · Dữ liệu sản phẩm và đánh giá</div>
+        </div>""",
+        unsafe_allow_html=True,
+    )
     
     st.sidebar.markdown("---")
     st.sidebar.markdown("#### Khám phá")

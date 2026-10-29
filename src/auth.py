@@ -368,10 +368,16 @@ def login_sidebar():
         login_form_version = st.session_state.get("login_form_version", 0)
         left, center, right = st.columns([1, 1.8, 1])
         with center:
-            st.markdown('<div class="login-eyebrow">TIKILENS · ANALYTICS WORKSPACE</div>', unsafe_allow_html=True)
-            st.title("Chào mừng đến TikiLens")
-            st.caption("Đăng nhập hoặc tạo tài khoản để khám phá dữ liệu và báo cáo phân tích Tiki.")
+            st.markdown(
+                """<div class="login-hero">
+                  <div class="login-eyebrow">TikiLens · Analytics Workspace</div>
+                  <div class="login-title">Phân tích dữ liệu,<br>ra quyết định rõ ràng.</div>
+                  <p class="login-description">Đăng nhập để khám phá dữ liệu sản phẩm, đánh giá và các báo cáo phân tích thương mại điện tử.</p>
+                </div>""",
+                unsafe_allow_html=True,
+            )
             with st.container(border=True):
+                st.markdown('<div class="login-card-label">Truy cập không gian làm việc</div>', unsafe_allow_html=True)
                 login_tab, register_tab = st.tabs(["Đăng nhập", "Đăng ký"])
                 with login_tab:
                     with st.form("login_form"):
@@ -417,11 +423,20 @@ def login_sidebar():
                                 st.rerun()
         return False
 
-    st.sidebar.markdown("### TikiLens")
-    st.sidebar.caption("Không gian phân tích thương mại điện tử")
-    st.sidebar.markdown(f"<div class='user-name'>{escape(st.session_state.name)}</div>",
-                        unsafe_allow_html=True)
-    st.sidebar.caption(access_role_badge(st.session_state.role))
+    st.sidebar.markdown(
+        """<div class="brand-lockup">
+          <div class="brand-mark">TL</div>
+          <div><div class="brand-name">TikiLens</div><div class="brand-subtitle">Analytics Workspace</div></div>
+        </div>""",
+        unsafe_allow_html=True,
+    )
+    st.sidebar.markdown(
+        f"""<div class="sidebar-user">
+          <div class="sidebar-user-name">{escape(st.session_state.name)}</div>
+          <div class="sidebar-user-role">{escape(access_role_badge(st.session_state.role))}</div>
+        </div>""",
+        unsafe_allow_html=True,
+    )
     if st.sidebar.button("Đăng xuất", width="stretch"):
         _set_session_user(None)
         login_form_version = st.session_state.get("login_form_version", 0)
