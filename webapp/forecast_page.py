@@ -119,7 +119,7 @@ def show(df_products):
                 color="#7a8795", strokeDash=[5, 4]
             ).encode(x="Giá trị:Q", y="Giá trị:Q")
             points = alt.Chart(evaluation).mark_circle(
-                color="#0c7287", opacity=0.7, size=58, stroke="white", strokeWidth=0.5
+                color="#0b74e5", opacity=0.7, size=58, stroke="white", strokeWidth=0.5
             ).encode(
                 x=alt.X("Thực tế:Q", title="Số lượng bán thực tế", scale=alt.Scale(domain=[minimum, maximum])),
                 y=alt.Y("Ước lượng:Q", title="Số lượng bán ước lượng", scale=alt.Scale(domain=[minimum, maximum])),

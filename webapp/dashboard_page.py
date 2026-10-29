@@ -8,8 +8,8 @@ import streamlit as st
 
 from src.reporting import dataframe_to_csv, excel_workbook_bytes
 
-TEAL = "#087a91"
-GOLD = "#dfa13d"
+TIKI_BLUE = "#0b74e5"
+GOLD = "#f5a623"
 
 
 def _number(frame, column):
@@ -430,7 +430,7 @@ def show(df_products, df_reviews, _kpis=None):
                 "Danh mục:N", sort=table["Danh mục"].tolist(), title=None,
                 axis=alt.Axis(labelAngle=-30, labelLimit=135),
             ))
-            bars = base.mark_bar(color=TEAL, cornerRadiusEnd=3).encode(
+            bars = base.mark_bar(color=TIKI_BLUE, cornerRadiusEnd=3).encode(
                 y=alt.Y("Doanh thu ước tính:Q", title="Doanh thu ước tính (VNĐ)", axis=alt.Axis(format="~s")),
                 tooltip=["Danh mục:N", alt.Tooltip("Doanh thu ước tính:Q", format=",.0f"),
                          alt.Tooltip("Tỷ trọng (%):Q", format=".1f"), "Sản phẩm:Q"],
@@ -448,7 +448,7 @@ def show(df_products, df_reviews, _kpis=None):
             st.info("Dữ liệu chưa có phân khúc giá để phân tích.")
         else:
             left, right = st.columns(2)
-            for slot, metric, color in ((left, "Doanh thu ước tính", TEAL), (right, "Đã bán", GOLD)):
+            for slot, metric, color in ((left, "Doanh thu ước tính", TIKI_BLUE), (right, "Đã bán", GOLD)):
                 with slot, st.container(border=True):
                     st.markdown(f"**{metric} theo phân khúc**")
                     chart = alt.Chart(segments).mark_bar(color=color, cornerRadiusEnd=3).encode(
@@ -499,7 +499,7 @@ def show(df_products, df_reviews, _kpis=None):
                             axis=alt.Axis(format="%Y" if annual else "%m/%Y", tickCount=10)),
                     y=alt.Y("sum(Lượt đánh giá):Q", title="Lượt đánh giá"),
                     color=alt.Color("Sao:O", scale=alt.Scale(domain=[1, 2, 3, 4, 5],
-                                     range=["#c75b52", "#df9365", "#e4bd70", "#7bb9b1", TEAL]),
+                                     range=["#c75b52", "#df9365", "#e4bd70", "#7bb9b1", TIKI_BLUE]),
                                     title="Số sao"),
                     tooltip=[alt.Tooltip("Kỳ:T", format="%Y" if annual else "%m/%Y"),
                              "Sao:O", alt.Tooltip("Lượt đánh giá:Q", format=",.0f")],
@@ -553,7 +553,7 @@ def show(df_products, df_reviews, _kpis=None):
                 chart_sellers, leader = _seller_comparison(sellers)
                 if leader is not None:
                     st.caption(f"Nhà bán {leader['Nhà bán']} chiếm **{leader['Tỷ trọng (%)']:.1f}%** doanh thu ước tính; biểu đồ so sánh các nhà bán xếp sau.")
-                chart = alt.Chart(chart_sellers).mark_bar(color=TEAL, cornerRadiusEnd=3).encode(
+                chart = alt.Chart(chart_sellers).mark_bar(color=TIKI_BLUE, cornerRadiusEnd=3).encode(
                     x=alt.X("Doanh thu ước tính:Q", axis=alt.Axis(format="~s"), title="Doanh thu ước tính (VNĐ)"),
                     y=alt.Y("Nhà bán:N", sort="-x", title=None),
                     tooltip=["Nhà bán:N", alt.Tooltip("Doanh thu ước tính:Q", format=",.0f"),
@@ -603,7 +603,7 @@ def show(df_products, df_reviews, _kpis=None):
             st.info("Chưa có mức giảm giá hợp lệ trong phạm vi lọc.")
         else:
             left, right = st.columns(2)
-            for slot, metric, color in ((left, "Sản phẩm", TEAL), (right, "Đã bán/SP", GOLD)):
+            for slot, metric, color in ((left, "Sản phẩm", TIKI_BLUE), (right, "Đã bán/SP", GOLD)):
                 with slot, st.container(border=True):
                     st.markdown(f"**{metric} theo mức giảm**")
                     chart = alt.Chart(discount_bands).mark_bar(color=color, cornerRadiusEnd=3).encode(
@@ -625,7 +625,7 @@ def show(df_products, df_reviews, _kpis=None):
                     tooltip=["Danh mục:N", "Sản phẩm:Q", alt.Tooltip("Q1:Q", format=",.0f"),
                              alt.Tooltip("Trung vị:Q", format=",.0f"), alt.Tooltip("Q3:Q", format=",.0f")],
                 )
-                interval = base.mark_rule(color=TEAL, strokeWidth=5).encode(
+                interval = base.mark_rule(color=TIKI_BLUE, strokeWidth=5).encode(
                     x=alt.X("Q1:Q", title="Giá (VNĐ)", scale=alt.Scale(type="log"),
                             axis=alt.Axis(format="~s")), x2="Q3:Q")
                 median = base.mark_circle(color=GOLD, size=105).encode(
@@ -656,7 +656,7 @@ def show(df_products, df_reviews, _kpis=None):
                             axis=alt.Axis(labelLimit=220)),
                     yOffset="Chỉ số:N",
                     color=alt.Color("Chỉ số:N", scale=alt.Scale(
-                        domain=["Tỷ trọng sản phẩm (%)", "Tỷ trọng doanh thu (%)"], range=[TEAL, GOLD]),
+                        domain=["Tỷ trọng sản phẩm (%)", "Tỷ trọng doanh thu (%)"], range=[TIKI_BLUE, GOLD]),
                                     title=None),
                     tooltip=["Nhóm dịch vụ:N", "Chỉ số:N", alt.Tooltip("Tỷ trọng (%):Q", format=".1f")],
                 ).properties(height=300)
@@ -665,7 +665,7 @@ def show(df_products, df_reviews, _kpis=None):
                 st.markdown("**Lượng đã bán bình quân mỗi sản phẩm**")
                 active_groups = service_mix[service_mix["Sản phẩm"].gt(0)]
                 benchmark = active_groups["Đã bán"].sum() / active_groups["Sản phẩm"].sum()
-                bars = alt.Chart(active_groups).mark_bar(color=TEAL, cornerRadiusEnd=3).encode(
+                bars = alt.Chart(active_groups).mark_bar(color=TIKI_BLUE, cornerRadiusEnd=3).encode(
                     x=alt.X("Đã bán/SP:Q", title="Số lượng đã bán / sản phẩm", axis=alt.Axis(format="~s")),
                     y=alt.Y("Nhóm dịch vụ:N", sort=service_mix["Nhóm dịch vụ"].tolist(), title=None,
                             axis=alt.Axis(labelLimit=220)),
@@ -698,7 +698,7 @@ def show(df_products, df_reviews, _kpis=None):
                 equal_share = base.mark_line(color="#a9b8c8", strokeDash=[5, 5]).encode(
                     y=alt.Y("Tỷ lệ sản phẩm đứng đầu (%):Q", scale=alt.Scale(domain=[0, 100]),
                             title="Tỷ lệ doanh thu lũy kế (%)"))
-                curve = base.mark_line(color=TEAL, strokeWidth=3).encode(
+                curve = base.mark_line(color=TIKI_BLUE, strokeWidth=3).encode(
                     y=alt.Y("Tỷ lệ doanh thu lũy kế (%):Q", scale=alt.Scale(domain=[0, 100])),
                     tooltip=[alt.Tooltip("Tỷ lệ sản phẩm đứng đầu (%):Q", format=".0f"),
                              alt.Tooltip("Tỷ lệ doanh thu lũy kế (%):Q", format=".1f")],
@@ -744,7 +744,7 @@ def show(df_products, df_reviews, _kpis=None):
                     y=alt.Y("Lượt đánh giá/SP:N", sort=["0", "1–9", "10–99", "≥100"], title=None),
                     yOffset="Chỉ số:N",
                     color=alt.Color("Chỉ số:N", scale=alt.Scale(
-                        domain=["Tỷ trọng sản phẩm (%)", "Tỷ trọng doanh thu (%)"], range=[TEAL, GOLD]),
+                        domain=["Tỷ trọng sản phẩm (%)", "Tỷ trọng doanh thu (%)"], range=[TIKI_BLUE, GOLD]),
                                     title=None),
                     tooltip=["Lượt đánh giá/SP:N", "Chỉ số:N", alt.Tooltip("Tỷ trọng (%):Q", format=".1f")],
                 ).properties(height=290)
@@ -755,7 +755,7 @@ def show(df_products, df_reviews, _kpis=None):
                 if eligible.empty:
                     st.info("Cần ít nhất 20 sản phẩm có lượt đánh giá hợp lệ mỗi danh mục để so sánh.")
                 else:
-                    chart = alt.Chart(eligible).mark_bar(color=TEAL, cornerRadiusEnd=3).encode(
+                    chart = alt.Chart(eligible).mark_bar(color=TIKI_BLUE, cornerRadiusEnd=3).encode(
                         x=alt.X("Tỷ lệ có đánh giá (%):Q", title="Sản phẩm có ít nhất 1 đánh giá (%)",
                                 scale=alt.Scale(domain=[0, 100])),
                         y=alt.Y("Danh mục:N", sort=eligible["Danh mục"].tolist(), title=None,

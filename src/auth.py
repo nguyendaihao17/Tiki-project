@@ -366,18 +366,22 @@ def login_sidebar():
 
     if not st.session_state.authenticated:
         login_form_version = st.session_state.get("login_form_version", 0)
-        left, center, right = st.columns([1, 1.8, 1])
-        with center:
+        st.markdown('<style>[data-testid="stSidebar"] { display: none; }</style>', unsafe_allow_html=True)
+        left, right = st.columns([1.05, 1], gap="large", vertical_alignment="center")
+        with left:
             st.markdown(
                 """<div class="login-hero">
-                  <div class="login-eyebrow">TikiLens · Analytics Workspace</div>
-                  <div class="login-title">Phân tích dữ liệu,<br>ra quyết định rõ ràng.</div>
-                  <p class="login-description">Đăng nhập để khám phá dữ liệu sản phẩm, đánh giá và các báo cáo phân tích thương mại điện tử.</p>
+                  <div class="login-eyebrow">TikiLens / Không gian phân tích</div>
+                  <div class="login-title">Dữ liệu rõ ràng.<br>Quyết định vững vàng.</div>
+                  <p class="login-description">Theo dõi sản phẩm, nhà bán và phản hồi khách hàng trên một không gian làm việc thống nhất.</p>
+                  <div class="login-features">Dashboard kinh doanh<br>Khám phá và lọc dữ liệu<br>Phân cụm và mô hình dự báo</div>
                 </div>""",
                 unsafe_allow_html=True,
             )
+        with right:
+            st.markdown('<div class="login-form-intro">Chào mừng đến TikiLens</div>', unsafe_allow_html=True)
             with st.container(border=True):
-                st.markdown('<div class="login-card-label">Truy cập không gian làm việc</div>', unsafe_allow_html=True)
+                st.markdown('<div class="login-card-label">Truy cập tài khoản</div>', unsafe_allow_html=True)
                 login_tab, register_tab = st.tabs(["Đăng nhập", "Đăng ký"])
                 with login_tab:
                     with st.form("login_form"):
