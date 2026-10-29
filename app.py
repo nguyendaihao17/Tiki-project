@@ -78,10 +78,23 @@ st.markdown("""
   [data-testid="stMetricLabel"] { color: #60738a; font-size: .8rem; font-weight: 650; }
   [data-testid="stMetricValue"] { color: #115eac; font-size: 1.72rem; font-weight: 740; }
   [data-testid="stVerticalBlockBorderWrapper"] { background: #ffffff; border-color: #dce6ef; border-radius: 8px; }
-  [data-testid="stTabs"] [data-baseweb="tab-list"] { border-bottom-color: #dbe4ee; gap: 1.35rem; }
-  [data-testid="stTabs"] button { color: #61748a; font-weight: 620; padding: .55rem .1rem; }
-  [data-testid="stTabs"] button[aria-selected="true"] { color: #0b65c7; }
-  [data-testid="stTabs"] [data-baseweb="tab-highlight"] { background-color: #0b74e5; height: 2px; }
+  [data-testid="stTabs"] [data-baseweb="tab-list"] {
+    background: #eaf3ff; border: 1px solid #d6e7fb; border-radius: 10px;
+    gap: .4rem; overflow-x: auto; padding: .35rem; scrollbar-width: thin;
+  }
+  [data-testid="stTabs"] button {
+    background: #ffffff; border: 1px solid #d6e7fb; border-radius: 7px;
+    color: #174b80; font-weight: 650; padding: .58rem .8rem; white-space: nowrap;
+  }
+  [data-testid="stTabs"] button p { color: inherit; }
+  [data-testid="stTabs"] button:hover { background: #f2f8ff; color: #0758b4; }
+  [data-testid="stTabs"] button[aria-selected="true"] {
+    background: #0b74e5; border-color: #0b74e5; color: #ffffff;
+    box-shadow: 0 2px 7px rgba(11, 116, 229, .2);
+  }
+  [data-testid="stTabs"] button[aria-selected="true"] p { color: #ffffff; }
+  [data-testid="stTabs"] [data-baseweb="tab-highlight"],
+  [data-testid="stTabs"] [data-baseweb="tab-border"] { display: none; }
   [data-testid="stDataFrame"] { border: 1px solid #dce6ef; border-radius: 8px; overflow: hidden; }
   [data-baseweb="select"] > div, [data-testid="stTextInput"] input, [data-testid="stNumberInput"] input {
     border-color: #cbd9e5; border-radius: 6px;
