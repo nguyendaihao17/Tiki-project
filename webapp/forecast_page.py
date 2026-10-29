@@ -1,3 +1,4 @@
+import altair as alt
 import numpy as np
 import pandas as pd
 import streamlit as st
@@ -12,6 +13,18 @@ from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
 NUMERIC_CANDIDATES = ["price", "original_price", "discount_rate", "rating_average", "review_count"]
 CATEGORICAL_CANDIDATES = ["category_name", "price_segment", "seller_type", "is_tiki_now", "is_freeship_xtra"]
+
+
+def _evaluation_frame(actual, predicted) -> pd.DataFrame:
+    """Prepare actual, estimated, and residual values for forecast charts."""
+    evaluation = pd.DataFrame(
+        {
+            "Thực tế": pd.to_numeric(pd.Series(actual), errors="coerce"),
+            "Ước lượng": pd.to_numeric(pd.Series(predicted), errors="coerce"),
+        }
+    ).dropna()
+    evaluation["Sai số"] = evaluation["Ước lượng"] - evaluation["Thực tế"]
+    return evaluation.reset_index(drop=True)
 
 
 def _build_model(df_products):
@@ -69,7 +82,8 @@ def _build_model(df_products):
         "RMSE": np.sqrt(mean_squared_error(y_test, prediction)),
         "R2": r2_score(y_test, prediction),
     }
-    return pipeline, metrics, (numeric_features, categorical_features, X, y), None
+    evaluation = _evaluation_frame(y_test, prediction)
+    return pipeline, metrics, (numeric_features, categorical_features, X, y, evaluation), None
 
 
 def show(df_products):
@@ -90,7 +104,40 @@ def show(df_products):
     r2.metric("R²", f"{metrics['R2']:.3f}")
     st.caption("Các chỉ số được tính trên tập kiểm tra giữ lại (20%), không phải số liệu tương lai.")
 
-    numeric_features, categorical_features, X, y = details
+    numeric_features, categorical_features, X, y, evaluation = details
+    if not evaluation.empty:
+        st.subheader("Đánh giá trực quan trên tập kiểm tra")
+        minimum = float(min(evaluation["Thực tế"].min(), evaluation["Ước lượng"].min()))
+        maximum = float(max(evaluation["Thực tế"].max(), evaluation["Ước lượng"].max()))
+        if minimum == maximum:
+            maximum = minimum + 1.0
+        reference = pd.DataFrame({"Giá trị": [minimum, maximum]})
+
+        actual_chart, residual_chart = st.columns((3, 2))
+        with actual_chart:
+            diagonal = alt.Chart(reference).mark_line(
+                color="#7a8795", strokeDash=[5, 4]
+            ).encode(x="Giá trị:Q", y="Giá trị:Q")
+            points = alt.Chart(evaluation).mark_circle(
+                color="#0c7287", opacity=0.7, size=58, stroke="white", strokeWidth=0.5
+            ).encode(
+                x=alt.X("Thực tế:Q", title="Số lượng bán thực tế", scale=alt.Scale(domain=[minimum, maximum])),
+                y=alt.Y("Ước lượng:Q", title="Số lượng bán ước lượng", scale=alt.Scale(domain=[minimum, maximum])),
+                tooltip=[
+                    alt.Tooltip("Thực tế:Q", format=",.0f"),
+                    alt.Tooltip("Ước lượng:Q", format=",.0f"),
+                    alt.Tooltip("Sai số:Q", format=",.0f"),
+                ],
+            )
+            st.altair_chart((diagonal + points).properties(height=330).interactive(), use_container_width=True)
+        with residual_chart:
+            residuals = alt.Chart(evaluation).mark_bar(color="#d99a4e", cornerRadiusEnd=3).encode(
+                x=alt.X("Sai số:Q", bin=alt.Bin(maxbins=24), title="Sai số (ước lượng − thực tế)"),
+                y=alt.Y("count():Q", title="Số sản phẩm"),
+                tooltip=[alt.Tooltip("count():Q", title="Số sản phẩm")],
+            ).properties(height=330)
+            st.altair_chart(residuals, use_container_width=True)
+
     st.subheader("Ước tính cho một cấu hình sản phẩm")
     st.caption("Thay đổi các thuộc tính để xem mô hình ước tính số lượng bán tương ứng.")
     with st.form("forecast_input"):
