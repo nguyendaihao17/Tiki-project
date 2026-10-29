@@ -10,7 +10,7 @@ from src.analytics import (
 from webapp import (
     admin_page,
     anomaly_page,
-    customer_clustering_page,
+    clustering_page,
     dashboard_page,
     explore_page,
     forecast_page,
@@ -57,7 +57,7 @@ def main():
         "Phân tích & Dashboard",
         "Khám phá & Lọc dữ liệu",
         "Chất lượng dữ liệu",
-        "Phân cụm khách hàng",
+        "Phân cụm khách hàng & nhà bán",
         "Dự báo",
         "Phát hiện bất thường",
     ]
@@ -77,9 +77,9 @@ def main():
         "Chất lượng dữ liệu",
         "Khám phá & Lọc dữ liệu",
         "Phân tích & Dashboard",
-        "Phân cụm khách hàng",
+        "Phân cụm khách hàng & nhà bán",
     }
-    needs_products = page != "Phân cụm khách hàng"
+    needs_products = True
 
     # Collection data is cached independently for five minutes; each page only
     # loads the collections it uses. Model fitting happens within page content.
@@ -103,8 +103,8 @@ def main():
         explore_page.show(df_products, df_reviews)
     elif page == "Phân tích & Dashboard":
         dashboard_page.show(df_products, df_reviews, kpis)
-    elif page == "Phân cụm khách hàng":
-        customer_clustering_page.show(df_reviews)
+    elif page == "Phân cụm khách hàng & nhà bán":
+        clustering_page.show(df_products, df_reviews)
     elif page == "Dự báo":
         forecast_page.show(df_products)
     elif page == "Phát hiện bất thường":

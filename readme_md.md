@@ -41,7 +41,7 @@ Mở địa chỉ hiện trong terminal (thường là `http://localhost:8501`).
    - **Phân tích & Dashboard**: xem biểu đồ, áp dụng bộ lọc và xuất báo cáo.
    - **Khám phá & Lọc dữ liệu**: tìm mã/tên sản phẩm hoặc khách hàng; lọc và xuất dữ liệu.
    - **Chất lượng dữ liệu**: quy mô dữ liệu và độ đầy đủ của các trường quan trọng.
-   - **Phân cụm khách hàng**, **Dự báo**, **Phát hiện bất thường**: chạy các phân tích tương ứng.
+   - **Phân cụm khách hàng & nhà bán**, **Dự báo**, **Phát hiện bất thường**: chạy các phân tích tương ứng.
    - **Quản trị dữ liệu & Báo cáo**: chỉ Admin được truy cập; quản lý sản phẩm, người dùng, sao lưu, phục hồi và báo cáo.
 3. Dữ liệu được cache tối đa 5 phút. Nhấn **Làm mới dữ liệu** ở thanh bên để tải lại từ MongoDB sớm hơn.
 4. Ở trang Khám phá hoặc Dashboard, dùng các nút tải xuống để xuất CSV/Excel.
@@ -75,7 +75,8 @@ Mở địa chỉ hiện trong terminal (thường là `http://localhost:8501`).
 
 ### Phân tích và mô hình
 
-- **Phân cụm khách hàng**: K-Means dùng hành vi đánh giá. Không có lịch sử mua hàng/chi tiêu theo khách hàng nên đây không phải phân cụm RFM mua hàng.
+- **Phân cụm khách hàng**: K-Means nhóm khách hàng theo hành vi đánh giá: tần suất, điểm đánh giá, độ biến động điểm, tỷ lệ đánh giá tiêu cực và số sản phẩm đã đánh giá. Không có lịch sử mua hàng/chi tiêu nên đây không phải phân cụm RFM mua hàng.
+- **Phân cụm nhà bán hàng**: K-Means nhóm nhà bán theo số sản phẩm, số lượng đã bán, doanh thu ước tính, lượt đánh giá và điểm đánh giá trung bình. Dữ liệu là ảnh chụp sản phẩm nên đây không phải phân cụm RFM giao dịch theo thời gian.
 - **Dự báo**: Random Forest ước tính số lượng bán từ thuộc tính sản phẩm; dữ liệu hiện không phải chuỗi thời gian doanh số.
 - **Phát hiện bất thường**: Isolation Forest tìm sản phẩm có tổ hợp chỉ số khác biệt; kết quả thống kê không tự động đồng nghĩa với lỗi hay gian lận.
 
@@ -153,7 +154,7 @@ Tiki Project/
 └── webapp/
     ├── admin_page.py
     ├── anomaly_page.py
-    ├── customer_clustering_page.py
+    ├── clustering_page.py
     ├── dashboard_page.py
     ├── explore_page.py
     ├── forecast_page.py
