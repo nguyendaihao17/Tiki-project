@@ -28,10 +28,10 @@ st.set_page_config(
 st.markdown("""
 <style>
   :root { color-scheme: light; }
-  .stApp { background: #f5f8ff; color: #183153; }
+  .stApp { background: #f6f8fc; color: #183153; }
   [data-testid="stAppViewBlockContainer"] { max-width: 1540px; padding: 1.8rem 2.75rem 3rem; }
   [data-testid="stAppViewBlockContainer"]:has(.login-hero) { max-width: 1120px; padding-top: 4vh; }
-  [data-testid="stHeader"] { background: rgba(245, 248, 255, .92); }
+  [data-testid="stHeader"] { background: rgba(246, 248, 252, .92); }
   [data-testid="stSidebar"] { background: #ffffff; border-right: 1px solid #dce8f7; }
   [data-testid="stSidebar"] * { color: #183153; }
   [data-testid="stSidebar"] [data-testid="stCaptionContainer"] p { color: #607b9d; }
@@ -68,9 +68,17 @@ st.markdown("""
   .sidebar-user { background: #f1f7ff; border: 1px solid #dbe9fb; border-radius: 8px; margin: .65rem 0 .9rem; padding: .72rem .78rem; }
   .sidebar-user-name { color: #14395e !important; font-size: .93rem; font-weight: 700; }
   .sidebar-user-role { color: #47729f !important; font-size: .78rem; margin-top: .18rem; }
-  .app-header { align-items: center; border-bottom: 1px solid #dbe4ee; display: flex; justify-content: space-between; margin: -.2rem 0 1.75rem; padding-bottom: .9rem; }
-  .app-header-brand { color: #0b65c7; font-size: .92rem; font-weight: 760; letter-spacing: .01em; }
-  .app-header-context { color: #728399; font-size: .79rem; }
+  .app-header {
+    align-items: center;
+    background: linear-gradient(90deg, rgba(5, 32, 70, .96) 0%, rgba(5, 32, 70, .82) 46%, rgba(5, 32, 70, .08) 100%),
+      url('/app/static/tikilens-products.webp') center 52% / cover no-repeat;
+    border: 1px solid #194a80; border-radius: 12px; box-shadow: 0 8px 24px rgba(16, 47, 75, .09);
+    display: flex; margin: -.2rem 0 2rem; min-height: 7.5rem; overflow: hidden; padding: 1.2rem 1.8rem;
+  }
+  .app-header-copy { display: flex; flex-direction: column; gap: .12rem; max-width: 27rem; }
+  .app-header-eyebrow { color: #b8ddff; font-size: .67rem; font-weight: 750; letter-spacing: .13em; text-transform: uppercase; }
+  .app-header-brand { color: #ffffff; font-size: 1.55rem; font-weight: 780; letter-spacing: -.035em; line-height: 1.14; }
+  .app-header-context { color: #e7f2ff; font-size: .84rem; line-height: 1.35; }
   [data-testid="stMetric"] {
     background: #ffffff; border: 1px solid #dce6ef; border-radius: 8px; box-shadow: 0 2px 8px rgba(25, 54, 84, .04);
     min-height: 106px; padding: 1rem 1.05rem;
@@ -114,7 +122,12 @@ st.markdown("""
   h1 { font-weight: 760; }
   h2, h3 { font-weight: 700; }
   [data-testid="stCaptionContainer"] p { color: #708198; }
-  .login-hero { background: linear-gradient(145deg, #0b74e5, #0758b4); border-radius: 16px; color: #ffffff; margin: 3vh 0 1rem; min-height: 26rem; padding: 3rem 2.5rem; }
+  .login-hero {
+    background: linear-gradient(90deg, rgba(4, 29, 62, .96) 0%, rgba(4, 29, 62, .86) 48%, rgba(4, 29, 62, .22) 100%),
+      url('/app/static/tikilens-products.webp') 58% center / cover no-repeat;
+    border: 1px solid #194a80; border-radius: 14px; box-shadow: 0 12px 28px rgba(12, 48, 85, .14);
+    color: #ffffff; margin: 3vh 0 1rem; min-height: 26rem; padding: 3rem 2.5rem;
+  }
   .login-eyebrow { color: #cbe5ff; font-size: .74rem; font-weight: 780; letter-spacing: .13em; text-transform: uppercase; }
   .login-title { color: #ffffff; font-size: clamp(2rem, 3.5vw, 3.3rem); font-weight: 780; letter-spacing: -.045em; line-height: 1.1; margin: 1.7rem 0 1rem; }
   .login-description { color: #e2f0ff; font-size: 1rem; line-height: 1.65; margin: 0; max-width: 26rem; }
@@ -129,7 +142,9 @@ st.markdown("""
     [data-testid="stHorizontalBlock"]:has(.login-hero) { flex-direction: column; gap: .25rem; }
     [data-testid="stHorizontalBlock"]:has(.login-hero) > [data-testid="stColumn"] { min-width: 100%; width: 100%; }
     [data-testid="stMetric"] { min-height: 92px; padding: .8rem; }
-    .app-header-context { display: none; }
+    .app-header { background-position: 66% center; min-height: 6.5rem; padding: 1rem 1.25rem; }
+    .app-header-brand { font-size: 1.35rem; }
+    .app-header-context { font-size: .77rem; max-width: 15rem; }
     .login-hero { margin-top: 1vh; min-height: auto; padding: 1.25rem 1.5rem; }
     .login-title { margin: .9rem 0; }
     .login-features { display: none; }
@@ -145,8 +160,11 @@ def main():
 
     st.markdown(
         """<div class="app-header">
-          <div class="app-header-brand">TikiLens <span style="color:#8aa0b6;font-weight:500">/ Analytics Workspace</span></div>
-          <div class="app-header-context">Phân tích thương mại điện tử · Dữ liệu sản phẩm và đánh giá</div>
+          <div class="app-header-copy">
+            <div class="app-header-eyebrow">TikiLens / Analytics Workspace</div>
+            <div class="app-header-brand">Thương mại điện tử qua dữ liệu</div>
+            <div class="app-header-context">Theo dõi sản phẩm, nhà bán và phản hồi khách hàng trong một không gian phân tích.</div>
+          </div>
         </div>""",
         unsafe_allow_html=True,
     )
