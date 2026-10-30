@@ -1,3 +1,6 @@
+import base64
+from pathlib import Path
+
 import streamlit as st
 import pandas as pd
 from src.auth import check_permission, login_sidebar
@@ -24,6 +27,9 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
 )
+
+_hero_image = Path(__file__).resolve().parent / "static" / "tikilens-products.webp"
+_hero_data_uri = "data:image/webp;base64," + base64.b64encode(_hero_image.read_bytes()).decode("ascii")
 
 st.markdown("""
 <style>
@@ -71,7 +77,7 @@ st.markdown("""
   .app-header {
     align-items: center;
     background: linear-gradient(90deg, rgba(5, 32, 70, .96) 0%, rgba(5, 32, 70, .82) 46%, rgba(5, 32, 70, .08) 100%),
-      url('/app/static/tikilens-products.webp') center 52% / cover no-repeat;
+      url('__TIKILENS_HERO_IMAGE__') center 52% / cover no-repeat;
     border: 1px solid #194a80; border-radius: 12px; box-shadow: 0 8px 24px rgba(16, 47, 75, .09);
     display: flex; margin: -.2rem 0 2rem; min-height: 7.5rem; overflow: hidden; padding: 1.2rem 1.8rem;
   }
@@ -124,7 +130,7 @@ st.markdown("""
   [data-testid="stCaptionContainer"] p { color: #708198; }
   .login-hero {
     background: linear-gradient(90deg, rgba(4, 29, 62, .96) 0%, rgba(4, 29, 62, .86) 48%, rgba(4, 29, 62, .22) 100%),
-      url('/app/static/tikilens-products.webp') 58% center / cover no-repeat;
+      url('__TIKILENS_HERO_IMAGE__') 58% center / cover no-repeat;
     border: 1px solid #194a80; border-radius: 14px; box-shadow: 0 12px 28px rgba(12, 48, 85, .14);
     color: #ffffff; margin: 3vh 0 1rem; min-height: 26rem; padding: 3rem 2.5rem;
   }
@@ -150,7 +156,7 @@ st.markdown("""
     .login-features { display: none; }
   }
 </style>
-""", unsafe_allow_html=True)
+""".replace("__TIKILENS_HERO_IMAGE__", _hero_data_uri), unsafe_allow_html=True)
 
 def main():
     # Đăng nhập trước khi tải dữ liệu và dựng điều hướng.
