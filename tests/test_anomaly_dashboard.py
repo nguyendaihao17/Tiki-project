@@ -2,7 +2,7 @@ import unittest
 
 import pandas as pd
 
-from webapp.anomaly_page import _category_anomaly_rates, _fit_outliers, _model_features, _score_distribution
+from webapp.anomaly_page import _category_anomaly_rates, _feature_profile, _fit_outliers, _model_features, _score_distribution
 
 
 class AnomalyDashboardTests(unittest.TestCase):
@@ -58,6 +58,22 @@ class AnomalyDashboardTests(unittest.TestCase):
         labels, scores = _fit_outliers(pd.concat([regular, extreme], ignore_index=True), .02)
         self.assertEqual(labels[-1], -1)
         self.assertLess(scores[-1], scores[:-1].min())
+
+    def test_feature_profile_places_anomalies_in_dataset_deciles(self):
+        features = pd.DataFrame({
+            "price": range(1, 11),
+            "discount_rate": range(1, 11),
+            "quantity_sold": range(1, 11),
+            "revenue_estimate": range(1, 11),
+            "review_count": range(1, 11),
+        })
+        profile = _feature_profile(features, [True] + [False] * 8 + [True])
+        totals = profile.groupby("Chỉ số")["Sản phẩm"].sum()
+        self.assertEqual(len(totals), 5)
+        self.assertTrue(totals.eq(2).all())
+        prices = profile.set_index(["Chỉ số", "Phân vị"])
+        self.assertEqual(prices.loc[("Giá", "0–10%"), "Sản phẩm"], 1)
+        self.assertEqual(prices.loc[("Giá", "90–100%"), "Sản phẩm"], 1)
 
 
 if __name__ == "__main__":

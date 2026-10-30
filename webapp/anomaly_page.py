@@ -5,6 +5,16 @@ import streamlit as st
 from sklearn.ensemble import IsolationForest
 
 
+FEATURE_LABELS = {
+    "price": "Giá",
+    "discount_rate": "Tỷ lệ giảm giá",
+    "quantity_sold": "Số lượng đã bán",
+    "revenue_estimate": "Doanh thu ước tính",
+    "estimated_revenue": "Doanh thu ước tính",
+    "review_count": "Lượt đánh giá",
+}
+
+
 def _model_features(products: pd.DataFrame) -> list[str]:
     """Use the five report features, with one revenue field only."""
     revenue = "revenue_estimate" if "revenue_estimate" in products else "estimated_revenue"
@@ -17,6 +27,28 @@ def _fit_outliers(features: pd.DataFrame, contamination: float):
     model = IsolationForest(contamination=contamination, random_state=42)
     labels = model.fit_predict(features)
     return labels, model.decision_function(features)
+
+
+def _feature_profile(features: pd.DataFrame, anomaly_mask) -> pd.DataFrame:
+    """Count anomalous products in each dataset decile of the model inputs."""
+    mask = np.asarray(anomaly_mask, dtype=bool)
+    if len(mask) != len(features):
+        raise ValueError("Số nhãn bất thường phải khớp số sản phẩm.")
+    total = int(mask.sum())
+    rows = []
+    for column in features:
+        ranks = features[column].rank(method="min", pct=True)
+        deciles = np.ceil(ranks * 10).astype(int).sub(1).clip(0, 9)
+        counts = deciles.iloc[np.flatnonzero(mask)].value_counts()
+        for bucket in range(10):
+            count = int(counts.get(bucket, 0))
+            rows.append({
+                "Chỉ số": FEATURE_LABELS.get(column, column),
+                "Phân vị": f"{bucket * 10}–{(bucket + 1) * 10}%",
+                "Sản phẩm": count,
+                "Tỷ lệ (%)": count / total * 100 if total else 0.0,
+            })
+    return pd.DataFrame(rows)
 
 
 def _score_distribution(data: pd.DataFrame) -> pd.DataFrame:
@@ -102,6 +134,32 @@ def show(df_products):
     metrics[3].metric("Tỷ trọng doanh thu ước tính", f"{revenue_share:.1f}%" if revenue_share is not None else "—",
                       help="Phần doanh thu ước tính thuộc nhóm sản phẩm bất thường; không phải doanh thu thất thoát.")
     st.caption(f"Mô hình Isolation Forest dùng tỷ lệ giả định {anomaly_percent}% và {len(feature_columns)} chỉ số sản phẩm. Điểm âm thể hiện sản phẩm khác biệt hơn; kết quả không tự xác nhận sản phẩm lỗi hay gian lận.")
+
+    st.header("Hồ sơ 5 chỉ số đầu vào")
+    with st.container(border=True):
+        st.subheader("Sản phẩm bất thường tập trung ở mức nào?")
+        profile = _feature_profile(features, labels == -1)
+        percentile_order = [f"{start}–{start + 10}%" for start in range(0, 100, 10)]
+        feature_order = [FEATURE_LABELS[column] for column in feature_columns]
+        base = alt.Chart(profile).encode(
+            x=alt.X("Phân vị:N", sort=percentile_order,
+                    title="Vị trí trong phân bố của từng chỉ số", axis=alt.Axis(labelAngle=0)),
+            y=alt.Y("Chỉ số:N", sort=feature_order, title=None),
+        )
+        heatmap = base.mark_rect(stroke="#ffffff", strokeWidth=2).encode(
+            color=alt.Color("Tỷ lệ (%):Q", title="Tỷ lệ trong nhóm bất thường (%)",
+                            scale=alt.Scale(range=["#eaf4ff", "#0b74e5"],
+                                            domain=[0, max(30, profile["Tỷ lệ (%)"].max())])),
+            tooltip=["Chỉ số:N", "Phân vị:N", alt.Tooltip("Sản phẩm:Q", title="Sản phẩm bất thường"),
+                     alt.Tooltip("Tỷ lệ (%):Q", title="Tỷ lệ trong nhóm (%)", format=".1f")],
+        )
+        counts = base.transform_filter(alt.datum["Sản phẩm"] > 0).mark_text(fontSize=11, fontWeight="bold").encode(
+            text="Sản phẩm:Q",
+            color=alt.condition(alt.datum["Tỷ lệ (%)"] >= 15, alt.value("#ffffff"), alt.value("#17365d")),
+        )
+        chart = alt.layer(heatmap, counts).properties(height=250)
+        st.altair_chart(chart, use_container_width=True)
+        st.caption("Mỗi hàng xếp sản phẩm theo thứ hạng của một chỉ số, từ thấp đến cao. Giá trị trùng nhau được xếp cùng mức. Màu đậm cho biết nhiều sản phẩm bất thường nằm ở mức đó; biểu đồ không chỉ ra nguyên nhân.")
 
     st.header("Bản đồ bất thường")
     score_column, category_column = st.columns((3, 2))
