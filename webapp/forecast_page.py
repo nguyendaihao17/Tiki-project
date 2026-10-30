@@ -22,6 +22,13 @@ CATEGORICAL_FEATURES = [
 REFERENCE_DATA = Path(__file__).resolve().parents[1] / "data" / "forecast_reference.csv"
 
 
+def _dense_one_hot_encoder():
+    try:
+        return OneHotEncoder(handle_unknown="ignore", sparse_output=False)
+    except TypeError:
+        return OneHotEncoder(handle_unknown="ignore", sparse=False)
+
+
 @st.cache_data(show_spinner=False)
 def _load_reference_products() -> pd.DataFrame:
     return pd.read_csv(REFERENCE_DATA, low_memory=False)
@@ -59,7 +66,7 @@ def _build_model(df_products):
         steps=[
             ("preprocessor", ColumnTransformer(transformers=[
                 ("num", StandardScaler(), numeric_features),
-                ("cat", OneHotEncoder(handle_unknown="ignore", sparse_output=False), categorical_features),
+                ("cat", _dense_one_hot_encoder(), categorical_features),
             ])),
             ("regressor", RandomForestRegressor(n_estimators=100, random_state=42)),
         ]
