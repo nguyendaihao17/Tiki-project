@@ -3,20 +3,20 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 from sklearn.ensemble import IsolationForest
-from sklearn.impute import SimpleImputer
-from sklearn.pipeline import make_pipeline
-from sklearn.preprocessing import StandardScaler
 
 
-FEATURE_CANDIDATES = [
-    "price",
-    "discount_rate",
-    "quantity_sold",
-    "revenue_estimate",
-    "estimated_revenue",
-    "review_count",
-    "rating_average",
-]
+def _model_features(products: pd.DataFrame) -> list[str]:
+    """Use the five report features, with one revenue field only."""
+    revenue = "revenue_estimate" if "revenue_estimate" in products else "estimated_revenue"
+    return [column for column in (
+        "price", "discount_rate", "quantity_sold", revenue, "review_count"
+    ) if column in products]
+
+
+def _fit_outliers(features: pd.DataFrame, contamination: float):
+    model = IsolationForest(contamination=contamination, random_state=42)
+    labels = model.fit_predict(features)
+    return labels, model.decision_function(features)
 
 
 def _score_distribution(data: pd.DataFrame) -> pd.DataFrame:
@@ -63,30 +63,28 @@ def show(df_products):
         st.warning("Không có dữ liệu sản phẩm.")
         return
 
-    feature_columns = [column for column in FEATURE_CANDIDATES if column in df_products.columns]
-    if len(feature_columns) < 2:
-        st.info("Cần ít nhất hai trường số (giá, lượng bán, doanh thu, đánh giá...) để phát hiện bất thường.")
+    feature_columns = _model_features(df_products)
+    if len(feature_columns) != 5:
+        st.info("Cần đủ năm trường giá, tỷ lệ giảm, lượng bán, doanh thu ước tính và lượt đánh giá để đối chiếu mô hình.")
         return
 
     anomaly_percent = st.slider("Tỷ lệ bất thường giả định (%)", 1, 10, 2)
     data = df_products.copy()
     features = data[feature_columns].apply(pd.to_numeric, errors="coerce")
-    usable = features.notna().any(axis=1)
+    if "revenue_estimate" in features and "estimated_revenue" in data:
+        features["revenue_estimate"] = features["revenue_estimate"].fillna(
+            pd.to_numeric(data["estimated_revenue"], errors="coerce")
+        )
+    usable = features.notna().all(axis=1)
     features = features.loc[usable]
     data = data.loc[usable].copy()
     if len(features) < 10:
         st.info("Cần ít nhất 10 sản phẩm có dữ liệu số để chạy Isolation Forest.")
         return
+    if len(data) < len(df_products):
+        st.caption(f"Đã loại {len(df_products) - len(data):,} sản phẩm thiếu chỉ số đầu vào khỏi lượt phân tích này.")
 
-    model = make_pipeline(
-        SimpleImputer(strategy="median"),
-        StandardScaler(),
-        IsolationForest(contamination=anomaly_percent / 100, random_state=42),
-    )
-    labels = model.fit_predict(features)
-    scores = model[-1].decision_function(
-        model[1].transform(model[0].transform(features))
-    )
+    labels, scores = _fit_outliers(features, anomaly_percent / 100)
     data["Kết quả"] = ["Bất thường" if label == -1 else "Bình thường" for label in labels]
     data["Điểm bất thường"] = scores
     anomalies = data[data["Kết quả"] == "Bất thường"].sort_values("Điểm bất thường")
@@ -103,7 +101,7 @@ def show(df_products):
     metrics[2].metric("Tỷ lệ thực tế", f"{observed_rate:.1f}%")
     metrics[3].metric("Tỷ trọng doanh thu ước tính", f"{revenue_share:.1f}%" if revenue_share is not None else "—",
                       help="Phần doanh thu ước tính thuộc nhóm sản phẩm bất thường; không phải doanh thu thất thoát.")
-    st.caption(f"Mô hình Isolation Forest dùng tỷ lệ giả định {anomaly_percent}%. Điểm âm thể hiện sản phẩm khác biệt hơn; kết quả không tự xác nhận sản phẩm lỗi hay gian lận.")
+    st.caption(f"Mô hình Isolation Forest dùng tỷ lệ giả định {anomaly_percent}% và {len(feature_columns)} chỉ số sản phẩm. Điểm âm thể hiện sản phẩm khác biệt hơn; kết quả không tự xác nhận sản phẩm lỗi hay gian lận.")
 
     st.header("Bản đồ bất thường")
     score_column, category_column = st.columns((3, 2))
@@ -176,8 +174,7 @@ def show(df_products):
             "category_name",
             "price",
             "quantity_sold",
-            "revenue_estimate",
-            "estimated_revenue",
+            revenue_column,
             "rating_average",
             "Điểm bất thường",
         ]

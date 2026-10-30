@@ -27,6 +27,7 @@ def _evaluation_frame(actual, predicted) -> pd.DataFrame:
     return evaluation.reset_index(drop=True)
 
 
+@st.cache_resource(ttl=300, show_spinner=False)
 def _build_model(df_products):
     if "quantity_sold" not in df_products.columns:
         return None, None, None, "Không có cột quantity_sold trong dữ liệu."

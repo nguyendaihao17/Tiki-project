@@ -395,7 +395,7 @@ def show(df_products, df_reviews, _kpis=None):
     st.header("Sức khỏe kinh doanh")
     row = st.columns(3)
     row[0].metric("Doanh thu ước tính", _money(summary["revenue"]),
-                  help="Giá bán × số lượng đã bán trong ảnh chụp dữ liệu; không phải doanh thu giao dịch theo ngày.")
+                  help="Ưu tiên revenue_estimate đã lưu; nếu thiếu, tính giá bán × số lượng đã bán. Đây không phải doanh thu giao dịch theo ngày.")
     row[1].metric("Sản phẩm", f"{summary['products']:,}")
     row[2].metric("Số lượng đã bán", f"{summary['sold']:,.0f}")
     row = st.columns(3)
