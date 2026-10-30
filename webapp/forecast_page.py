@@ -1,76 +1,67 @@
+from pathlib import Path
+
 import altair as alt
 import numpy as np
 import pandas as pd
 import streamlit as st
 from sklearn.compose import ColumnTransformer
 from sklearn.ensemble import RandomForestRegressor
-from sklearn.impute import SimpleImputer
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
 
-NUMERIC_CANDIDATES = ["price", "original_price", "discount_rate", "rating_average", "review_count"]
-CATEGORICAL_CANDIDATES = ["category_name", "price_segment", "seller_type", "is_tiki_now", "is_freeship_xtra"]
+NUMERIC_FEATURES = [
+    "price", "original_price", "discount", "discount_rate", "rating_average", "review_count",
+]
+CATEGORICAL_FEATURES = [
+    "price_segment", "seller_type", "is_official_store", "is_authentic", "is_freeship_xtra",
+]
+# Fixed Chapter 4 snapshot; live product edits do not alter the reported evaluation.
+REFERENCE_DATA = Path(__file__).resolve().parents[1] / "data" / "forecast_reference.csv"
+
+
+@st.cache_data(show_spinner=False)
+def _load_reference_products() -> pd.DataFrame:
+    return pd.read_csv(REFERENCE_DATA, low_memory=False)
 
 
 def _evaluation_frame(actual, predicted) -> pd.DataFrame:
     """Prepare actual, estimated, and residual values for forecast charts."""
     evaluation = pd.DataFrame(
         {
-            "Thực tế": pd.to_numeric(pd.Series(actual), errors="coerce"),
-            "Ước lượng": pd.to_numeric(pd.Series(predicted), errors="coerce"),
+            "Thực tế": pd.to_numeric(pd.Series(actual).reset_index(drop=True), errors="coerce"),
+            "Ước lượng": pd.to_numeric(pd.Series(predicted).reset_index(drop=True), errors="coerce"),
         }
     ).dropna()
     evaluation["Sai số"] = evaluation["Ước lượng"] - evaluation["Thực tế"]
     return evaluation.reset_index(drop=True)
 
 
-@st.cache_resource(ttl=300, show_spinner=False)
+@st.cache_resource(show_spinner=False)
 def _build_model(df_products):
-    if "quantity_sold" not in df_products.columns:
-        return None, None, None, "Không có cột quantity_sold trong dữ liệu."
+    numeric_features = NUMERIC_FEATURES
+    categorical_features = CATEGORICAL_FEATURES
+    required = numeric_features + categorical_features + ["quantity_sold"]
+    missing = [column for column in required if column not in df_products.columns]
+    if missing:
+        return None, None, None, f"Dữ liệu thiếu cột: {', '.join(missing)}."
 
-    numeric_features = [column for column in NUMERIC_CANDIDATES if column in df_products.columns]
-    categorical_features = [column for column in CATEGORICAL_CANDIDATES if column in df_products.columns]
-    if not numeric_features and not categorical_features:
-        return None, None, None, "Không có đặc trưng phù hợp để huấn luyện mô hình."
-
-    columns = numeric_features + categorical_features + ["quantity_sold"]
-    data = df_products[columns].copy()
-    data["quantity_sold"] = pd.to_numeric(data["quantity_sold"], errors="coerce")
-    data = data.dropna(subset=["quantity_sold"])
-    if len(data) < 50:
-        return None, None, None, "Cần ít nhất 50 sản phẩm có số lượng bán để huấn luyện."
-
-    for column in numeric_features:
+    data = df_products[required].copy()
+    for column in numeric_features + ["quantity_sold"]:
         data[column] = pd.to_numeric(data[column], errors="coerce")
-    for column in categorical_features:
-        data[column] = data[column].fillna("Không xác định").astype(str)
-
-    transformers = []
-    if numeric_features:
-        numeric_pipeline = Pipeline(
-            steps=[
-                ("imputer", SimpleImputer(strategy="median")),
-                ("scaler", StandardScaler()),
-            ]
-        )
-        transformers.append(("numeric", numeric_pipeline, numeric_features))
-    if categorical_features:
-        categorical_pipeline = Pipeline(
-            steps=[
-                ("imputer", SimpleImputer(strategy="most_frequent")),
-                ("onehot", OneHotEncoder(handle_unknown="ignore")),
-            ]
-        )
-        transformers.append(("categorical", categorical_pipeline, categorical_features))
+    data = data.dropna().copy()
+    if len(data) < 50:
+        return None, None, None, "Cần ít nhất 50 sản phẩm đủ dữ liệu để huấn luyện."
 
     pipeline = Pipeline(
         steps=[
-            ("preprocessor", ColumnTransformer(transformers=transformers)),
-            ("regressor", RandomForestRegressor(n_estimators=150, random_state=42, n_jobs=-1)),
+            ("preprocessor", ColumnTransformer(transformers=[
+                ("num", StandardScaler(), numeric_features),
+                ("cat", OneHotEncoder(handle_unknown="ignore", sparse_output=False), categorical_features),
+            ])),
+            ("regressor", RandomForestRegressor(n_estimators=100, random_state=42)),
         ]
     )
     X = data[numeric_features + categorical_features]
@@ -87,10 +78,15 @@ def _build_model(df_products):
     return pipeline, metrics, (numeric_features, categorical_features, X, y, evaluation), None
 
 
-def show(df_products):
+def show():
     st.title("Dự báo số lượng bán")
+    try:
+        df_products = _load_reference_products()
+    except FileNotFoundError:
+        st.error("Không tìm thấy bộ dữ liệu tham chiếu của Chương 4.")
+        return
     if df_products.empty:
-        st.warning("Không có dữ liệu sản phẩm.")
+        st.warning("Bộ dữ liệu tham chiếu không có sản phẩm.")
         return
 
     with st.spinner("Đang huấn luyện và đánh giá mô hình..."):
@@ -102,8 +98,12 @@ def show(df_products):
     mae, rmse, r2 = st.columns(3)
     mae.metric("MAE", f"{metrics['MAE']:,.2f}")
     rmse.metric("RMSE", f"{metrics['RMSE']:,.2f}")
-    r2.metric("R²", f"{metrics['R2']:.3f}")
-    st.caption("Các chỉ số được tính trên tập kiểm tra giữ lại (20%), không phải số liệu tương lai.")
+    r2.metric("R²", f"{metrics['R2']:.6f}")
+    st.caption(
+        f"Dữ liệu tham chiếu Chương 4: {len(details[2]):,} sản phẩm; "
+        f"{len(details[2]) - len(details[4]):,} huấn luyện / {len(details[4]):,} kiểm tra. "
+        "Random Forest 100 cây trên ảnh chụp cố định; không phải dự báo doanh số tương lai."
+    )
 
     numeric_features, categorical_features, X, y, evaluation = details
     if not evaluation.empty:
@@ -159,11 +159,12 @@ def show(df_products):
                     value=min(max(default, minimum), maximum),
                 )
         for index, feature in enumerate(categorical_features):
-            options = sorted(X[feature].dropna().astype(str).unique().tolist())
-            if not options:
-                options = ["Không xác định"]
+            options = sorted(X[feature].unique().tolist(), key=str)
             with columns[(index + len(numeric_features)) % len(columns)]:
-                input_values[feature] = st.selectbox(feature.replace("_", " ").title(), options)
+                input_values[feature] = st.selectbox(
+                    feature.replace("_", " ").title(), options,
+                    format_func=lambda value: "Có" if value is True else "Không" if value is False else str(value),
+                )
         submitted = st.form_submit_button("Ước tính")
 
     if submitted:

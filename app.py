@@ -205,7 +205,7 @@ def main():
         "Phân tích & Dashboard",
         "Phân cụm khách hàng & nhà bán",
     }
-    needs_products = True
+    needs_products = page != "Dự báo"
 
     # Collection data is cached independently for five minutes; each page only
     # loads the collections it uses. Model fitting happens within page content.
@@ -232,7 +232,7 @@ def main():
     elif page == "Phân cụm khách hàng & nhà bán":
         clustering_page.show(df_products, df_reviews)
     elif page == "Dự báo":
-        forecast_page.show(df_products)
+        forecast_page.show()
     elif page == "Phát hiện bất thường":
         anomaly_page.show(df_products)
     elif page == "Quản trị dữ liệu & Báo cáo":
