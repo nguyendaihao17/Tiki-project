@@ -17,7 +17,6 @@ from src.crud import (
 import datetime
 import math
 import os
-import sqlite3
 from src.reporting import dataframe_to_csv, excel_workbook_bytes
 from src.backup import (
     BackupError,
@@ -285,7 +284,7 @@ def show(df_products):
         st.markdown("### Nhật ký sao lưu và phục hồi")
         try:
             audit_rows = get_backup_restore_audit()
-        except (OSError, PermissionError, sqlite3.Error) as error:
+        except Exception as error:
             st.error(f"Không đọc được nhật ký thao tác: {error}")
         else:
             if audit_rows:
@@ -391,12 +390,12 @@ def show(df_products):
                 username = st.text_input("Tên đăng nhập mới")
                 display_name = st.text_input("Tên hiển thị")
                 role = st.selectbox("Vai trò", ["user", "admin"], format_func=lambda value: "Người dùng" if value == "user" else "Quản trị viên")
-                password = st.text_input("Mật khẩu tạm thời (tối thiểu 12 ký tự)", type="password")
-                confirm_password = st.text_input("Nhập lại mật khẩu", type="password")
+                password = st.text_input("Mã PIN tạm thời (tối đa 6 số)", type="password", max_chars=6, help="Chỉ dùng chữ số 0–9, tối đa 6 số.")
+                confirm_password = st.text_input("Nhập lại mã PIN", type="password", max_chars=6)
                 submitted = st.form_submit_button("Tạo tài khoản")
             if submitted:
                 if password != confirm_password:
-                    st.error("Hai mật khẩu không khớp.")
+                    st.error("Hai mã PIN không khớp.")
                 else:
                     success, message = create_user(username, display_name, password, role)
                     (st.success if success else st.error)(message)
@@ -436,12 +435,12 @@ def show(df_products):
                         st.rerun()
 
                 with st.form("reset_user_password_form"):
-                    new_password = st.text_input("Mật khẩu mới (tối thiểu 12 ký tự)", type="password")
-                    confirm_new_password = st.text_input("Nhập lại mật khẩu mới", type="password")
-                    reset_submitted = st.form_submit_button("Đặt lại mật khẩu")
+                    new_password = st.text_input("Mã PIN mới (tối đa 6 số)", type="password", max_chars=6, help="Chỉ dùng chữ số 0–9, tối đa 6 số.")
+                    confirm_new_password = st.text_input("Nhập lại mã PIN mới", type="password", max_chars=6)
+                    reset_submitted = st.form_submit_button("Đặt lại mã PIN")
                 if reset_submitted:
                     if new_password != confirm_new_password:
-                        st.error("Hai mật khẩu không khớp.")
+                        st.error("Hai mã PIN không khớp.")
                     else:
                         success, message = reset_user_password(selected_username, new_password)
                         (st.success if success else st.error)(message)

@@ -22,7 +22,7 @@ Nếu chưa có tài khoản, tạo Admin từ terminal tin cậy:
 python -m src.auth
 ```
 
-Nhập tên đăng nhập, tên hiển thị và mật khẩu theo hướng dẫn. Khi nhập mật khẩu, terminal **không hiện ký tự hoặc dấu `*`**; cứ gõ mật khẩu rồi nhấn Enter. Mật khẩu phải có ít nhất 12 ký tự.
+Nhập tên đăng nhập, tên hiển thị và mã PIN chỉ gồm chữ số, dài tối đa 6 số. Khi nhập PIN, terminal **không hiện ký tự hoặc dấu `*`**; cứ gõ PIN rồi nhấn Enter.
 
 ### Chạy ứng dụng
 
@@ -36,7 +36,7 @@ Mở địa chỉ hiện trong terminal (thường là `http://localhost:8501`).
 
 ## Dùng các chức năng chính
 
-1. Đăng nhập bằng tài khoản hiện có hoặc chọn **Đăng ký** để tạo tài khoản Người dùng. Nếu quên mật khẩu, liên hệ Admin để đặt lại.
+1. Đăng nhập bằng tài khoản hiện có hoặc chọn **Đăng ký** để tạo tài khoản Người dùng. Nếu quên mã PIN, liên hệ Admin để đặt lại.
 2. Chọn trang tại thanh điều hướng bên trái:
    - **Phân tích & Dashboard**: xem biểu đồ, áp dụng bộ lọc và xuất báo cáo.
    - **Khám phá & Lọc dữ liệu**: tìm mã/tên sản phẩm hoặc khách hàng; lọc và xuất dữ liệu.
@@ -49,8 +49,8 @@ Mở địa chỉ hiện trong terminal (thường là `http://localhost:8501`).
 ## Xử lý nhanh sự cố
 
 - **Không kết nối được dữ liệu**: kiểm tra Internet, quyền truy cập MongoDB Atlas và chuỗi kết nối trong `.streamlit/secrets.toml` hoặc biến môi trường `TIKI_MONGO_URI`.
-- **Không đăng nhập được**: xác nhận đã tạo tài khoản bằng `python -m src.auth` và nhập đúng tên đăng nhập/mật khẩu.
-- **Mật khẩu không hiện khi nhập**: đây là hành vi bình thường của `getpass`; nhập xong rồi nhấn Enter.
+- **Không đăng nhập được**: xác nhận đã tạo tài khoản bằng `python -m src.auth` và nhập đúng tên đăng nhập/PIN.
+- **PIN không hiện khi nhập**: đây là hành vi bình thường của `getpass`; nhập xong rồi nhấn Enter.
 - **Dữ liệu chưa cập nhật**: nhấn **Làm mới dữ liệu**; sau thao tác CRUD, cache sản phẩm được làm mới.
 
 ---
@@ -93,7 +93,7 @@ Mở địa chỉ hiện trong terminal (thường là `http://localhost:8501`).
 - Tệp sao lưu được kiểm tra cấu trúc, collection và số bản ghi trước khi phục hồi.
 - Phục hồi chỉ được ghi vào database thử nghiệm có hậu tố `_restore_test` (mặc định `tikilens_vn_restore_test`); **không phục hồi vào database dữ liệu nhóm**.
 - Cần nhập đúng tên database thử nghiệm để xác nhận thao tác thay thế dữ liệu tại database đích.
-- Nhật ký ghi thời gian UTC, tài khoản, trạng thái và số lượng bản ghi. Nhật ký được lưu cục bộ tại `data/backup_restore_audit.sqlite3`.
+- Nhật ký ghi thời gian UTC, tài khoản, trạng thái và số lượng bản ghi; được lưu bền vững trong MongoDB Atlas.
 
 ## Cài đặt chi tiết
 
@@ -129,10 +129,10 @@ Nếu PowerShell không cho phép kích hoạt môi trường ảo, có thể g�
 ## Tài khoản và cấu hình cục bộ
 
 - Không có tài khoản/mật khẩu mặc định hoặc tài khoản mẫu trong mã nguồn. Khi triển khai Streamlit Cloud, thêm `initial_admin_setup_key` (tối thiểu 16 ký tự) vào Secrets để mở biểu mẫu tạo Admin đầu tiên; sau đó trang đăng ký công khai chỉ tạo tài khoản quyền Người dùng. Khi chạy cục bộ, có thể dùng `python -m src.auth`.
-- Tài khoản được lưu trong SQLite tại `data/users.sqlite3`; mật khẩu được băm bằng bcrypt.
-- Đổi vị trí cơ sở dữ liệu tài khoản bằng biến môi trường `TIKI_AUTH_DB_PATH`.
+- Tài khoản và nhật ký sao lưu/phục hồi mặc định được lưu trong MongoDB Atlas ở database riêng `tikilens_auth`, tách khỏi dữ liệu sản phẩm; PIN được băm bằng bcrypt.
+- Khi cần chạy bộ kiểm tra cục bộ, có thể đặt `TIKI_AUTH_DB_PATH` để dùng SQLite tạm thời.
 - Có thể đổi tên database đích khi phục hồi bằng `TIKI_RESTORE_TEST_DB_NAME`, nhưng giá trị phải khác database nhóm và kết thúc bằng `_restore_test`.
-- Đổi nơi lưu nhật ký sao lưu/phục hồi bằng `TIKI_BACKUP_AUDIT_DB_PATH`.
+- Có thể đặt `TIKI_BACKUP_AUDIT_DB_PATH` để chuyển nhật ký sang SQLite cục bộ khi chạy bộ kiểm tra.
 - Không đưa database tài khoản, thông tin xác thực hoặc dữ liệu riêng tư lên Git.
 
 ## Cấu trúc dự án

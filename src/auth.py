@@ -9,10 +9,12 @@ from pathlib import Path
 
 import bcrypt
 import streamlit as st
+from src.database import get_db_connection
 
 
 VALID_ROLES = {"admin", "user"}
 USERNAME_PATTERN = re.compile(r"^[a-zA-Z0-9_.-]{3,32}$")
+PIN_PATTERN = re.compile(r"^[0-9]{1,6}$")
 
 
 def _database_path():
@@ -31,7 +33,25 @@ def _connect():
     return connection
 
 
+def _uses_sqlite_auth():
+    return bool(os.environ.get("TIKI_AUTH_DB_PATH"))
+
+
+def _auth_database():
+    database = get_db_connection()
+    if database is None:
+        raise RuntimeError("Không thể kết nối kho tài khoản bền vững.")
+    return database.client["tikilens_auth"]
+
+
 def initialize_auth_store():
+    if not _uses_sqlite_auth():
+        database = _auth_database()
+        users = database["users"]
+        users.create_index("username_key", unique=True)
+        database["login_failures"].create_index("updated_at", expireAfterSeconds=900)
+        database["backup_restore_audit"].create_index("timestamp_utc", expireAfterSeconds=60 * 60 * 24 * 365)
+        return
     with closing(_connect()) as connection:
         connection.execute(
             """
@@ -56,10 +76,8 @@ def _validate_username(username):
 
 
 def _validate_password(password):
-    if len(password) < 12:
-        return "Mật khẩu phải có ít nhất 12 ký tự."
-    if len(password.encode("utf-8")) > 72:
-        return "Mật khẩu không được vượt quá giới hạn 72 byte của bcrypt."
+    if not isinstance(password, str) or not PIN_PATTERN.fullmatch(password):
+        return "Mã PIN chỉ gồm chữ số 0–9 và có tối đa 6 chữ số."
     return None
 
 
@@ -94,6 +112,8 @@ def _require_admin():
 
 def user_count():
     initialize_auth_store()
+    if not _uses_sqlite_auth():
+        return _auth_database()["users"].count_documents({"username_key": {"$exists": True}})
     with closing(_connect()) as connection:
         row = connection.execute("SELECT COUNT(*) AS count FROM users").fetchone()
     return row["count"]
@@ -101,6 +121,8 @@ def user_count():
 
 def admin_count():
     initialize_auth_store()
+    if not _uses_sqlite_auth():
+        return _auth_database()["users"].count_documents({"role": "admin", "username_key": {"$exists": True}})
     with closing(_connect()) as connection:
         row = connection.execute("SELECT COUNT(*) AS count FROM users WHERE role = 'admin'").fetchone()
     return row["count"]
@@ -118,6 +140,27 @@ def create_initial_admin(username, display_name, password):
         return False, error
 
     initialize_auth_store()
+    if not _uses_sqlite_auth():
+        database = _auth_database()
+        try:
+            with database.client.start_session() as session:
+                with session.start_transaction():
+                    if database["users"].count_documents({"role": "admin", "username_key": {"$exists": True}}, session=session):
+                        return False, "Tài khoản quản trị đầu tiên đã được tạo."
+                    user = {
+                        "username_key": normalized.casefold(),
+                        "username": normalized,
+                        "password_hash": _hash_password(password),
+                        "role": "admin",
+                        "display_name": display_name.strip(),
+                        "is_active": True,
+                    }
+                    database["users"].insert_one(user, session=session)
+        except Exception as error:
+            if getattr(error, "code", None) == 11000:
+                return False, "Tên đăng nhập đã tồn tại."
+            raise
+        return True, "Đã tạo tài khoản quản trị. Vui lòng đăng nhập."
     try:
         with closing(_connect()) as connection:
             connection.execute("BEGIN IMMEDIATE")
@@ -140,6 +183,33 @@ def authenticate(username, password):
     if error:
         return None
     initialize_auth_store()
+    if not _uses_sqlite_auth():
+        database = _auth_database()
+        username_key = normalized.casefold()
+        failures = database["login_failures"].find_one({"_id": username_key})
+        if failures:
+            from datetime import datetime, timezone
+            now = datetime.now(timezone.utc)
+            if (now - failures.get("updated_at", now)).total_seconds() >= 900:
+                database["login_failures"].delete_one({"_id": username_key})
+            elif failures.get("count", 0) >= 10:
+                return None
+        if not isinstance(password, str) or not PIN_PATTERN.fullmatch(password):
+            _record_login_failure(database, username_key)
+            return None
+        row = database["users"].find_one({"username_key": username_key, "is_active": True})
+        if row is None:
+            _record_login_failure(database, username_key)
+            return None
+        try:
+            verified = bcrypt.checkpw(password.encode("utf-8"), row["password_hash"])
+        except (ValueError, TypeError):
+            verified = False
+        if not verified:
+            _record_login_failure(database, username_key)
+            return None
+        database["login_failures"].delete_one({"_id": username_key})
+        return {"username": row["username"], "role": row["role"], "name": row["display_name"]}
     with closing(_connect()) as connection:
         row = connection.execute(
             "SELECT username, password_hash, role, display_name, is_active FROM users WHERE username = ?",
@@ -147,6 +217,8 @@ def authenticate(username, password):
         ).fetchone()
 
     if row is None or not row["is_active"]:
+        return None
+    if not isinstance(password, str) or not PIN_PATTERN.fullmatch(password):
         return None
     try:
         verified = bcrypt.checkpw(password.encode("utf-8"), row["password_hash"])
@@ -161,10 +233,29 @@ def authenticate(username, password):
     }
 
 
+def _record_login_failure(database, username_key):
+    from datetime import datetime, timezone
+
+    now = datetime.now(timezone.utc)
+    failures = database["login_failures"]
+    current = failures.find_one({"_id": username_key})
+    if current and (now - current.get("updated_at", now)).total_seconds() < 900:
+        failures.update_one({"_id": username_key}, {"$inc": {"count": 1}, "$set": {"updated_at": now}})
+    else:
+        failures.replace_one({"_id": username_key}, {"_id": username_key, "count": 1, "updated_at": now}, upsert=True)
+
+
 def get_active_user(username):
     if not username:
         return None
     initialize_auth_store()
+    if not _uses_sqlite_auth():
+        row = _auth_database()["users"].find_one({
+            "username_key": username.strip().casefold(), "is_active": True,
+        })
+        if row is None:
+            return None
+        return {"username": row["username"], "role": row["role"], "name": row["display_name"]}
     with closing(_connect()) as connection:
         row = connection.execute(
             "SELECT username, role, display_name FROM users WHERE username = ? AND is_active = 1",
@@ -178,6 +269,12 @@ def get_active_user(username):
 def list_users():
     _require_admin()
     initialize_auth_store()
+    if not _uses_sqlite_auth():
+        rows = _auth_database()["users"].find(
+            {"username_key": {"$exists": True}},
+            {"_id": 0, "username": 1, "display_name": 1, "role": 1, "is_active": 1, "created_at": 1},
+        ).sort("username_key", 1)
+        return [{**row, "created_at": str(row.get("created_at", ""))} for row in rows]
     with closing(_connect()) as connection:
         rows = connection.execute(
             "SELECT username, display_name, role, is_active, created_at FROM users ORDER BY username"
@@ -198,6 +295,24 @@ def _create_user_record(username, display_name, password, role):
         return False, error
 
     initialize_auth_store()
+    if not _uses_sqlite_auth():
+        from datetime import datetime, timezone
+
+        try:
+            _auth_database()["users"].insert_one({
+                "username_key": normalized.casefold(),
+                "username": normalized,
+                "password_hash": _hash_password(password),
+                "role": role,
+                "display_name": display_name.strip(),
+                "is_active": True,
+                "created_at": datetime.now(timezone.utc),
+            })
+        except Exception as error:
+            if getattr(error, "code", None) == 11000:
+                return False, "Tên đăng nhập đã tồn tại."
+            raise
+        return True, "Đã tạo tài khoản."
     try:
         with closing(_connect()) as connection:
             connection.execute(
@@ -233,6 +348,25 @@ def set_user_role(username, role):
         return False, "Không thể hạ quyền tài khoản quản trị đang đăng nhập."
 
     initialize_auth_store()
+    if not _uses_sqlite_auth():
+        database = _auth_database()
+        key = username.strip().casefold()
+        try:
+            with database.client.start_session() as session:
+                with session.start_transaction():
+                    user = database["users"].find_one({"username_key": key}, session=session)
+                    if user is None:
+                        return False, "Không tìm thấy tài khoản."
+                    if user["role"] == "admin" and user["is_active"] and role != "admin":
+                        if database["users"].count_documents(
+                            {"role": "admin", "is_active": True, "username_key": {"$exists": True}},
+                            session=session,
+                        ) <= 1:
+                            return False, "Không thể hạ quyền quản trị viên hoạt động cuối cùng."
+                    database["users"].update_one({"username_key": key}, {"$set": {"role": role}}, session=session)
+        except Exception:
+            raise
+        return True, "Đã cập nhật vai trò."
     with closing(_connect()) as connection:
         connection.execute("BEGIN IMMEDIATE")
         user = connection.execute(
@@ -256,6 +390,24 @@ def set_user_active(username, is_active):
         return False, "Không thể vô hiệu hóa tài khoản quản trị đang đăng nhập."
 
     initialize_auth_store()
+    if not _uses_sqlite_auth():
+        database = _auth_database()
+        key = username.strip().casefold()
+        with database.client.start_session() as session:
+            with session.start_transaction():
+                user = database["users"].find_one({"username_key": key}, session=session)
+                if user is None:
+                    return False, "Không tìm thấy tài khoản."
+                if user["role"] == "admin" and user["is_active"] and not is_active:
+                    if database["users"].count_documents(
+                        {"role": "admin", "is_active": True, "username_key": {"$exists": True}},
+                        session=session,
+                    ) <= 1:
+                        return False, "Không thể vô hiệu hóa quản trị viên hoạt động cuối cùng."
+                database["users"].update_one(
+                    {"username_key": key}, {"$set": {"is_active": bool(is_active)}}, session=session
+                )
+        return True, "Đã cập nhật trạng thái tài khoản."
     with closing(_connect()) as connection:
         connection.execute("BEGIN IMMEDIATE")
         user = connection.execute(
@@ -281,6 +433,15 @@ def reset_user_password(username, new_password):
     if error:
         return False, error
     initialize_auth_store()
+    if not _uses_sqlite_auth():
+        result = _auth_database()["users"].update_one(
+            {"username_key": username.strip().casefold()},
+            {"$set": {"password_hash": _hash_password(new_password)}},
+        )
+        if result.matched_count == 0:
+            return False, "Không tìm thấy tài khoản."
+        _auth_database()["login_failures"].delete_one({"_id": username.strip().casefold()})
+        return True, "Đã đặt lại mã PIN."
     with closing(_connect()) as connection:
         result = connection.execute(
             "UPDATE users SET password_hash = ? WHERE username = ?",
@@ -289,7 +450,7 @@ def reset_user_password(username, new_password):
         connection.commit()
     if result.rowcount == 0:
         return False, "Không tìm thấy tài khoản."
-    return True, "Đã đặt lại mật khẩu."
+    return True, "Đã đặt lại mã PIN."
 
 
 def _set_session_user(user):
@@ -322,8 +483,8 @@ def login_sidebar():
                 _set_session_user(user)
         account_count = user_count()
         has_admin = admin_count() > 0
-    except sqlite3.Error:
-        st.error("Không thể mở kho tài khoản. Kiểm tra quyền truy cập tệp dữ liệu người dùng.")
+    except Exception:
+        st.error("Không thể kết nối kho tài khoản. Vui lòng kiểm tra kết nối cơ sở dữ liệu rồi tải lại trang.")
         return False
 
     if not has_admin:
@@ -343,18 +504,18 @@ def login_sidebar():
             provided_key = st.text_input("Khóa thiết lập", type="password")
             username = st.text_input("Tên đăng nhập", placeholder="VD: admin")
             display_name = st.text_input("Tên hiển thị", placeholder="VD: Quản trị viên")
-            password = st.text_input("Mật khẩu", type="password", help="Ít nhất 12 ký tự, tối đa 72 byte.")
-            confirmation = st.text_input("Nhập lại mật khẩu", type="password")
+            password = st.text_input("Mã PIN (tối đa 6 số)", type="password", max_chars=6, help="Chỉ dùng chữ số 0–9, tối đa 6 số.")
+            confirmation = st.text_input("Nhập lại mã PIN", type="password", max_chars=6)
             submitted = st.form_submit_button("Tạo tài khoản quản trị", type="primary")
         if submitted:
             if not _matches_initial_admin_setup_key(provided_key, setup_key):
                 st.error("Khóa thiết lập không đúng.")
             elif password != confirmation:
-                st.error("Hai mật khẩu chưa khớp.")
+                st.error("Hai mã PIN chưa khớp.")
             else:
                 try:
                     success, message = create_initial_admin(username, display_name, password)
-                except sqlite3.Error:
+                except Exception:
                     st.error("Không thể tạo tài khoản lúc này. Vui lòng thử lại sau.")
                 else:
                     if success:
@@ -386,36 +547,36 @@ def login_sidebar():
                 with login_tab:
                     with st.form("login_form"):
                         username = st.text_input("Tên đăng nhập", placeholder="Nhập tên đăng nhập", autocomplete="username", key=f"login_username_{login_form_version}")
-                        password = st.text_input("Mật khẩu", type="password", placeholder="Nhập mật khẩu", autocomplete="current-password", key=f"login_password_{login_form_version}")
+                        password = st.text_input("Mã PIN (tối đa 6 số)", type="password", placeholder="Nhập mã PIN", max_chars=6, autocomplete="current-password", key=f"login_password_{login_form_version}")
                         submitted = st.form_submit_button("Vào hệ thống", type="primary", width="stretch")
                     if submitted:
                         try:
                             user = authenticate(username, password)
-                        except sqlite3.Error:
+                        except Exception:
                             st.error("Không thể kiểm tra tài khoản lúc này. Vui lòng thử lại sau.")
                             return False
                         if user is None:
-                            st.error("Tên đăng nhập hoặc mật khẩu không đúng, hoặc tài khoản đã bị vô hiệu hóa.")
+                            st.error("Tên đăng nhập hoặc mã PIN không đúng, hoặc tài khoản đã bị vô hiệu hóa.")
                         else:
                             _set_session_user(user)
                             st.rerun()
-                    st.caption("Quên mật khẩu? Liên hệ quản trị viên để được đặt lại.")
+                    st.caption("Quên mã PIN? Liên hệ quản trị viên để được đặt lại.")
                 with register_tab:
                     st.caption("Tài khoản mới có quyền Người dùng. Quản trị viên có thể thay đổi quyền sau.")
                     with st.form(f"register_form_{login_form_version}"):
                         new_username = st.text_input("Tên đăng nhập", placeholder="VD: nguyenvana", help="3–32 ký tự: chữ, số, dấu . _ -", key=f"register_username_{login_form_version}")
                         display_name = st.text_input("Tên hiển thị", placeholder="Tên bạn muốn hiển thị", key=f"register_name_{login_form_version}")
-                        new_password = st.text_input("Mật khẩu", type="password", autocomplete="new-password", help="Ít nhất 12 ký tự, tối đa 72 byte.", key=f"register_password_{login_form_version}")
-                        confirmation = st.text_input("Nhập lại mật khẩu", type="password", autocomplete="new-password", key=f"register_confirmation_{login_form_version}")
+                        new_password = st.text_input("Mã PIN (tối đa 6 số)", type="password", max_chars=6, autocomplete="new-password", help="Chỉ dùng chữ số 0–9, tối đa 6 số.", key=f"register_password_{login_form_version}")
+                        confirmation = st.text_input("Nhập lại mã PIN", type="password", max_chars=6, autocomplete="new-password", key=f"register_confirmation_{login_form_version}")
                         registered = st.form_submit_button("Tạo tài khoản", type="primary", width="stretch")
                     if registered:
                         if new_password != confirmation:
-                            st.error("Hai mật khẩu chưa khớp.")
+                            st.error("Hai mã PIN chưa khớp.")
                         else:
                             try:
                                 success, message = register_user(new_username, display_name, new_password)
                                 user = get_active_user(new_username.strip()) if success else None
-                            except sqlite3.Error:
+                            except Exception:
                                 st.error("Không thể tạo tài khoản lúc này. Vui lòng thử lại sau.")
                                 return False
                             if not success:
@@ -477,13 +638,13 @@ def _bootstrap_admin_from_terminal():
         print("Kho tài khoản đã có Quản trị viên; không thể tạo Admin đầu tiên.")
         return 1
 
-    print("Tạo tài khoản Admin đầu tiên. Mật khẩu tối thiểu 12 ký tự.")
+    print("Tạo tài khoản Admin đầu tiên. Mã PIN chỉ gồm chữ số, tối đa 6 số.")
     username = input("Tên đăng nhập: ")
     display_name = input("Tên hiển thị: ")
-    password = getpass.getpass("Mật khẩu: ")
-    confirmation = getpass.getpass("Nhập lại mật khẩu: ")
+    password = getpass.getpass("Mã PIN 6 số: ")
+    confirmation = getpass.getpass("Nhập lại mã PIN: ")
     if password != confirmation:
-        print("Hai mật khẩu không khớp.")
+        print("Hai mã PIN không khớp.")
         return 1
 
     success, message = create_initial_admin(username, display_name, password)

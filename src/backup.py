@@ -47,43 +47,48 @@ def _audit_path():
 
 
 def _record_audit(action, status, details, target_db=None):
+    username = st.session_state.get("username", "unknown")
+    if not os.environ.get("TIKI_BACKUP_AUDIT_DB_PATH"):
+        database = get_db_connection()
+        if database is None:
+            raise BackupError("Không thể kết nối để ghi nhật ký sao lưu.")
+        database.client["tikilens_auth"]["backup_restore_audit"].insert_one({
+            "timestamp_utc": datetime.now(timezone.utc),
+            "username": username,
+            "action": action,
+            "status": status,
+            "target_db": target_db,
+            "details": str(details),
+        })
+        return
+
     path = _audit_path()
     path.parent.mkdir(parents=True, exist_ok=True)
-    username = st.session_state.get("username", "unknown")
     with closing(sqlite3.connect(path, timeout=10)) as connection, connection:
-        connection.execute(
-            """
-            CREATE TABLE IF NOT EXISTS backup_restore_audit (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                timestamp_utc TEXT NOT NULL,
-                username TEXT NOT NULL,
-                action TEXT NOT NULL,
-                status TEXT NOT NULL,
-                target_db TEXT,
-                details TEXT NOT NULL
-            )
-            """
-        )
-        connection.execute(
-            """
-            INSERT INTO backup_restore_audit
-                (timestamp_utc, username, action, status, target_db, details)
-            VALUES (?, ?, ?, ?, ?, ?)
-            """,
-            (
-                datetime.now(timezone.utc).isoformat(),
-                username,
-                action,
-                status,
-                target_db,
-                details,
-            ),
-        )
+        connection.execute("""CREATE TABLE IF NOT EXISTS backup_restore_audit (
+            id INTEGER PRIMARY KEY AUTOINCREMENT, timestamp_utc TEXT NOT NULL,
+            username TEXT NOT NULL, action TEXT NOT NULL, status TEXT NOT NULL,
+            target_db TEXT, details TEXT NOT NULL)""")
+        connection.execute("""INSERT INTO backup_restore_audit
+            (timestamp_utc, username, action, status, target_db, details)
+            VALUES (?, ?, ?, ?, ?, ?)""", (
+                datetime.now(timezone.utc).isoformat(), username, action, status, target_db, str(details),
+            ))
 
 
 def get_backup_restore_audit(limit=50):
     if not check_permission("admin"):
         raise PermissionError("Chỉ quản trị viên được xem nhật ký sao lưu và phục hồi.")
+    if not os.environ.get("TIKI_BACKUP_AUDIT_DB_PATH"):
+        database = get_db_connection()
+        if database is None:
+            raise BackupError("Không thể kết nối để đọc nhật ký sao lưu.")
+        rows = database.client["tikilens_auth"]["backup_restore_audit"].find(
+            {}, {"_id": 0, "timestamp_utc": 1, "username": 1, "action": 1,
+                "status": 1, "target_db": 1, "details": 1}
+        ).sort("timestamp_utc", -1).limit(max(1, min(int(limit), 500)))
+        return [{**row, "timestamp_utc": row["timestamp_utc"].isoformat()} for row in rows]
+
     path = _audit_path()
     if not path.exists():
         return []
@@ -262,12 +267,14 @@ def restore_backup_to_test_database(validated_backup):
         if database is None:
             raise BackupError("Không thể kết nối MongoDB để phục hồi.")
         target_database = database.client[target_name]
-        for collection_name in sorted(CLEAN_COLLECTIONS):
-            documents = validated_backup.collections[collection_name]
-            collection = target_database[collection_name]
-            collection.delete_many({})
-            if documents:
-                collection.insert_many(documents, ordered=True)
+        with database.client.start_session() as session:
+            with session.start_transaction():
+                for collection_name in sorted(CLEAN_COLLECTIONS):
+                    documents = validated_backup.collections[collection_name]
+                    collection = target_database[collection_name]
+                    collection.delete_many({}, session=session)
+                    if documents:
+                        collection.insert_many(documents, ordered=True, session=session)
 
         _record_audit(
             "restore",
