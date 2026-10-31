@@ -39,6 +39,7 @@ App Cloud tiếp tục dùng wrapper ở gốc và chạy mã chính tại `261A
 
 - [Thu thập, nhập và kiểm tra dữ liệu](261ABDA433708_03_08_TikiLens/source-code/data-pipeline/README.md): các script độc lập từ Drive của nhóm, kèm hướng dẫn cấu hình và tác động khi chạy.
 - [Isolation Forest bằng Python và Orange](261ABDA433708_03_08_TikiLens/source-code/experiments/isolation-forest/README.md): notebook, workflow Orange, CSV sản phẩm và kết quả thí nghiệm đã lưu.
+- [Phân cụm nhà bán và dự báo lượng bán](261ABDA433708_03_08_TikiLens/source-code/experiments/seller-clustering-forecast/README.md): mã thí nghiệm K-Means, Linear Regression và Random Forest từ hai CSV sạch.
 
 ## Dữ liệu
 
