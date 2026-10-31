@@ -19,7 +19,7 @@ CATEGORICAL_FEATURES = [
     "price_segment", "seller_type", "is_official_store", "is_authentic", "is_freeship_xtra",
 ]
 # Fixed Chapter 4 snapshot; live product edits do not alter the reported evaluation.
-REFERENCE_DATA = Path(__file__).resolve().parents[1] / "data" / "forecast_reference.csv"
+REFERENCE_DATA = Path(__file__).resolve().parents[2] / "dataset" / "forecast_reference.csv"
 
 
 def _dense_one_hot_encoder():
