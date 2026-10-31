@@ -15,7 +15,7 @@ Trong thư mục này, cài `python -m pip install -r requirements.txt`. Tạo t
 | Nhóm | Script | Tác động khi chạy |
 |---|---|---|
 | Thu thập Tiki | `tikilens_thu_thap_tiki_github.py` | Tải CSV công khai từ repo tham khảo, ghi vào `tikilens_acquisition/`; không ghi MongoDB. Chuyển CSV cần nhập ra cạnh script nhập. |
-| Thu thập CausaSent | `tikilens_tai_nguon2_truc_tiep.py`, `tikilens_tai_nguon2.py` | Hai cách tải nguồn 2 vào `tikilens_source2/`; chọn một cách phù hợp. |
+| Thu thập CausaSent | `tikilens_tai_nguon2_truc_tiep.py` | Tải nguồn 2 vào `tikilens_source2/`; đã bỏ bản tải API thay thế để tránh hai luồng trùng nhiệm vụ. |
 | Kết nối và khởi tạo | `check_mongodb_connection.py`, `setup_tikilens.py` | Script đầu kiểm tra kết nối; script sau tạo collection `raw_products` nếu chưa có. |
 | Nhập Tiki | `import_tiki.py`, `import_tiki_categories.py`, `import_tiki_reviews.py`, `import_tiki_sellers.py` | Thêm/cập nhật dữ liệu trong MongoDB theo mã nghiệp vụ. |
 | Nhập nguồn 2 | `tikilens_nhap_nguon2_atlas.py` | Kiểm tra manifest và nhập vào `raw_causasent_ate_v2`. |

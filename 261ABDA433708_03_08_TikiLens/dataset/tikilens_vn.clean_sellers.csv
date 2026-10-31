@@ -1,0 +1,316 @@
+_id,seller_id,seller_name,is_official_store,total_products,avg_rating,total_reviews,_source_file,_source_row,_source_url
+6ad4c119db14668631b6780f,1,Tiki Trading,false,934,4.47,249627,tiki_sellers.csv,1,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67810,10738,ĐŨI VIỆT Official,false,51,1.76,61,tiki_sellers.csv,2,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67811,29952,Hồng Hạnh Mobile,false,46,0.83,18,tiki_sellers.csv,3,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67812,162514,Long Hưng Official Store,false,38,1.28,64,tiki_sellers.csv,4,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67813,112944,Yên Phúc,false,37,3.39,186,tiki_sellers.csv,5,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67814,55147,MRM Manlywear Official,false,30,3.81,8262,tiki_sellers.csv,6,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67815,8827,Miley Lingerie,false,30,3.62,896,tiki_sellers.csv,7,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67816,249310,NeSa Shop,false,28,1.86,85,tiki_sellers.csv,8,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67817,204632,TD2000 store,false,27,1.77,47,tiki_sellers.csv,9,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67818,134678,Smarthome29,false,26,4.09,437,tiki_sellers.csv,10,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67819,28688,ShopN6,false,26,4.03,3625,tiki_sellers.csv,11,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6781a,178422,ATZstore,false,23,3.54,98,tiki_sellers.csv,12,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6781b,9455,MISA Shop,false,23,2.97,49,tiki_sellers.csv,13,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6781c,361737,MISAHAN,false,22,1.73,16,tiki_sellers.csv,14,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6781d,94931,ZoZo Sport,false,21,1.79,15,tiki_sellers.csv,15,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6781e,177515,kosuytu,false,18,1.33,6,tiki_sellers.csv,16,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6781f,169077,misa310512,false,17,2.18,19,tiki_sellers.csv,17,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67820,175147,Nhà Chíp,false,15,4.58,262,tiki_sellers.csv,18,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67821,159903,DEVO SHOP,false,14,1.86,11,tiki_sellers.csv,19,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67822,108828,Tiện ích 1708,false,14,4.64,504,tiki_sellers.csv,20,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67823,1409,BG Việt Nam Official Store,false,14,3.96,850,tiki_sellers.csv,21,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67824,8094,ALIGRO,false,14,1.44,11,tiki_sellers.csv,22,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67825,188535,mybao040508,false,14,2.36,17,tiki_sellers.csv,23,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67826,20897,THỜI TRANG BOBOSHOP,false,13,2.08,64,tiki_sellers.csv,24,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67827,353491,OM LUCKY WAHIK,false,12,2.5,13,tiki_sellers.csv,25,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67828,313025,TAKA Phụ Kiện Số,false,11,4.82,1276,tiki_sellers.csv,26,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67829,54282,Photodesign VN Official,false,11,4.68,1179,tiki_sellers.csv,27,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6782a,242150,Đồ Bộ Eirlys Shop,false,11,3.88,13,tiki_sellers.csv,28,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6782b,127051,TrustBuy,false,10,4.78,1167,tiki_sellers.csv,29,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6782c,76942,THUYDUNGSHOP,false,10,2.76,18,tiki_sellers.csv,30,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6782d,173338,SMARTWATCH,false,10,2.93,50,tiki_sellers.csv,31,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6782e,55218,FORSETI VIỆT NAM,false,10,3.6,66,tiki_sellers.csv,32,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6782f,277179,Venie,false,9,4.56,121,tiki_sellers.csv,33,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67830,202732,DavieCollection,false,9,1.11,2,tiki_sellers.csv,34,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67831,16588,May 10,false,9,2.12,1329,tiki_sellers.csv,35,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67832,158862,Art H Store,false,9,4.63,122,tiki_sellers.csv,36,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67833,5826,MAYHOMES Official Store,false,9,4.66,183,tiki_sellers.csv,37,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67834,276201,US ARMY OFFICIAL,false,9,4.7,308,tiki_sellers.csv,38,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67835,28122,shopthoitranganhnguyen,false,9,2.63,47,tiki_sellers.csv,39,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67836,115414,Gold,false,8,4.15,115,tiki_sellers.csv,40,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67837,6175,Thời Trang Novelty Nhà Bè,false,8,3.04,37,tiki_sellers.csv,41,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67838,63850,monkibaby,false,8,4.17,39,tiki_sellers.csv,42,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67839,189208,Quỳnh Hoa Store,false,8,4.17,158,tiki_sellers.csv,43,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6783a,158759,Tuấn Tú Store 68,false,8,0.62,2,tiki_sellers.csv,44,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6783b,235530,Thời Trang Tuổi Teen HL,false,8,3.56,35,tiki_sellers.csv,45,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6783c,92468,UniMart,false,8,3.56,277,tiki_sellers.csv,46,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6783d,113592,Viễn thông Hà Nhung,false,7,4.96,209,tiki_sellers.csv,47,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6783e,915,Nova Computer,false,7,3.37,49,tiki_sellers.csv,48,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6783f,148809,AZ HOUSE,false,7,2.86,9,tiki_sellers.csv,49,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67840,41007,VIETMART 668,false,7,4.74,1308,tiki_sellers.csv,50,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67841,144022,SHOP NHÀ BON,false,7,4.73,137,tiki_sellers.csv,51,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67842,26446,Tin Học Hoàng Kim,false,7,4.5,33,tiki_sellers.csv,52,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67843,135215,Yen Vi Shop,false,7,4.29,91,tiki_sellers.csv,53,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67844,5383,Wannabe Lingerie Store,false,7,2,11,tiki_sellers.csv,54,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67845,141107,GuCase,false,7,1.29,15,tiki_sellers.csv,55,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67846,44857,DAMAS Official Store,false,7,4.01,946,tiki_sellers.csv,56,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67847,160749,Mishio Kachi Official,false,7,2.77,105,tiki_sellers.csv,57,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67848,330024,YAHON LETGREEN Nhà Cửa Đời Sống,false,7,2.86,30,tiki_sellers.csv,58,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67849,342902,HUONG TAM STORE,false,7,4,20,tiki_sellers.csv,59,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6784a,34716,GiaPhucStore,false,6,3.97,38,tiki_sellers.csv,60,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6784b,33926,Sona Activewear,false,6,4.07,472,tiki_sellers.csv,61,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6784c,11205,Hoàng Hải Store,false,6,2.3,17,tiki_sellers.csv,62,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6784d,20256,Telovietnam,false,6,2.42,4,tiki_sellers.csv,63,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6784e,162792,Áo Thun In,false,6,1,2,tiki_sellers.csv,64,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6784f,337363,DO GYM SHOP,false,6,2.47,6,tiki_sellers.csv,65,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67850,184589,May mặc Đông Minh,false,6,3.08,279,tiki_sellers.csv,66,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67851,539,AAA Jeans,false,6,3.13,491,tiki_sellers.csv,67,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67852,113115,Deli Official Store,false,6,4.83,138,tiki_sellers.csv,68,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67853,3645,TDCare,false,5,4.86,241,tiki_sellers.csv,69,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67854,6615,Sanny House,false,5,2.8,3,tiki_sellers.csv,70,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67855,78619,Muasam247,false,5,2.6,7,tiki_sellers.csv,71,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67856,107444,Thế Giới Pin Sinh Thái,false,5,4.7,722,tiki_sellers.csv,72,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67857,58789,Tech7,false,5,4.64,150,tiki_sellers.csv,73,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67858,30787,AN PHAT COMPUTER,false,5,0.9,10,tiki_sellers.csv,74,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67859,1710,hotphukien,false,5,2.9,4,tiki_sellers.csv,75,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6785a,104628,CasemeStore,false,5,2.84,7,tiki_sellers.csv,76,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6785b,99996,Tiross Hà Nội,false,5,1.96,9,tiki_sellers.csv,77,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6785c,236185,Minhlam Store,false,5,4.52,46,tiki_sellers.csv,78,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6785d,125741,Rhino Official Store,false,5,3.54,106,tiki_sellers.csv,79,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6785e,4189,Y Tế Lộc,false,5,4.7,316,tiki_sellers.csv,80,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6785f,167037,Hamart Gia Dụng Tiện Lợi,false,5,3.8,33,tiki_sellers.csv,81,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67860,267028,Đồ ngủ sexy quyến rũ,false,5,2.8,4,tiki_sellers.csv,82,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67861,287299,D Danido Homie Shop,false,4,1.12,10,tiki_sellers.csv,83,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67862,134878,Áo Điều Hòa KITO,false,4,1.75,2,tiki_sellers.csv,84,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67863,332468,Kazata Store Quần Jean Nam,false,4,3.75,12,tiki_sellers.csv,85,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67864,1691,Đại Nam Sport,false,4,4.55,144,tiki_sellers.csv,86,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67865,4997,HXSJ Official Store,false,4,4.7,213,tiki_sellers.csv,87,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67866,236620,ROCKSPACE OFFICIAL STORE,false,4,4.55,44,tiki_sellers.csv,88,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67867,76796,Vietstore24h,false,4,4.83,59,tiki_sellers.csv,89,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67868,279683,Kai N Accessory,false,4,1.2,5,tiki_sellers.csv,90,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67869,50766,Thế giới sản phẩm,false,4,3.2,20,tiki_sellers.csv,91,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6786a,181356,Phụ Kiện Bingo,false,4,1.25,1,tiki_sellers.csv,92,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6786b,11176,Công Ty Phong Tiến,false,4,1.25,8,tiki_sellers.csv,93,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6786c,8413,SMY (Tp.HCM),false,4,3.52,183,tiki_sellers.csv,94,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6786d,5321,Kobi official store,false,4,4.75,92,tiki_sellers.csv,95,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6786e,84406,QUÝ KHANG MART,false,4,4.03,21,tiki_sellers.csv,96,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6786f,7176,FREEMAN & JOBELLI,false,4,4.47,36,tiki_sellers.csv,97,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67870,5961,Phúc An,false,4,3.22,32,tiki_sellers.csv,98,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67871,45683,GấuMẹ Shop,false,4,2.25,3,tiki_sellers.csv,99,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67872,118406,Vạn Tín Store,false,4,4.88,33,tiki_sellers.csv,100,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67873,1785,Đèn Philips chính hãng,false,4,4.88,215,tiki_sellers.csv,101,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67874,38963,Techmorevn,false,3,5,6,tiki_sellers.csv,102,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67875,54082,CST Telecom,false,3,3.27,19,tiki_sellers.csv,103,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67876,338,Nhà Giả Kim,false,3,1.6,99,tiki_sellers.csv,104,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67877,56711,THỊNH PHÁT SHOP,false,3,4.27,67,tiki_sellers.csv,105,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67878,2026,Tienphatsmart,false,3,4.6,82,tiki_sellers.csv,106,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67879,1765,Ant home,false,3,4.27,74,tiki_sellers.csv,107,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6787a,113,Tuấn Tú Store,false,3,4.77,239,tiki_sellers.csv,108,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6787b,200265,Kmart Store,false,3,4.93,19,tiki_sellers.csv,109,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6787c,81456,Shop 24719,false,3,1.4,13,tiki_sellers.csv,110,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6787d,81570,HoangHai store,false,3,2.73,11,tiki_sellers.csv,111,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6787e,181601,Phụ Kiện ATZVN,false,3,2.33,2,tiki_sellers.csv,112,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6787f,11119,GIA DỤNG VIỆT,false,3,3.33,5,tiki_sellers.csv,113,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67880,14813,ugreenonline,false,3,3.27,7,tiki_sellers.csv,114,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67881,184829,Bim Mart,false,3,3.67,16,tiki_sellers.csv,115,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67882,57800,Siêu Thị NaNo,false,3,0,0,tiki_sellers.csv,116,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67883,125683,M2P Shop,false,3,0,0,tiki_sellers.csv,117,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67884,179711,ĐIỆN MÁY HTG,false,3,3.33,2,tiki_sellers.csv,118,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67885,53660,Nhà sách Fahasa,false,3,4.9,39,tiki_sellers.csv,119,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67886,327437,BS Đỗ Trung Kiên,false,3,4.93,107,tiki_sellers.csv,120,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67887,239315,Soliup,false,3,5,13,tiki_sellers.csv,121,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67888,245529,Big Forest Store,false,3,4.7,62,tiki_sellers.csv,122,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67889,193621,MEDiCARE Official Store,false,3,0.33,1,tiki_sellers.csv,123,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6788a,37079,Thebeauty,false,3,3.07,317,tiki_sellers.csv,124,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6788b,253372,Đức Tuấn Shop,false,3,1.67,1,tiki_sellers.csv,125,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6788c,187091,Hiền Trần BOUTIQUE Official,false,3,4.9,9,tiki_sellers.csv,126,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6788d,176918,LEMAN Official Store,false,3,4.8,35,tiki_sellers.csv,127,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6788e,103662,Beauty and Fashion,false,3,0,0,tiki_sellers.csv,128,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6788f,304603,RCR CRISTALLERIA ITALIANA,false,3,1.67,1,tiki_sellers.csv,129,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67890,297205,FIRO OFFICIAL STORE,false,2,5,173,tiki_sellers.csv,130,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67891,34473,Danido Store,false,2,2.3,164,tiki_sellers.csv,131,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67892,147336,JM STORE,false,2,4.8,469,tiki_sellers.csv,132,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67893,363032,Shop Phố Anh,false,2,2,1,tiki_sellers.csv,133,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67894,5907,BORO SPORT,false,2,4.6,97,tiki_sellers.csv,134,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67895,141524,Giải Pháp An Ninh Toàn Cầu,false,2,0,0,tiki_sellers.csv,135,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67896,61683,Công Nghệ NICEVISOFT,false,2,0,0,tiki_sellers.csv,136,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67897,268933,DIZI STORE ONLINE,false,2,4.85,58,tiki_sellers.csv,137,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67898,80295,Shop HG,false,2,4.8,6,tiki_sellers.csv,138,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67899,15937,VINSEC,false,2,2.5,3,tiki_sellers.csv,139,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6789a,138101,Halo Việt,false,2,2.4,5,tiki_sellers.csv,140,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6789b,278788,Pixlink Office Store,false,2,4.6,364,tiki_sellers.csv,141,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6789c,242619,Sim Thạch Thất 368,false,2,2.4,447,tiki_sellers.csv,142,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6789d,193791,ADZ Store,false,2,0,0,tiki_sellers.csv,143,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6789e,257872,Lew Case Shop Công Nghệ,false,2,2.5,1,tiki_sellers.csv,144,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6789f,106295,Chim sẻ đi nắng,false,2,4.75,3,tiki_sellers.csv,145,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678a0,211062,Tăm nước Sài Gòn,false,2,4.75,34,tiki_sellers.csv,146,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678a1,195742,Điện Máy Vymart,false,2,4.75,326,tiki_sellers.csv,147,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678a2,69337,Home Star Store,false,2,2,1,tiki_sellers.csv,148,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678a3,203034,Gia Dụng Trí Vũ,false,2,4.5,2,tiki_sellers.csv,149,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678a4,138278,AM MART,false,2,4.75,24,tiki_sellers.csv,150,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678a5,288606,CH Thực Phẩm Chức Năng HM,false,2,4.65,58,tiki_sellers.csv,151,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678a6,4078,QuaTangMe Extaste,false,2,4.7,381,tiki_sellers.csv,152,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678a7,199449,Ukmart,false,2,4.9,33,tiki_sellers.csv,153,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678a8,331734,Pharm.D Official Store,false,2,5,7,tiki_sellers.csv,154,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678a9,10638,VIVALUST COSMETICS,false,2,0,0,tiki_sellers.csv,155,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678aa,1178,Oribe Store,false,2,3.9,568,tiki_sellers.csv,156,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678ab,128151,Perfetta Official Store,false,2,2.15,12,tiki_sellers.csv,157,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678ac,120432,Min Cosmetics,false,2,4.5,36,tiki_sellers.csv,158,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678ad,133020,Thiết bị y tế Gia Đình HME,false,2,2.15,7,tiki_sellers.csv,159,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678ae,62812,CELLKEY-SCIEN OFFICIAL STORE,false,2,4.75,516,tiki_sellers.csv,160,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678af,7673,The True Japan,false,2,4.55,129,tiki_sellers.csv,161,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678b0,8172,Airseven,false,2,4.7,14,tiki_sellers.csv,162,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678b1,9307,Woada_Underwear,false,2,2.5,1,tiki_sellers.csv,163,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678b2,1928,Lantavina,false,2,4.9,6,tiki_sellers.csv,164,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678b3,362849,MayBaebyfashion,false,2,0,0,tiki_sellers.csv,165,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678b4,333312,Phiten Flagship Store,false,2,2.5,1,tiki_sellers.csv,166,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678b5,210028,Shopdobo265,false,2,2.5,3,tiki_sellers.csv,167,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678b6,126,iBasic Official Store,false,2,4.8,9,tiki_sellers.csv,168,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678b7,17905,Tifalu Fashion,false,2,0,0,tiki_sellers.csv,169,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678b8,35488,Aquaria,false,2,0,0,tiki_sellers.csv,170,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678b9,77737,Nông Nghiệp Khuya,false,2,3.75,9,tiki_sellers.csv,171,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678ba,1242,"Vo Hoang Trading Co.,Ltd",false,2,5,308,tiki_sellers.csv,172,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678bb,288539,Shop Vạn Năng Solar,false,2,4.75,21,tiki_sellers.csv,173,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678bc,291512,Phố Xinh Store,false,2,4.15,5,tiki_sellers.csv,174,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678bd,172234,TOKDODO Official Store,false,2,5,5,tiki_sellers.csv,175,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678be,101716,GIA DỤNG TIỆN ÍCH MINH NGỌC,false,2,4.8,352,tiki_sellers.csv,176,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678bf,332042,GOTECHSOFT CO LTD,false,1,0,0,tiki_sellers.csv,177,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678c0,297110,O-TECH SHOP,false,1,0,0,tiki_sellers.csv,178,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678c1,64157,Nhang Sen Liên Tâm,false,1,5,8,tiki_sellers.csv,179,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678c2,19256,HỘ KINH DOANH CỬA HÀNG GÓI HÚT ẨM,false,1,4.8,276,tiki_sellers.csv,180,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678c3,320525,Điện dân dụng và Đồ Outdoor TL,false,1,3.5,2,tiki_sellers.csv,181,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678c4,41078,Smart Store,false,1,0,0,tiki_sellers.csv,182,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678c5,31445,AH SPORT,false,1,0,0,tiki_sellers.csv,183,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678c6,894,iFitness,false,1,5,7,tiki_sellers.csv,184,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678c7,123173,Bibi Sport,false,1,5,2,tiki_sellers.csv,185,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678c8,57690,Shop đồ chơi thông minh thánh gióng,false,1,5,1,tiki_sellers.csv,186,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678c9,253455,CỬA HÀNG 108,false,1,4.8,74,tiki_sellers.csv,187,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678ca,198145,CampOut Life is the better Official,false,1,5,2,tiki_sellers.csv,188,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678cb,161884,Quân Camp,false,1,5,3,tiki_sellers.csv,189,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678cc,264777,HSG Distribution,false,1,0,0,tiki_sellers.csv,190,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678cd,15461,phucantech,false,1,0,0,tiki_sellers.csv,191,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678ce,73305,Công Nghệ và Truyền Thông Zlink,false,1,0,0,tiki_sellers.csv,192,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678cf,364764,WIN SHOP Q9,false,1,3.3,7,tiki_sellers.csv,193,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678d0,137089,Thiết Bị Mới,false,1,4.5,15,tiki_sellers.csv,194,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678d1,162657,AMA Store,false,1,4.8,9,tiki_sellers.csv,195,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678d2,298886,CAMERA PHƯƠNG ĐÔNG Store,false,1,5,21,tiki_sellers.csv,196,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678d3,201269,Crazy Cool Official,false,1,4.8,6,tiki_sellers.csv,197,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678d4,109746,VinBuy,false,1,4.7,55,tiki_sellers.csv,198,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678d5,356119,2nhktech,false,1,4,6,tiki_sellers.csv,199,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678d6,52525,An Khang Computer,false,1,5,1,tiki_sellers.csv,200,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678d7,67487,hearme,false,1,5,1,tiki_sellers.csv,201,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678d8,315502,Choetech Flagship Store,false,1,4,9,tiki_sellers.csv,202,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678d9,2676,opba.vn,false,1,2,1,tiki_sellers.csv,203,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678da,333,Trọng Ân audio,false,1,4.5,16,tiki_sellers.csv,204,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678db,352627,Viễn Thông Minh Đức,false,1,5,1,tiki_sellers.csv,205,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678dc,97441,Luckky Shop,false,1,0,0,tiki_sellers.csv,206,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678dd,10889,MuaMuaOnline,false,1,4.7,6,tiki_sellers.csv,207,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678de,304908,TRÀ MY SHOP 2020,false,1,5,1,tiki_sellers.csv,208,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678df,6975,HACHI STORE,false,1,5,2,tiki_sellers.csv,209,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678e0,145378,Prolink Official Store,false,1,4.6,34,tiki_sellers.csv,210,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678e1,1892,Binaishop,false,1,0,0,tiki_sellers.csv,211,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678e2,59937,Ken Bun Shop,false,1,4.5,50,tiki_sellers.csv,212,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678e3,290542,CÔNG TY TNHH TMĐT KIM LONG,false,1,5,3,tiki_sellers.csv,213,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678e4,1567,Robotek Viet Nam,false,1,0,0,tiki_sellers.csv,214,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678e5,78755,Bepnhatoi,false,1,0,0,tiki_sellers.csv,215,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678e6,208147,SIÊU THỊ ĐIỆN MÁY GIA DỤNG,false,1,0,0,tiki_sellers.csv,216,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678e7,360957,Seka Official Store,false,1,4,1,tiki_sellers.csv,217,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678e8,112115,TỔNG KHO ĐIỆN MÁY - GIA DỤNG,false,1,0,0,tiki_sellers.csv,218,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678e9,117627,Halo Buy,false,1,4.5,129,tiki_sellers.csv,219,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678ea,141077,Pi Stores,false,1,0,0,tiki_sellers.csv,220,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678eb,31740,HƯNG THỊNH SHOP,false,1,3,1,tiki_sellers.csv,221,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678ec,108287,Kemnghiaminhtam,false,1,5,2,tiki_sellers.csv,222,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678ed,9711,ĐỒ DA THÀNH LONG TLG,false,1,5,2,tiki_sellers.csv,223,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678ee,240,NaMilux Official Store,false,1,5,1,tiki_sellers.csv,224,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678ef,1957,Bếp Minh Hà,false,1,4.5,19,tiki_sellers.csv,225,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678f0,121449,Karofi official,false,1,0,0,tiki_sellers.csv,226,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678f1,184067,Siêu Thị Điện Máy Từ Sơn,false,1,5,1,tiki_sellers.csv,227,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678f2,6201,Điện Máy Gia Dụng Smilemart,false,1,4.6,59,tiki_sellers.csv,228,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678f3,356985,SÁNG BOOKS,false,1,5,62,tiki_sellers.csv,229,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678f4,360665,Sách song ngữ Anna,false,1,4.8,16,tiki_sellers.csv,230,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678f5,359052,YOK Bao cao su HCM,false,1,0,0,tiki_sellers.csv,231,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678f6,158877,Liên Minh 1974,false,1,5,1,tiki_sellers.csv,232,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678f7,28366,kimdungpt,false,1,4.7,71,tiki_sellers.csv,233,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678f8,93666,Lamimi Cosmetics,false,1,0,0,tiki_sellers.csv,234,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678f9,7623,MK Beauty Shop,false,1,4.6,455,tiki_sellers.csv,235,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678fa,44260,Bảo Hộ Sài Gòn,false,1,4.3,14,tiki_sellers.csv,236,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678fb,108961,Mercy Cosmetics,false,1,5,3,tiki_sellers.csv,237,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678fc,12868,Kềm Nghĩa Official,false,1,4.8,334,tiki_sellers.csv,238,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678fd,2824,Oralmart,false,1,5,1,tiki_sellers.csv,239,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678fe,107426,PH PUHA Official,false,1,4.8,25,tiki_sellers.csv,240,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b678ff,285227,Fresh Beauty by KnK Store,false,1,4.6,48,tiki_sellers.csv,241,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67900,2091,Hexagon,false,1,4.8,49,tiki_sellers.csv,242,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67901,13239,Jess shop cosmetics,false,1,5,1,tiki_sellers.csv,243,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67902,301464,Bảo Hộ Lao Động ECo,false,1,0,0,tiki_sellers.csv,244,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67903,179828,SHOP VÀNG ANH,false,1,5,1,tiki_sellers.csv,245,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67904,762,NhaCungCap,false,1,4.2,9,tiki_sellers.csv,246,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67905,92697,Gam Ma,false,1,0,0,tiki_sellers.csv,247,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67906,38,Tinh Hoa,false,1,5,4,tiki_sellers.csv,248,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67907,19944,Shop Thái Nhật Hàn,false,1,4.7,3,tiki_sellers.csv,249,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67908,352407,LAC Official Store,false,1,5,5,tiki_sellers.csv,250,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67909,179506,Shop Mỹ Phẩm Nga,false,1,4.5,2,tiki_sellers.csv,251,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6790a,90355,Bilaha Store,false,1,4.7,7,tiki_sellers.csv,252,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6790b,286772,KISSME VIETNAM,false,1,5,8,tiki_sellers.csv,253,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6790c,118104,tinh dầu thiên nhiên mộc mây,false,1,5,3,tiki_sellers.csv,254,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6790d,40331,49P Toothcare,false,1,4.8,65,tiki_sellers.csv,255,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6790e,195824,Haphuongshop,false,1,4,3,tiki_sellers.csv,256,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6790f,274292,HT2 SHOP,false,1,5,2,tiki_sellers.csv,257,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67910,16414,Ninomaxx Concept,false,1,0,0,tiki_sellers.csv,258,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67911,87626,Namquynhshop,false,1,4,1,tiki_sellers.csv,259,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67912,324342,mlot Store,false,1,0,0,tiki_sellers.csv,260,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67913,129573,Áo điều hòa,false,1,0,0,tiki_sellers.csv,261,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67914,294290,Anlimen Gentle,false,1,0,0,tiki_sellers.csv,262,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67915,70540,Phương Khang Sport,false,1,0,0,tiki_sellers.csv,263,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67916,272127,Benzmen Fashion,false,1,0,0,tiki_sellers.csv,264,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67917,211071,MFM FASHION,false,1,0,0,tiki_sellers.csv,265,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67918,304979,Tiệm Đồ Lót Tee House,false,1,0,0,tiki_sellers.csv,266,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67919,4702,Simple & Basic,false,1,0,0,tiki_sellers.csv,267,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6791a,365311,AeroLuxe,false,1,0,0,tiki_sellers.csv,268,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6791b,260851,SURE Luxurious,false,1,5,1,tiki_sellers.csv,269,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6791c,36961,Maxivic Signature,false,1,0,0,tiki_sellers.csv,270,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6791d,241803,Shop online 1703,false,1,0,0,tiki_sellers.csv,271,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6791e,19782,MUANHANH,false,1,5,1,tiki_sellers.csv,272,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6791f,363701,Trần Thị Thuỳ,false,1,0,0,tiki_sellers.csv,273,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67920,160802,AIN Closet Official,false,1,0,0,tiki_sellers.csv,274,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67921,194585,HNStore115,false,1,0,0,tiki_sellers.csv,275,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67922,186114,Áo dài Tuấn Thi,false,1,0,0,tiki_sellers.csv,276,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67923,251078,Vinaci,false,1,0,0,tiki_sellers.csv,277,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67924,12998,Vincy Store,false,1,0,0,tiki_sellers.csv,278,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67925,365586,Kiều Oanh Designer,false,1,0,0,tiki_sellers.csv,279,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67926,310432,WEINS,false,1,0,0,tiki_sellers.csv,280,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67927,107464,thoitrangxinh,false,1,0,0,tiki_sellers.csv,281,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67928,135606,Myqlothing,false,1,0,0,tiki_sellers.csv,282,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67929,5006,New4all (Tp.HCM),false,1,4.3,3,tiki_sellers.csv,283,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6792a,123029,Bách Hóa Online 24h,false,1,4.8,65,tiki_sellers.csv,284,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6792b,362830,HA MY SHOP 06,false,1,0,0,tiki_sellers.csv,285,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6792c,256698,Gốm Giang Bát Tràng,false,1,3,1,tiki_sellers.csv,286,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6792d,100773,Smart Trading,false,1,4.7,26,tiki_sellers.csv,287,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6792e,346508,Trầm Hương 3 Lành,false,1,5,1,tiki_sellers.csv,288,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6792f,293122,Dụng cụ làm vườn Greenhomevn,false,1,0,0,tiki_sellers.csv,289,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67930,8582,OHAHA,false,1,5,3,tiki_sellers.csv,290,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67931,1569,Gia Dụng thông minh,false,1,5,1,tiki_sellers.csv,291,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67932,75315,Chăn Ga Gối Thanh Trúc,false,1,5,5,tiki_sellers.csv,292,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67933,1363,juno sofa,false,1,4,1,tiki_sellers.csv,293,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67934,19753,MSOFTVN,false,1,4.8,111,tiki_sellers.csv,294,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67935,31375,Guitar MinMusic,false,1,2,1,tiki_sellers.csv,295,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67936,159303,Nhựa Chấn Thuận Thành,false,1,4.2,40,tiki_sellers.csv,296,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67937,9463,Bách hóa tổng hợp 168,false,1,4.5,54,tiki_sellers.csv,297,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67938,67417,Shop AZ,false,1,5,2,tiki_sellers.csv,298,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67939,364127,Quả cầu phong thuỷ1,false,1,5,1,tiki_sellers.csv,299,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6793a,11242,Tín An,false,1,4.6,225,tiki_sellers.csv,300,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6793b,308164,GoodPartner,false,1,5,8,tiki_sellers.csv,301,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6793c,95760,F8,false,1,4.8,9,tiki_sellers.csv,302,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6793d,86709,PHAN GIA BBK,false,1,4.1,46,tiki_sellers.csv,303,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6793e,115373,ANZZAR HOME,false,1,5,1,tiki_sellers.csv,304,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b6793f,241398,XỐP DÁN TƯỜNG 3D TÂN PHÚ,false,1,4.6,31,tiki_sellers.csv,305,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67940,233352,AnAn house,false,1,4.5,113,tiki_sellers.csv,306,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67941,1346,Siêu Thị Nến,false,1,4.7,61,tiki_sellers.csv,307,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67942,2684,HKT Home Shopping,false,1,4.6,9,tiki_sellers.csv,308,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67943,364128,Quả cầu Phong thuỷ 23000,false,1,0,0,tiki_sellers.csv,309,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67944,362662,MinhHải Zone,false,1,0,0,tiki_sellers.csv,310,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67945,357571,Gốm Sứ G Gomie Ceramic Cao Cấp,false,1,5,2,tiki_sellers.csv,311,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67946,227617,Bambo Mat HT,false,1,5,2,tiki_sellers.csv,312,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67947,188965,Ga chống thấm LoveMama,false,1,4.7,3,tiki_sellers.csv,313,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67948,234289,Nox Coffee Store,false,1,5,4,tiki_sellers.csv,314,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c119db14668631b67949,187817,SAPATA Official Store,false,1,5,2,tiki_sellers.csv,315,https://github.com/phamkhoa18/tiki-data-analysis

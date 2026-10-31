@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -20,8 +22,9 @@ plt.rcParams['figure.figsize'] = (10, 6)
 # BƯỚC 0: TẢI VÀ TIỀN XỬ LÝ DỮ LIỆU BAN ĐẦU
 # ==============================================================================
 print("--- DANG TAI DU LIEU ---")
-products_df = pd.read_csv('tikilens_vn.clean_products.csv')
-sellers_df = pd.read_csv('tikilens_vn.clean_sellers.csv')
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
+products_df = pd.read_csv(PROJECT_ROOT / 'dataset' / 'tikilens_vn.clean_products.csv')
+sellers_df = pd.read_csv(PROJECT_ROOT / 'dataset' / 'tikilens_vn.clean_sellers.csv')
 
 # Chuyển đổi định dạng thời gian
 products_df['crawled_at'] = pd.to_datetime(products_df['crawled_at'])

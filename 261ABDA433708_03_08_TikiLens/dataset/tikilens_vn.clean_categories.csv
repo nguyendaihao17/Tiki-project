@@ -1,0 +1,11 @@
+_id,category_id,category_name,parent_id,level,url_slug,total_products,crawled_at,_source_file,_source_row,_source_url
+6ad4c19fdb14668631b6794b,1789,Điện Thoại - Máy Tính Bảng,0,1,dien-thoai-may-tinh-bang,107,2026-10-01T05:17:46.000Z,tiki_categories.csv,1,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c19fdb14668631b6794c,1815,Thiết Bị Số - Phụ Kiện Số,0,1,thiet-bi-so-phu-kien-so,2000,2026-10-01T05:17:46.000Z,tiki_categories.csv,2,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c19fdb14668631b6794d,1882,Điện Gia Dụng,0,1,dien-gia-dung,2000,2026-10-01T05:17:46.000Z,tiki_categories.csv,3,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c1a0db14668631b6794e,8322,Nhà Sách Tiki,0,1,nha-sach-tiki,2000,2026-10-01T05:17:46.000Z,tiki_categories.csv,4,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c1a0db14668631b6794f,1520,Làm Đẹp - Sức Khỏe,0,1,lam-dep-suc-khoe,2000,2026-10-01T05:17:46.000Z,tiki_categories.csv,5,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c1a0db14668631b67950,915,Thời Trang Nam,0,1,thoi-trang-nam,2000,2026-10-01T05:17:46.000Z,tiki_categories.csv,6,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c1a0db14668631b67951,931,Thời Trang Nữ,0,1,thoi-trang-nu,2000,2026-10-01T05:17:46.000Z,tiki_categories.csv,7,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c1a0db14668631b67952,1883,Nhà Cửa - Đời Sống,0,1,nha-cua-doi-song,2000,2026-10-01T05:17:46.000Z,tiki_categories.csv,8,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c1a0db14668631b67953,4384,Bách Hóa Online,0,1,bach-hoa-online,2000,2026-10-01T05:17:46.000Z,tiki_categories.csv,9,https://github.com/phamkhoa18/tiki-data-analysis
+6ad4c1a0db14668631b67954,1975,Thể Thao - Dã Ngoại,0,1,the-thao-da-ngoai,2000,2026-10-01T05:17:46.000Z,tiki_categories.csv,10,https://github.com/phamkhoa18/tiki-data-analysis

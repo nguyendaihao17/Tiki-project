@@ -7,7 +7,7 @@
 
 ## Cấu trúc nộp bài
 
-Toàn bộ hồ sơ dự án đặt trong thư mục [`261ABDA433708_03_08_TikiLens`](261ABDA433708_03_08_TikiLens/), theo mẫu `<Mã lớp>_<STT nhóm>_<Tên đề tài>`. Thư mục này gồm `source-code`, `reports` (bảng tự chấm LabF), `dataset`, `refs`, `libs` và `readme.txt`.
+Toàn bộ hồ sơ dự án đặt trong thư mục [`261ABDA433708_03_08_TikiLens`](261ABDA433708_03_08_TikiLens/), theo mẫu `<Mã lớp>_<STT nhóm>_<Tên đề tài>`. Thư mục này gồm `source-code`, `reports`, `dataset`, `refs`, `libs` và `readme.txt`, theo cấu trúc giảng viên cung cấp.
 
 `app.py`, `requirements.txt` và `.streamlit` ở gốc repo được giữ làm điểm chạy tương thích với Streamlit Cloud.
 
@@ -44,3 +44,11 @@ App Cloud tiếp tục dùng wrapper ở gốc và chạy mã chính tại `261A
 ## Dữ liệu
 
 Dữ liệu sản phẩm chính được đọc từ MongoDB Atlas. Repo có snapshot `forecast_reference.csv` để tái hiện phần đánh giá dự báo; dữ liệu đầy đủ cần được bổ sung nếu barem yêu cầu nộp dataset. Không commit secrets, database tài khoản hoặc dữ liệu cá nhân.
+
+## Gói nộp theo cấu trúc giảng viên
+
+File `261ABDA433708_03_08_TikiLens.zip` chứa đúng một thư mục hồ sơ với năm thư mục quy định và `readme.txt`. File chạy, requirements và `.streamlit` ở gốc repo phục vụ Streamlit Cloud; gói nộp có cấu hình mẫu và hướng dẫn riêng trong `source-code`.
+
+Power BI đặt tại `source-code/powerbi`, CSV đặt trong `dataset`, kết quả thí nghiệm đã lưu đặt trong `reports/experiments`. Đã loại cấu hình phát triển, cache, test rỗng và các bản mã trùng/không được app gọi khỏi gói.
+
+**Chưa phải bản nộp hoàn chỉnh:** chưa có báo cáo chính cuối cùng, bảng phân công được xác nhận và toàn bộ snapshot dữ liệu MongoDB. Trạng thái được ghi rõ trong `readme.txt`; không tự thay bằng bản nháp hoặc khai tỷ lệ hoàn thành.

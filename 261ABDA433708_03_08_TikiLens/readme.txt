@@ -1,31 +1,36 @@
-THÔNG TIN ĐỀ TÀI
-Môn học: Ứng dụng Phân tích Dữ liệu lớn trong Kinh doanh (Big Data)
-Mã lớp môn học: 261ABDA433708_03
-Học kỳ: HK 1, năm học 2026–2027
-Đề tài: Nghiên cứu và xây dựng hệ thống phân tích hiệu quả kinh doanh và hỗ trợ ra quyết định trên sàn thương mại điện tử Tiki Việt Nam.
+----- Thông tin đề tài --------------------
+STT: 08
+Tên đề tài: Nghiên cứu và xây dựng hệ thống phân tích hiệu quả kinh doanh và hỗ trợ ra quyết định trên sàn thương mại điện tử Tiki Việt Nam.
+Lớp học phần: 261ABDA433708_03
+Năm học: HK1/2026-2027
+------------------------------------------
+Thông tin nhóm
+1. Trần Quốc Hảo (24126058) - Trưởng nhóm - SĐT: 0905851593 - Email: hao056878@gmail.com
+2. Trần Minh Chiến (24126026)
+3. Vũ Trần Chiến (24126027)
+4. Nguyễn Đại Hào (24126053)
+5. Hồ Quân Bảo (24126014)
 
-THÔNG TIN NHÓM
-STT nhóm: 08
-Tên thư mục: 261ABDA433708_03_08_TikiLens
-
-THÀNH VIÊN NHÓM
-STT 01: Trần Quốc Hảo (NT) – MSSV 24126058 – Hoàn thành 100%
-STT 02: Trần Minh Chiến – MSSV 24126026 – Hoàn thành 100%
-STT 03: Vũ Trần Chiến – MSSV 24126027 – Hoàn thành 100%
-STT 04: Nguyễn Đại Hào – MSSV 24126053 – Hoàn thành 100%
-STT 05: Hồ Quân Bảo – MSSV 24126014 – Hoàn thành 100%
-Trưởng nhóm: Trần Quốc Hảo – MSSV 24126058 – SĐT 0905851593 – Email hao056878@gmail.com.
-
-CẤU TRÚC THƯ MỤC
-source-code: toàn bộ mã nguồn và kiểm thử chương trình.
-reports: bảng tự chấm LabF hiện có.
-dataset: dữ liệu tham chiếu dự báo dùng trong chương trình.
-refs: ghi chú vị trí danh mục tài liệu tham khảo.
-libs: danh sách phần mềm và thư viện trong requirements.txt.
-readme.txt: thông tin đề tài và nhóm.
+CẤU TRÚC HỒ SƠ
+source-code: mã ứng dụng, kiểm thử, xử lý dữ liệu, thí nghiệm Python/Orange và file Power BI.
+reports: slide PDF, bảng tự chấm, tài liệu pipeline và kết quả thí nghiệm đã lưu.
+dataset: CSV sản phẩm, danh mục, nhà bán và dữ liệu tham chiếu dự báo.
+refs: danh sách nguồn dữ liệu và tài liệu phần mềm liên quan.
+libs: requirements.txt và danh sách phần mềm.
+readme.txt: thông tin đề tài, nhóm và hướng dẫn tổng quát.
 
 CÀI ĐẶT VÀ CHẠY
-Từ thư mục gốc repo, cài thư viện bằng pip install -r 261ABDA433708_03_08_TikiLens/libs/requirements.txt, cấu hình .streamlit/secrets.toml từ tệp mẫu ở gốc repo, rồi chạy streamlit run app.py.
+1. Giải nén ZIP và mở thư mục 261ABDA433708_03_08_TikiLens.
+2. Cài thư viện: python -m pip install -r libs/requirements.txt
+3. Chuyển vào source-code. Tạo .streamlit/secrets.toml theo secrets.toml.example và điền kết nối MongoDB được cấp, hoặc đặt biến môi trường TIKI_MONGO_URI.
+4. Chạy: python -m streamlit run app.py
+5. Xem source-code/README.md để biết cách cấu hình tài khoản và chạy thí nghiệm.
+Không kèm mật khẩu, URI thật hay database xác thực trong hồ sơ nộp.
 
-DỮ LIỆU
-Dữ liệu sản phẩm chính được truy cập từ MongoDB Atlas. Repo chứa forecast_reference.csv làm snapshot tham chiếu dự báo. Không đưa secrets.toml, database tài khoản hoặc dữ liệu cá nhân vào gói nộp.
+TRẠNG THÁI HỒ SƠ NGÀY 31/10/2026
+- Chưa có bản báo cáo chính cuối cùng (.docx/.pdf). Nhóm đã xác nhận tạm để thiếu; không dùng các bản nháp thay thế.
+- Chưa có bảng phân công được nhóm xác nhận trong gói này. Danh sách thành viên không thay thế bảng phân công.
+- Slide và bảng tự chấm là bản do nhóm cung cấp, chưa đối chiếu với báo cáo chính cuối cùng.
+- Ứng dụng đầy đủ dùng MongoDB Atlas. CSV kèm theo phục vụ sản phẩm/danh mục/nhà bán và thí nghiệm; không có toàn bộ reviews/CausaSent hoặc tài khoản. Gói này chưa phải bản sao lưu đầy đủ để tái tạo toàn bộ hệ thống ngoại tuyến.
+- Video chưa được cung cấp (mục tùy chọn theo hướng dẫn).
+- Cần bổ sung báo cáo chính, bảng phân công và đối chiếu tính đầy đủ dữ liệu trước khi nộp chính thức.
