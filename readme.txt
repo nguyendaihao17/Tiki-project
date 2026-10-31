@@ -5,12 +5,12 @@ Học kỳ: HK 1, năm học 2026–2027
 Đề tài: Nghiên cứu và xây dựng hệ thống phân tích hiệu quả kinh doanh và hỗ trợ ra quyết định trên sàn thương mại điện tử Tiki Việt Nam.
 
 THÀNH VIÊN NHÓM
-STT 01: Trần Quốc Hào (NT) – MSSV 24126058 – Hoàn thành 100%
+STT 01: Trần Quốc Hảo (NT) – MSSV 24126058 – Hoàn thành 100%
 STT 02: Trần Minh Chiến – MSSV 24126026 – Hoàn thành 100%
 STT 03: Vũ Trần Chiến – MSSV 24126027 – Hoàn thành 100%
 STT 04: Nguyễn Đại Hào – MSSV 24126053 – Hoàn thành 100%
 STT 05: Hồ Quân Bảo – MSSV 24126014 – Hoàn thành 100%
-Trưởng nhóm: Trần Quốc Hào – MSSV 24126058.
+Trưởng nhóm: Trần Quốc Hảo – MSSV 24126058.
 
 CẤU TRÚC
 source-code: mã nguồn ứng dụng và kiểm thử.

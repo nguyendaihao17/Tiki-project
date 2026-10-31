@@ -21,13 +21,13 @@ Tệp `app.py` và `requirements.txt` ở gốc là điểm vào tương thích 
 
 | STT | Họ và tên | MSSV | Hoàn thành |
 |---:|---|---:|---:|
-| 01 | Trần Quốc Hào (NT) | 24126058 | 100% |
+| 01 | Trần Quốc Hảo (NT) | 24126058 | 100% |
 | 02 | Trần Minh Chiến | 24126026 | 100% |
 | 03 | Vũ Trần Chiến | 24126027 | 100% |
 | 04 | Nguyễn Đại Hào | 24126053 | 100% |
 | 05 | Hồ Quân Bảo | 24126014 | 100% |
 
-**Trưởng nhóm:** Trần Quốc Hào – 24126058.
+**Trưởng nhóm:** Trần Quốc Hảo – 24126058.
 
 ## Chạy cục bộ (PowerShell)
 Tại thư mục gốc repo:
