@@ -24,4 +24,8 @@ Trong thư mục này, cài `python -m pip install -r requirements.txt`. Tạo t
 
 Chỉ chạy từng script cần thiết, ví dụ `python kiem_tra_chat_luong_tikilens.py`. Các script nhập, khởi tạo và phục hồi có ghi dữ liệu; việc thêm chúng vào GitHub không thực hiện các thao tác đó.
 
+## Chuẩn hóa dữ liệu phần 2
+
+[Phần 2](part2/README.md) bổ sung ba script kiểm tra/chuyển đổi trường mảng trong `clean_reviews` và liên kết tới tài liệu `Pipeline_Phan2.docx` trong `reports/`, mô tả các pipeline từ `raw_*` sang `clean_*`.
+
 Đây là mã quy trình lịch sử, chưa phải bộ pipeline tự động hoàn chỉnh từ dữ liệu thô đến toàn bộ collection `clean_*`. Chưa chạy lại các tác vụ mạng hoặc ghi Atlas khi đóng gói.
