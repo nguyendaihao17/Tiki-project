@@ -7,7 +7,7 @@
 
 ## Cấu trúc nộp bài
 
-Toàn bộ hồ sơ dự án đặt trong thư mục [`261ABDA433708_03_08_TikiLens`](261ABDA433708_03_08_TikiLens/), theo mẫu `<Mã lớp>_<STT nhóm>_<Tên đề tài>`. Thư mục này gồm `source-code`, `reports`, `dataset`, `refs`, `libs` và `readme.txt`.
+Toàn bộ hồ sơ dự án đặt trong thư mục [`261ABDA433708_03_08_TikiLens`](261ABDA433708_03_08_TikiLens/), theo mẫu `<Mã lớp>_<STT nhóm>_<Tên đề tài>`. Thư mục này gồm `source-code`, `reports` (bảng tự chấm LabF), `dataset`, `refs`, `libs` và `readme.txt`.
 
 `app.py`, `requirements.txt` và `.streamlit` ở gốc repo được giữ làm điểm chạy tương thích với Streamlit Cloud.
 

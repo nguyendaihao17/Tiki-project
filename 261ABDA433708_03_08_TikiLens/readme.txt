@@ -18,7 +18,7 @@ Trưởng nhóm: Trần Quốc Hảo – MSSV 24126058 – SĐT 0905851593 – E
 
 CẤU TRÚC THƯ MỤC
 source-code: toàn bộ mã nguồn và kiểm thử chương trình.
-reports: các báo cáo đồ án hiện có.
+reports: bảng tự chấm LabF hiện có.
 dataset: dữ liệu tham chiếu dự báo dùng trong chương trình.
 refs: ghi chú vị trí danh mục tài liệu tham khảo.
 libs: danh sách phần mềm và thư viện trong requirements.txt.
