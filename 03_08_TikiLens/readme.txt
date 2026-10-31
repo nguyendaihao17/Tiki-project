@@ -11,6 +11,8 @@ STT 03: Vũ Trần Chiến – MSSV 24126027 – Hoàn thành 100%
 STT 04: Nguyễn Đại Hào – MSSV 24126053 – Hoàn thành 100%
 STT 05: Hồ Quân Bảo – MSSV 24126014 – Hoàn thành 100%
 Trưởng nhóm: Trần Quốc Hảo – MSSV 24126058.
+Điện thoại: 0905851593
+Email: hao056878@gmail.com.
 
 CẤU TRÚC
 source-code: mã nguồn ứng dụng và kiểm thử.
