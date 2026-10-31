@@ -35,6 +35,11 @@ streamlit run app.py
 
 App Cloud tiếp tục dùng wrapper ở gốc và chạy mã chính tại `261ABDA433708_03_08_TikiLens/source-code/app.py`.
 
+## Mã chuẩn bị dữ liệu và thí nghiệm
+
+- [Thu thập, nhập và kiểm tra dữ liệu](261ABDA433708_03_08_TikiLens/source-code/data-pipeline/README.md): các script độc lập từ Drive của nhóm, kèm hướng dẫn cấu hình và tác động khi chạy.
+- [Isolation Forest bằng Python và Orange](261ABDA433708_03_08_TikiLens/source-code/experiments/isolation-forest/README.md): notebook, workflow Orange, CSV sản phẩm và kết quả thí nghiệm đã lưu.
+
 ## Dữ liệu
 
 Dữ liệu sản phẩm chính được đọc từ MongoDB Atlas. Repo có snapshot `forecast_reference.csv` để tái hiện phần đánh giá dự báo; dữ liệu đầy đủ cần được bổ sung nếu barem yêu cầu nộp dataset. Không commit secrets, database tài khoản hoặc dữ liệu cá nhân.

@@ -1,0 +1,10 @@
+.env
+tikilens_acquisition/
+tikilens_source2/
+tikilens_backups/
+*.csv
+*.jsonl
+*.part
+*_report.txt
+*_diagnostics.txt
+audit_tikilens.txt
