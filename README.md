@@ -7,7 +7,7 @@
 
 ## Cấu trúc nộp bài
 
-Toàn bộ hồ sơ dự án đặt trong thư mục [`03_08_TikiLens`](03_08_TikiLens/), theo yêu cầu `03_08_<Tên đề tài>`. Thư mục này gồm `source-code`, `reports`, `dataset`, `refs`, `libs` và `readme.txt`.
+Toàn bộ hồ sơ dự án đặt trong thư mục [`261ABDA433708_03_08_TikiLens`](261ABDA433708_03_08_TikiLens/), theo mẫu `<Mã lớp>_<STT nhóm>_<Tên đề tài>`. Thư mục này gồm `source-code`, `reports`, `dataset`, `refs`, `libs` và `readme.txt`.
 
 `app.py`, `requirements.txt` và `.streamlit` ở gốc repo được giữ làm điểm chạy tương thích với Streamlit Cloud.
 
@@ -27,13 +27,13 @@ Toàn bộ hồ sơ dự án đặt trong thư mục [`03_08_TikiLens`](03_08_Ti
 
 ## Chạy ứng dụng
 
-Tại thư mục gốc repo, tạo môi trường Python, cài thư viện từ `03_08_TikiLens/libs/requirements.txt`, cấu hình `.streamlit/secrets.toml` từ tệp mẫu và chạy:
+Tại thư mục gốc repo, tạo môi trường Python, cài thư viện từ `261ABDA433708_03_08_TikiLens/libs/requirements.txt`, cấu hình `.streamlit/secrets.toml` từ tệp mẫu và chạy:
 
 ```powershell
 streamlit run app.py
 ```
 
-App Cloud tiếp tục dùng wrapper ở gốc và chạy mã chính tại `03_08_TikiLens/source-code/app.py`.
+App Cloud tiếp tục dùng wrapper ở gốc và chạy mã chính tại `261ABDA433708_03_08_TikiLens/source-code/app.py`.
 
 ## Dữ liệu
 
