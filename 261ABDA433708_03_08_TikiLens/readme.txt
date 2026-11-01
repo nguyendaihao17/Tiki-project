@@ -27,10 +27,10 @@ CÀI ĐẶT VÀ CHẠY
 5. Xem source-code/README.md để biết cách cấu hình tài khoản và chạy thí nghiệm.
 Không kèm mật khẩu, URI thật hay database xác thực trong hồ sơ nộp.
 
-TRẠNG THÁI HỒ SƠ NGÀY 31/10/2026
-- Chưa có bản báo cáo chính cuối cùng (.docx/.pdf). Nhóm đã xác nhận tạm để thiếu; không dùng các bản nháp thay thế.
+TRẠNG THÁI HỒ SƠ NGÀY 01/11/2026
+- Đã có báo cáo chính do nhóm cung cấp: reports/BC_BIGDATA_Nhom_8.docx và reports/BC_BIGDATA_Nhom_8.pdf. Giữ nguyên nội dung hai tệp đầu vào.
 - Chưa có bảng phân công được nhóm xác nhận trong gói này. Danh sách thành viên không thay thế bảng phân công.
-- Slide và bảng tự chấm là bản do nhóm cung cấp, chưa đối chiếu với báo cáo chính cuối cùng.
+- Báo cáo, slide và bảng tự chấm là bản do nhóm cung cấp; chưa kiểm tra lại tính nhất quán toàn bộ nội dung khi tải lên.
 - Ứng dụng đầy đủ dùng MongoDB Atlas. CSV kèm theo phục vụ sản phẩm/danh mục/nhà bán và thí nghiệm; không có toàn bộ reviews/CausaSent hoặc tài khoản. Gói này chưa phải bản sao lưu đầy đủ để tái tạo toàn bộ hệ thống ngoại tuyến.
 - Video chưa được cung cấp (mục tùy chọn theo hướng dẫn).
-- Cần bổ sung báo cáo chính, bảng phân công và đối chiếu tính đầy đủ dữ liệu trước khi nộp chính thức.
+- Cần xác nhận bảng phân công và đối chiếu tính đầy đủ dữ liệu trước khi nộp chính thức.

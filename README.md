@@ -51,4 +51,6 @@ File `261ABDA433708_03_08_TikiLens.zip` chứa đúng một thư mục hồ sơ 
 
 Power BI đặt tại `source-code/powerbi`, CSV đặt trong `dataset`, kết quả thí nghiệm đã lưu đặt trong `reports/experiments`. Đã loại cấu hình phát triển, cache, test rỗng và các bản mã trùng/không được app gọi khỏi gói.
 
-**Chưa phải bản nộp hoàn chỉnh:** chưa có báo cáo chính cuối cùng, bảng phân công được xác nhận và toàn bộ snapshot dữ liệu MongoDB. Trạng thái được ghi rõ trong `readme.txt`; không tự thay bằng bản nháp hoặc khai tỷ lệ hoàn thành.
+**Chưa phải bản nộp hoàn chỉnh:** cần xác nhận bảng phân công và tính đầy đủ của snapshot dữ liệu MongoDB. Trạng thái được ghi rõ trong `readme.txt`; không tự thay bằng bản nháp hoặc khai tỷ lệ hoàn thành.
+
+Báo cáo chính do nhóm cung cấp ngày 01/11/2026: [Word](261ABDA433708_03_08_TikiLens/reports/BC_BIGDATA_Nhom_8.docx) và [PDF](261ABDA433708_03_08_TikiLens/reports/BC_BIGDATA_Nhom_8.pdf).
