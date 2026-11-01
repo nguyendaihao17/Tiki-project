@@ -1,0 +1,28 @@
+TIKILENS – HƯỚNG DẪN TRUY CẬP VÀ TRÌNH DIỄN WEBSITE
+
+1. Địa chỉ truy cập
+https://tikilens.streamlit.app/
+
+2. Tài khoản trình diễn
+Tên đăng nhập: admin
+Mã PIN: được nhóm cung cấp riêng.
+
+3. Giới thiệu hệ thống
+TikiLens là ứng dụng web được xây dựng bằng Streamlit, phục vụ việc phân tích dữ liệu kinh doanh trên sàn thương mại điện tử Tiki. Ứng dụng khai thác dữ liệu sản phẩm và đánh giá đã qua xử lý để hỗ trợ theo dõi, khám phá và phân tích dữ liệu.
+
+4. Các chức năng chính
+- Phân tích và Dashboard: xem các chỉ số tổng quan và biểu đồ kinh doanh.
+- Khám phá và Lọc dữ liệu: tìm kiếm, lọc dữ liệu sản phẩm và đánh giá; tải kết quả dưới dạng CSV hoặc Excel.
+- Chất lượng dữ liệu: xem một số chỉ số về mức độ đầy đủ của dữ liệu.
+- Phân cụm, Dự báo và Phát hiện bất thường: xem các chức năng phân tích hỗ trợ nhận diện xu hướng và ra quyết định.
+
+Lưu ý: Trang Dự báo sử dụng tệp dữ liệu tham chiếu riêng; các trang không nhất thiết cùng lấy dữ liệu từ một nguồn.
+
+5. Trình tự trình diễn gợi ý
+1) Mở địa chỉ website và đăng nhập bằng tài khoản trình diễn.
+2) Chọn “Phân tích & Dashboard” để giới thiệu tổng quan các chỉ số và biểu đồ.
+3) Chọn “Khám phá & Lọc dữ liệu”, thử tìm một sản phẩm và áp dụng bộ lọc.
+4) Giới thiệu trang “Chất lượng dữ liệu” và lướt qua các chức năng phân tích còn lại.
+
+6. Phạm vi công việc của Nguyễn Đại Hào
+Phụ trách thu thập dữ liệu và cơ sở dữ liệu, đồng thời tham gia thiết kế website. Phần trình bày tập trung vào việc kết nối và cung cấp dữ liệu cho các chức năng phù hợp của TikiLens.
