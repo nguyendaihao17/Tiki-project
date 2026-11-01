@@ -13,7 +13,7 @@ Thông tin nhóm
 
 CẤU TRÚC HỒ SƠ
 source-code: mã ứng dụng, kiểm thử, xử lý dữ liệu, thí nghiệm Python/Orange và file Power BI.
-reports: slide PDF, bảng tự chấm, tài liệu pipeline và kết quả thí nghiệm đã lưu.
+reports: báo cáo chính Word/PDF, slide PDF, bảng tự chấm/phân công, tài liệu pipeline và kết quả thí nghiệm đã lưu.
 dataset: đủ năm CSV sạch (45.330 bản ghi), gồm sản phẩm, reviews, nhà bán, danh mục, CausaSent và bộ tham chiếu dự báo riêng.
 refs: danh sách nguồn dữ liệu và tài liệu phần mềm liên quan.
 libs: requirements.txt và danh sách phần mềm.
@@ -29,8 +29,8 @@ Không kèm mật khẩu, URI thật hay database xác thực trong hồ sơ n�
 
 TRẠNG THÁI HỒ SƠ NGÀY 01/11/2026
 - Đã có báo cáo chính do nhóm cung cấp: reports/BC_BIGDATA_Nhom_8.docx và reports/BC_BIGDATA_Nhom_8.pdf. Giữ nguyên nội dung hai tệp đầu vào.
-- Chưa có bảng phân công được nhóm xác nhận trong gói này. Danh sách thành viên không thay thế bảng phân công.
-- Báo cáo, slide và bảng tự chấm là bản do nhóm cung cấp; chưa kiểm tra lại tính nhất quán toàn bộ nội dung khi tải lên.
+- Nhiệm vụ từng thành viên đã có ở trang 2 báo cáo chính. Biểu mẫu LabF_bang-tu-cham.pdf vẫn cần điền thông tin nhóm và thay tên sinh viên ví dụ bằng thành viên thật; chữ ký để nhóm ký xác nhận.
+- Slide: reports/SLIDE_BIGDATA_Nhom_8.pdf (15 trang). Báo cáo và các tài liệu được giữ nguyên nội dung; lần rà này chỉ chuẩn hóa bố cục thư mục và hướng dẫn.
 - Đã kèm đủ năm CSV sạch, tổng 45.330 bản ghi; tên/mã khách hàng trong reviews được thay bằng mã đại diện nhất quán. CSV là dạng xuất phẳng, không phải backup BSON; ứng dụng vẫn cần kết nối MongoDB được cấu hình riêng. Không kèm tài khoản database.
 - Video chưa được cung cấp (mục tùy chọn theo hướng dẫn).
-- Cần xác nhận bảng phân công và cấu hình môi trường chạy trước khi nộp chính thức.
+- Trước khi nộp: hoàn tất biểu mẫu LabF và kiểm tra cấu hình môi trường MongoDB được cấp riêng.

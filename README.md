@@ -1,56 +1,61 @@
-# TikiLens – Hồ sơ đồ án Big Data
+# TikiLens - Hồ sơ đồ án Big Data
 
-- **Mã lớp:** `261ABDA433708_03`
-- **Nhóm:** `08`
-- **Học kỳ:** HK 1, năm học 2026–2027
 - **Đề tài:** Nghiên cứu và xây dựng hệ thống phân tích hiệu quả kinh doanh và hỗ trợ ra quyết định trên sàn thương mại điện tử Tiki Việt Nam.
+- **Lớp học phần:** `261ABDA433708_03` · **Nhóm:** `08` · **Học kỳ:** HK1/2026-2027.
+- **Ứng dụng:** [tikilens.streamlit.app](https://tikilens.streamlit.app/).
 
-## Cấu trúc nộp bài
+## Cấu trúc hồ sơ nộp
 
-Toàn bộ hồ sơ dự án đặt trong thư mục [`261ABDA433708_03_08_TikiLens`](261ABDA433708_03_08_TikiLens/), theo mẫu `<Mã lớp>_<STT nhóm>_<Tên đề tài>`. Thư mục này gồm `source-code`, `reports`, `dataset`, `refs`, `libs` và `readme.txt`, theo cấu trúc giảng viên cung cấp.
+[Thư mục hồ sơ](261ABDA433708_03_08_TikiLens/) và [gói ZIP](261ABDA433708_03_08_TikiLens.zip) được đặt tên theo mẫu `<Mã lớp>_<STT nhóm>_<Tên đề tài>`.
 
-`app.py`, `requirements.txt` và `.streamlit` ở gốc repo được giữ làm điểm chạy tương thích với Streamlit Cloud.
-
-## Thành viên nhóm
-
-| STT | Họ và tên | MSSV | Hoàn thành |
-|---:|---|---:|---:|
-| 01 | Trần Quốc Hảo (NT) | 24126058 | 100% |
-| 02 | Trần Minh Chiến | 24126026 | 100% |
-| 03 | Vũ Trần Chiến | 24126027 | 100% |
-| 04 | Nguyễn Đại Hào | 24126053 | 100% |
-| 05 | Hồ Quân Bảo | 24126014 | 100% |
-
-**Trưởng nhóm:** Trần Quốc Hảo – 24126058
-**Điện thoại:** 0905851593
-**Email:** hao056878@gmail.com
-
-## Chạy ứng dụng
-
-Tại thư mục gốc repo, tạo môi trường Python, cài thư viện từ `261ABDA433708_03_08_TikiLens/libs/requirements.txt`, cấu hình `.streamlit/secrets.toml` từ tệp mẫu và chạy:
-
-```powershell
-streamlit run app.py
+```text
+261ABDA433708_03_08_TikiLens/
+├── source-code/   Mã ứng dụng, xử lý dữ liệu, thí nghiệm, kiểm thử, Power BI
+├── reports/       Báo cáo Word/PDF, slide, bảng tự chấm, phân công, phụ lục
+├── dataset/       Năm CSV sạch và bộ dữ liệu tham chiếu dự báo
+├── refs/          Danh mục nguồn dữ liệu và tài liệu tham khảo
+├── libs/          requirements.txt và danh sách phần mềm
+└── readme.txt     Thông tin đề tài, thành viên, hướng dẫn chạy, trạng thái hồ sơ
 ```
 
-App Cloud tiếp tục dùng wrapper ở gốc và chạy mã chính tại `261ABDA433708_03_08_TikiLens/source-code/app.py`.
+ZIP chứa đúng một thư mục gốc như trên. Các file chạy ở gốc repo (`app.py`, `requirements.txt`, `.streamlit`) phục vụ Streamlit Cloud và nằm ngoài gói hồ sơ nộp. Cache, môi trường Python, tệp tạm và secrets thật không được đóng vào ZIP.
 
-## Mã chuẩn bị dữ liệu và thí nghiệm
+## Thành viên
 
-- [Thu thập, nhập và kiểm tra dữ liệu](261ABDA433708_03_08_TikiLens/source-code/data-pipeline/README.md): các script độc lập từ Drive của nhóm, kèm hướng dẫn cấu hình và tác động khi chạy.
-- [Isolation Forest bằng Python và Orange](261ABDA433708_03_08_TikiLens/source-code/experiments/isolation-forest/README.md): notebook, workflow Orange, CSV sản phẩm và kết quả thí nghiệm đã lưu.
-- [Phân cụm nhà bán và dự báo lượng bán](261ABDA433708_03_08_TikiLens/source-code/experiments/seller-clustering-forecast/README.md): mã thí nghiệm K-Means, Linear Regression và Random Forest từ hai CSV sạch.
+| STT | Họ và tên | MSSV | Hoàn thành theo xác nhận của nhóm |
+|---:|---|---|---:|
+| 1 | Trần Quốc Hảo - Trưởng nhóm | 24126058 | 100% |
+| 2 | Trần Minh Chiến | 24126026 | 100% |
+| 3 | Vũ Trần Chiến | 24126027 | 100% |
+| 4 | Nguyễn Đại Hào | 24126053 | 100% |
+| 5 | Hồ Quân Bảo | 24126014 | 100% |
 
-## Dữ liệu
+**Liên hệ trưởng nhóm:** 0905851593 · hao056878@gmail.com.
 
-Dữ liệu sản phẩm chính được đọc từ MongoDB Atlas. Repo đã kèm năm CSV sạch với 45.330 bản ghi, cùng `forecast_reference.csv` để tái hiện phần đánh giá dự báo. Tên và mã khách hàng trong CSV reviews đã được thay bằng mã đại diện nhất quán. Không commit secrets, database tài khoản hoặc dữ liệu cá nhân.
+## Tài liệu và dữ liệu
 
-## Gói nộp theo cấu trúc giảng viên
+| Thành phần | Vị trí |
+|---|---|
+| Báo cáo chính | [Word](261ABDA433708_03_08_TikiLens/reports/BC_BIGDATA_Nhom_8.docx) · [PDF](261ABDA433708_03_08_TikiLens/reports/BC_BIGDATA_Nhom_8.pdf) |
+| Slide thuyết trình, 15 trang | [Slide PDF](261ABDA433708_03_08_TikiLens/reports/SLIDE_BIGDATA_Nhom_8.pdf) |
+| Biểu mẫu tự chấm và phân công | [LabF](261ABDA433708_03_08_TikiLens/reports/LabF_bang-tu-cham.pdf) |
+| Pipeline chuẩn hóa | [Tài liệu phần 2](261ABDA433708_03_08_TikiLens/reports/Pipeline_Phan2.docx) |
+| Power BI | [TIKILENS_VN.pbix](261ABDA433708_03_08_TikiLens/source-code/powerbi/TIKILENS_VN.pbix) |
+| Dữ liệu | [Dataset và mô tả](261ABDA433708_03_08_TikiLens/dataset/README.md) |
+| Nguồn tham khảo | [Danh mục](261ABDA433708_03_08_TikiLens/refs/README.txt) |
+| Phần mềm và thư viện | [Danh sách](261ABDA433708_03_08_TikiLens/libs/SOFTWARE.txt) · [requirements.txt](261ABDA433708_03_08_TikiLens/libs/requirements.txt) |
 
-File `261ABDA433708_03_08_TikiLens.zip` chứa đúng một thư mục hồ sơ với năm thư mục quy định và `readme.txt`. File chạy, requirements và `.streamlit` ở gốc repo phục vụ Streamlit Cloud; gói nộp có cấu hình mẫu và hướng dẫn riêng trong `source-code`.
+Năm CSV sạch có **45.330 bản ghi**. `forecast_reference.csv` được trích từ cùng dữ liệu sản phẩm để tái hiện dự báo, không cộng thêm vào tổng này. Trong reviews, tên và mã khách hàng đã được thay bằng mã đại diện nhất quán; các trường khác giữ nguyên.
 
-Power BI đặt tại `source-code/powerbi`, CSV đặt trong `dataset`, kết quả thí nghiệm đã lưu đặt trong `reports/experiments`. Đã loại cấu hình phát triển, cache, test rỗng và các bản mã trùng/không được app gọi khỏi gói.
+## Chạy chương trình
 
-**Chưa phải bản nộp hoàn chỉnh:** cần xác nhận bảng phân công và môi trường chạy MongoDB; CSV dữ liệu sạch đã đủ năm tập (45.330 bản ghi). Trạng thái được ghi rõ trong `readme.txt`; không tự thay bằng bản nháp hoặc khai tỷ lệ hoàn thành.
+- **Từ gói ZIP:** thực hiện theo [readme.txt](261ABDA433708_03_08_TikiLens/readme.txt) và [hướng dẫn trong source-code](261ABDA433708_03_08_TikiLens/source-code/README.md).
+- **Từ gốc repo GitHub:** cài thư viện từ `261ABDA433708_03_08_TikiLens/libs/requirements.txt`, cấu hình MongoDB riêng theo `.streamlit/secrets.toml.example`, rồi chạy `python -m streamlit run app.py`.
 
-Báo cáo chính do nhóm cung cấp ngày 01/11/2026: [Word](261ABDA433708_03_08_TikiLens/reports/BC_BIGDATA_Nhom_8.docx) và [PDF](261ABDA433708_03_08_TikiLens/reports/BC_BIGDATA_Nhom_8.pdf).
+Mã chuẩn bị dữ liệu: [data-pipeline](261ABDA433708_03_08_TikiLens/source-code/data-pipeline/README.md). Thí nghiệm độc lập: [Isolation Forest Python/Orange](261ABDA433708_03_08_TikiLens/source-code/experiments/isolation-forest/README.md) và [phân cụm/dự báo](261ABDA433708_03_08_TikiLens/source-code/experiments/seller-clustering-forecast/README.md).
+
+## Kiểm tra trước khi nộp
+
+- Nhiệm vụ các thành viên đã có ở **trang 2 báo cáo chính**. Biểu mẫu LabF vẫn cần điền thông tin lớp/nhóm và thay tên sinh viên ví dụ bằng thông tin thật; chữ ký do nhóm xác nhận.
+- Ứng dụng cần kết nối MongoDB và tài khoản được cấp riêng. CSV là dữ liệu xuất phẳng, không phải backup BSON và không tự thay thế kết nối của app.
+- Video chưa được cung cấp; đây là mục tùy chọn theo hướng dẫn của giảng viên.
