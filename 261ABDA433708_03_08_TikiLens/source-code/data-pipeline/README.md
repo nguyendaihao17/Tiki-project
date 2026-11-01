@@ -24,7 +24,13 @@ Trong thư mục này, cài `python -m pip install -r requirements.txt`. Tạo t
 
 Chỉ chạy từng script cần thiết, ví dụ `python kiem_tra_chat_luong_tikilens.py`. Các script nhập, khởi tạo và phục hồi có ghi dữ liệu; việc thêm chúng vào GitHub không thực hiện các thao tác đó.
 
-## Chuẩn hóa dữ liệu phần 2
+## Phân tích KPI độc lập
+
+`Tiki_analytics.py` là bản mã phân tích nhóm cung cấp ngày 01/11/2026: đọc các collection, tính KPI, phân tích danh mục, dịch vụ, nhà bán và CausaSent. Đã bỏ URI/mật khẩu cố định; đặt biến môi trường `TIKI_MONGO_URI` rồi chạy `python Tiki_analytics.py`. Nếu chưa cấu hình, script không mở kết nối database. Thông báo lỗi kết nối chỉ in loại lỗi để tránh lộ URI.
+
+Đây là script độc lập; chưa tích hợp vào app Streamlit và chưa xác nhận lại kết quả KPI trên database thật. Các hàm giữ giả định về tên cột/kiểu dữ liệu và cấu trúc CausaSent của bản nhóm cung cấp.
+
+## Tài liệu chuẩn hóa phần 2
 
 [Phần 2](part2/README.md) bổ sung ba script kiểm tra/chuyển đổi trường mảng trong `clean_reviews` và liên kết tới tài liệu `Pipeline_Phan2.docx` trong `reports/`, mô tả các pipeline từ `raw_*` sang `clean_*`.
 
