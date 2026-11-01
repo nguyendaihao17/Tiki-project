@@ -1,8 +1,9 @@
 PHẦN MỀM VÀ THƯ VIỆN
 
 1. Python và các thư viện trong requirements.txt: chạy ứng dụng, xử lý dữ liệu và mô hình.
-2. MongoDB Atlas: lưu dữ liệu và tài khoản; cần kết nối được cấp riêng.
-3. Power BI Desktop: mở source-code/powerbi/TIKILENS_VN.pbix.
-4. Orange3: mở workflow Isolation Forest trong source-code/experiments.
-5. Jupyter Notebook hoặc Google Colab: chạy notebook Python.
-6. Microsoft Word và trình đọc PDF: xem báo cáo, slide và biểu mẫu.
+2. Visual Studio Code (VS Code): mở, chỉnh sửa mã nguồn và chạy ứng dụng qua Terminal tích hợp.
+3. MongoDB Atlas: lưu dữ liệu và tài khoản; cần kết nối được cấp riêng.
+4. Power BI Desktop: mở source-code/powerbi/TIKILENS_VN.pbix.
+5. Orange3: mở workflow Isolation Forest trong source-code/experiments.
+6. Jupyter Notebook hoặc Google Colab: chạy notebook Python.
+7. Microsoft Word và trình đọc PDF: xem báo cáo, slide và biểu mẫu.
