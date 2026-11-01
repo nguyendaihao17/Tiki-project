@@ -13,6 +13,7 @@ graphify-out/
 .streamlit/secrets.toml
 data/*.sqlite3
 tmp/
+/261ABDA433708_03_08_TikiLens.zip
 **/.streamlit/secrets.toml
 *.sqlite3
 *.sqlite3-shm
