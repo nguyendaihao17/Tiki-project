@@ -13,5 +13,5 @@ Tài liệu công cụ:
 7. PyMongo: https://www.mongodb.com/docs/languages/python/pymongo-driver/current/
 8. Orange: https://orangedatamining.com/docs/
 9. Power BI: https://learn.microsoft.com/power-bi/
-2. Visual Studio Code (VS Code): https://code.visualstudio.com/
+10. Visual Studio Code (VS Code): https://code.visualstudio.com/
 Danh mục trích dẫn nghiên cứu nằm trong phần Tài liệu tham khảo của báo cáo chính.
