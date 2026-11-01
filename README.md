@@ -56,6 +56,6 @@ Mã chuẩn bị dữ liệu: [data-pipeline](261ABDA433708_03_08_TikiLens/sourc
 
 ## Kiểm tra trước khi nộp
 
-- Nhiệm vụ các thành viên đã có ở **trang 2 báo cáo chính**. Biểu mẫu LabF vẫn cần điền thông tin lớp/nhóm và thay tên sinh viên ví dụ bằng thông tin thật; chữ ký do nhóm xác nhận.
+- Biểu mẫu LabF đã có thông tin lớp/nhóm, 18 hạng mục được đánh dấu và bảng phân công đúng 5 thành viên, hoàn thành 100% theo xác nhận của nhóm. Ngày/chữ ký để trống cho nhóm xác nhận; video, vấn đáp, độ khó và tổng điểm không tự đánh giá.
 - Ứng dụng cần kết nối MongoDB và tài khoản được cấp riêng. CSV là dữ liệu xuất phẳng, không phải backup BSON và không tự thay thế kết nối của app.
 - Video chưa được cung cấp; đây là mục tùy chọn theo hướng dẫn của giảng viên.

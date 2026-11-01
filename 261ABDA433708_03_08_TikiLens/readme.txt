@@ -29,8 +29,8 @@ Không kèm mật khẩu, URI thật hay database xác thực trong hồ sơ n�
 
 TRẠNG THÁI HỒ SƠ NGÀY 01/11/2026
 - Đã có báo cáo chính do nhóm cung cấp: reports/BC_BIGDATA_Nhom_8.docx và reports/BC_BIGDATA_Nhom_8.pdf. Giữ nguyên nội dung hai tệp đầu vào.
-- Nhiệm vụ từng thành viên đã có ở trang 2 báo cáo chính. Biểu mẫu LabF_bang-tu-cham.pdf vẫn cần điền thông tin nhóm và thay tên sinh viên ví dụ bằng thành viên thật; chữ ký để nhóm ký xác nhận.
-- Slide: reports/SLIDE_BIGDATA_Nhom_8.pdf (15 trang). Báo cáo và các tài liệu được giữ nguyên nội dung; lần rà này chỉ chuẩn hóa bố cục thư mục và hướng dẫn.
+- LabF_bang-tu-cham.pdf đã điền lớp/nhóm, đánh dấu 18 hạng mục đã thực hiện và phân công đúng 5 thành viên. Tỷ lệ hoàn thành 100% theo xác nhận của nhóm; ngày và chữ ký để nhóm xác nhận. Video, vấn đáp, độ khó và tổng điểm chưa tự chấm.
+- Slide: reports/SLIDE_BIGDATA_Nhom_8.pdf (15 trang). Báo cáo chính và slide giữ nội dung do nhóm cung cấp; bảng tự chấm/phân công đã được điền theo hồ sơ và xác nhận của nhóm.
 - Đã kèm đủ năm CSV sạch, tổng 45.330 bản ghi; tên/mã khách hàng trong reviews được thay bằng mã đại diện nhất quán. CSV là dạng xuất phẳng, không phải backup BSON; ứng dụng vẫn cần kết nối MongoDB được cấu hình riêng. Không kèm tài khoản database.
 - Video chưa được cung cấp (mục tùy chọn theo hướng dẫn).
-- Trước khi nộp: hoàn tất biểu mẫu LabF và kiểm tra cấu hình môi trường MongoDB được cấp riêng.
+- Trước khi nộp: nhóm kiểm tra và ký biểu mẫu LabF, đồng thời kiểm tra cấu hình môi trường MongoDB được cấp riêng.
