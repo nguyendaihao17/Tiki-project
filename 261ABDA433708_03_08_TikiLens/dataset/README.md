@@ -1,14 +1,18 @@
 # Dữ liệu kèm hồ sơ
 
-| Tệp | Phạm vi | Nguồn trong hồ sơ nhóm |
-|---|---|---|
-| `forecast_reference.csv` | 2.307 dòng; các đặc trưng dùng để tái hiện trang dự báo | Snapshot đã được ứng dụng sử dụng, giữ nguyên |
-| `tikilens_vn.clean_products.csv` | 2.307 sản phẩm; đầu vào Isolation Forest và thí nghiệm phân cụm/dự báo | Bản tải thư mục so sánh Python–Orange ngày 30/10/2026 |
-| `tikilens_vn.clean_categories.csv` | 10 danh mục | Bản CSV sạch trong thư mục CK do nhóm lưu trên máy |
-| `tikilens_vn.clean_sellers.csv` | 315 nhà bán | Bản CSV sạch trong thư mục CK do nhóm lưu trên máy |
+Bộ CSV sạch chốt từ thư mục CK do nhóm xác nhận ngày 01/11/2026.
 
-Hai tệp sản phẩm có mục đích khác nhau: `forecast_reference.csv` chỉ giữ các đặc trưng của thí nghiệm dự báo; tệp sản phẩm đầy đủ giữ mã và thông tin mô tả cần cho thí nghiệm khác. Chúng không phải hai bản sao đồng nhất.
+| Tệp | Số bản ghi |
+|---|---:|
+| `tikilens_vn.clean_products.csv` | 2.307 |
+| `tikilens_vn.clean_reviews.csv` | 35.632 |
+| `tikilens_vn.clean_sellers.csv` | 315 |
+| `tikilens_vn.clean_categories.csv` | 10 |
+| `tikilens_vn.clean_causasent.csv` | 7.066 |
+| **Tổng 5 tập dữ liệu** | **45.330** |
 
-Ứng dụng đầy đủ vẫn đọc MongoDB Atlas. Gói này không chứa toàn bộ reviews, CausaSent hoặc kho xác thực. Không dùng gói như bản backup hoàn chỉnh của hệ thống. Các bảng reviews gốc có trường định danh/tên người dùng nên chưa được đưa vào gói công khai này; nhóm cần chuẩn bị bản dữ liệu phù hợp hoặc cơ chế truy cập được phép để phục vụ chấm bài.
+`forecast_reference.csv` là bộ đặc trưng trích từ cùng 2.307 sản phẩm để tái hiện trang dự báo, không cộng thêm vào tổng trên. CausaSent có 7.066 document và 10.300 annotations.
 
-CSV là dữ liệu dạng bảng; nếu nhập lại MongoDB cần kiểm tra kiểu dữ liệu và áp dụng pipeline chuẩn hóa tương ứng, không coi việc import CSV là phục hồi nguyên trạng BSON.
+Trong reviews, chỉ hai trường `customer_id` và `customer_name` được thay bằng mã đại diện nhất quán theo khách hàng như nhóm đã đồng ý. Có 27.312 nhóm khách hàng, giữ nguyên số review trong từng nhóm và các trường khác. Không đưa bảng đối chiếu hoặc khóa sinh mã lên GitHub. Bản CSV gốc trong CK được giữ nguyên trên máy.
+
+Đã kiểm tra số lượng và liên kết reviews → products, products → sellers/categories. CSV giữ định dạng xuất phẳng của bản nhóm cung cấp, gồm các cột như `annotations[0].aspect_term` và `images[0]`; đây không phải backup BSON. Nếu nhập lại MongoDB, cần ánh xạ kiểu dữ liệu và cấu trúc mảng theo pipeline tương ứng. Ứng dụng vẫn đọc MongoDB Atlas, không tự đọc CSV thay thế. Không kèm tài khoản hoặc mật khẩu database.

@@ -43,7 +43,7 @@ App Cloud tiếp tục dùng wrapper ở gốc và chạy mã chính tại `261A
 
 ## Dữ liệu
 
-Dữ liệu sản phẩm chính được đọc từ MongoDB Atlas. Repo có snapshot `forecast_reference.csv` để tái hiện phần đánh giá dự báo; dữ liệu đầy đủ cần được bổ sung nếu barem yêu cầu nộp dataset. Không commit secrets, database tài khoản hoặc dữ liệu cá nhân.
+Dữ liệu sản phẩm chính được đọc từ MongoDB Atlas. Repo đã kèm năm CSV sạch với 45.330 bản ghi, cùng `forecast_reference.csv` để tái hiện phần đánh giá dự báo. Tên và mã khách hàng trong CSV reviews đã được thay bằng mã đại diện nhất quán. Không commit secrets, database tài khoản hoặc dữ liệu cá nhân.
 
 ## Gói nộp theo cấu trúc giảng viên
 
@@ -51,6 +51,6 @@ File `261ABDA433708_03_08_TikiLens.zip` chứa đúng một thư mục hồ sơ 
 
 Power BI đặt tại `source-code/powerbi`, CSV đặt trong `dataset`, kết quả thí nghiệm đã lưu đặt trong `reports/experiments`. Đã loại cấu hình phát triển, cache, test rỗng và các bản mã trùng/không được app gọi khỏi gói.
 
-**Chưa phải bản nộp hoàn chỉnh:** cần xác nhận bảng phân công và tính đầy đủ của snapshot dữ liệu MongoDB. Trạng thái được ghi rõ trong `readme.txt`; không tự thay bằng bản nháp hoặc khai tỷ lệ hoàn thành.
+**Chưa phải bản nộp hoàn chỉnh:** cần xác nhận bảng phân công và môi trường chạy MongoDB; CSV dữ liệu sạch đã đủ năm tập (45.330 bản ghi). Trạng thái được ghi rõ trong `readme.txt`; không tự thay bằng bản nháp hoặc khai tỷ lệ hoàn thành.
 
 Báo cáo chính do nhóm cung cấp ngày 01/11/2026: [Word](261ABDA433708_03_08_TikiLens/reports/BC_BIGDATA_Nhom_8.docx) và [PDF](261ABDA433708_03_08_TikiLens/reports/BC_BIGDATA_Nhom_8.pdf).

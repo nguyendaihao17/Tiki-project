@@ -5,3 +5,5 @@
 *.zip binary
 *.png binary
 *.webp binary
+**/dataset/tikilens_vn.clean_reviews.csv -text
+**/dataset/tikilens_vn.clean_causasent.csv -text

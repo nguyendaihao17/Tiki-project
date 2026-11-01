@@ -14,7 +14,7 @@ Thông tin nhóm
 CẤU TRÚC HỒ SƠ
 source-code: mã ứng dụng, kiểm thử, xử lý dữ liệu, thí nghiệm Python/Orange và file Power BI.
 reports: slide PDF, bảng tự chấm, tài liệu pipeline và kết quả thí nghiệm đã lưu.
-dataset: CSV sản phẩm, danh mục, nhà bán và dữ liệu tham chiếu dự báo.
+dataset: đủ năm CSV sạch (45.330 bản ghi), gồm sản phẩm, reviews, nhà bán, danh mục, CausaSent và bộ tham chiếu dự báo riêng.
 refs: danh sách nguồn dữ liệu và tài liệu phần mềm liên quan.
 libs: requirements.txt và danh sách phần mềm.
 readme.txt: thông tin đề tài, nhóm và hướng dẫn tổng quát.
@@ -31,6 +31,6 @@ TRẠNG THÁI HỒ SƠ NGÀY 01/11/2026
 - Đã có báo cáo chính do nhóm cung cấp: reports/BC_BIGDATA_Nhom_8.docx và reports/BC_BIGDATA_Nhom_8.pdf. Giữ nguyên nội dung hai tệp đầu vào.
 - Chưa có bảng phân công được nhóm xác nhận trong gói này. Danh sách thành viên không thay thế bảng phân công.
 - Báo cáo, slide và bảng tự chấm là bản do nhóm cung cấp; chưa kiểm tra lại tính nhất quán toàn bộ nội dung khi tải lên.
-- Ứng dụng đầy đủ dùng MongoDB Atlas. CSV kèm theo phục vụ sản phẩm/danh mục/nhà bán và thí nghiệm; không có toàn bộ reviews/CausaSent hoặc tài khoản. Gói này chưa phải bản sao lưu đầy đủ để tái tạo toàn bộ hệ thống ngoại tuyến.
+- Đã kèm đủ năm CSV sạch, tổng 45.330 bản ghi; tên/mã khách hàng trong reviews được thay bằng mã đại diện nhất quán. CSV là dạng xuất phẳng, không phải backup BSON; ứng dụng vẫn cần kết nối MongoDB được cấu hình riêng. Không kèm tài khoản database.
 - Video chưa được cung cấp (mục tùy chọn theo hướng dẫn).
-- Cần xác nhận bảng phân công và đối chiếu tính đầy đủ dữ liệu trước khi nộp chính thức.
+- Cần xác nhận bảng phân công và cấu hình môi trường chạy trước khi nộp chính thức.
