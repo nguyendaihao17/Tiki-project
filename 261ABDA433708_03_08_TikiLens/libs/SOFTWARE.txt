@@ -1,13 +1,8 @@
 PHẦN MỀM VÀ THƯ VIỆN
 
-- Python: ngôn ngữ chạy mã .py và Streamlit. Các giới hạn phiên bản thư viện được ghi trong requirements.txt; chưa kèm bộ cài hoặc môi trường ảo.
-- Streamlit, pandas, NumPy, scikit-learn, Matplotlib, seaborn: giao diện, xử lý dữ liệu, mô hình và biểu đồ.
-- PyMongo, python-dotenv, requests: kết nối MongoDB và các script thu thập/nhập dữ liệu.
-- bcrypt, XlsxWriter: xác thực mật khẩu và xuất Excel.
-- MongoDB Atlas: dịch vụ dữ liệu kinh doanh và kho tài khoản. Cần kết nối được cấp riêng.
-- Power BI Desktop: mở source-code/powerbi/TIKILENS_VN.pbix.
-- Orange3: mở workflow Isolation Forest trong source-code/experiments.
-- Jupyter Notebook hoặc Google Colab: mở notebook .ipynb. Khi chạy Colab cần bố trí đúng cấu trúc thư mục như hướng dẫn của thí nghiệm.
-- Microsoft Word/phần mềm đọc DOCX và trình đọc PDF: xem tài liệu, slide, bảng tự chấm.
-
-Không kèm executable, bộ cài, môi trường ảo hay tài khoản dịch vụ trong gói nộp.
+1. Python và các thư viện trong requirements.txt: chạy ứng dụng, xử lý dữ liệu và mô hình.
+2. MongoDB Atlas: lưu dữ liệu và tài khoản; cần kết nối được cấp riêng.
+3. Power BI Desktop: mở source-code/powerbi/TIKILENS_VN.pbix.
+4. Orange3: mở workflow Isolation Forest trong source-code/experiments.
+5. Jupyter Notebook hoặc Google Colab: chạy notebook Python.
+6. Microsoft Word và trình đọc PDF: xem báo cáo, slide và biểu mẫu.

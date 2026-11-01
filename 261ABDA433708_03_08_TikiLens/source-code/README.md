@@ -1,23 +1,48 @@
-# TikiLens
+# Hướng dẫn chạy chương trình
 
-Ứng dụng Streamlit gồm dashboard, khám phá dữ liệu, phân cụm, dự báo, phát hiện bất thường và quản trị. Thư mục này có thể chạy trực tiếp từ gói ZIP, không phụ thuộc file chạy tương thích ở gốc repo GitHub.
+## Ứng dụng Streamlit
 
-## Chạy từ gói nộp
+Từ thư mục `261ABDA433708_03_08_TikiLens`, chạy:
 
-Tại thư mục `261ABDA433708_03_08_TikiLens`, cài `python -m pip install -r libs/requirements.txt`, rồi chuyển vào `source-code`.
+```powershell
+python -m pip install -r libs/requirements.txt
+cd source-code
+```
 
-Tạo `.streamlit/secrets.toml` từ tệp `.streamlit/secrets.toml.example`, điền `mongo_uri` được cấp; có thể dùng biến môi trường `TIKI_MONGO_URI` thay thế. Chạy `python -m streamlit run app.py`.
+Tạo `.streamlit/secrets.toml` từ `.streamlit/secrets.toml.example` và điền `mongo_uri`, hoặc đặt biến môi trường `TIKI_MONGO_URI`. Ứng dụng dùng dữ liệu trong `tikilens_vn` và lưu tài khoản ở `tikilens_auth`. Trên môi trường mới, khởi tạo quản trị viên bằng `python -m src.auth`; sau đó chạy:
 
-Ứng dụng đọc dữ liệu kinh doanh từ database `tikilens_vn` và lưu tài khoản riêng trong `tikilens_auth`. Tài khoản và mật khẩu không nằm trong gói nộp. Dùng tài khoản được nhóm cấp; trên môi trường mới cần khởi tạo quản trị viên bằng `python -m src.auth` và thực hiện theo lời nhắc. Không đổi kết nối của hệ thống thật để thử nhập hoặc phục hồi dữ liệu.
+```powershell
+python -m streamlit run app.py
+```
 
-## Thành phần
+Các trang dữ liệu cần MongoDB; app không tự thay kết nối bằng CSV. Trang dự báo dùng bộ `../dataset/forecast_reference.csv` cố định để tái hiện đánh giá mô hình. Không kèm thông tin đăng nhập thật trong gói nộp.
 
-- `app.py`, `src/`, `webapp/`, `static/`: mã ứng dụng đang sử dụng.
-- `tests/`: kiểm thử. Từ thư mục này chạy `python -m unittest discover -s tests`.
-- `data-pipeline/`: thu thập, nhập và kiểm tra dữ liệu; đọc README trước khi chạy vì một số script ghi MongoDB.
-- `experiments/`: thí nghiệm Python và Orange độc lập, không tự chạy cùng app. Các CSV đầu vào đặt ở `../dataset`; kết quả đã lưu nằm ở `../reports/experiments`.
-- `powerbi/TIKILENS_VN.pbix`: mã báo cáo Power BI, mở bằng Power BI Desktop. Nếu làm mới dữ liệu, cần cấu hình lại nguồn phù hợp trên máy người xem.
+## Xử lý dữ liệu
 
-Trang dự báo của app dùng `../dataset/forecast_reference.csv` cố định. Các trang còn lại cần MongoDB và không tự chuyển sang CSV khi mất kết nối. Các thí nghiệm không thay thế hoặc ghi đè module của ứng dụng.
+Các script nằm trong `data-pipeline/`. Đặt `MONGO_URI` trong `.env` cạnh script cần chạy; riêng `Tiki_analytics.py` dùng biến môi trường `TIKI_MONGO_URI`.
 
-Gói không chứa môi trường Python, cache, secrets thật hay database tài khoản. Tình trạng các tài liệu còn thiếu được ghi trong `../readme.txt`.
+| Nhóm | Script |
+|---|---|
+| Thu thập | `tikilens_thu_thap_tiki_github.py`, `tikilens_tai_nguon2_truc_tiep.py` |
+| Khởi tạo và nhập dữ liệu | `setup_tikilens.py`, `import_tiki*.py`, `tikilens_nhap_nguon2_atlas.py` |
+| Kiểm tra | `check_mongodb_connection.py`, `audit_tikilens.py`, `kiem_tra_chat_luong_tikilens.py`, `phan_tich_loi_tikilens.py`, `tikilens_kiem_tra_trung_nguon2.py` |
+| Phân tích KPI | `Tiki_analytics.py` |
+| Sao lưu/phục hồi thử | `tikilens_backup_atlas.py`, `tikilens_restore_test_atlas.py` |
+| Chuẩn hóa trường mảng | Các script trong `part2/` |
+
+Các script `import_tiki*.py` nhận CSV thô `tiki_products_clean_full.csv`, `tiki_reviews.csv`, `tiki_sellers.csv`, `tiki_categories.csv` đặt cạnh script. Script thu thập Tiki tải các tệp này vào `tikilens_acquisition/`; nguồn dữ liệu được liệt kê trong [refs](../refs/README.txt).
+
+Chạy từng script cần thiết. Các script khởi tạo, nhập và phục hồi có ghi MongoDB. `part2/clean_review_arrays.py` mặc định `APPLY_CHANGES = False`; chỉ đặt `True` khi chủ động áp dụng cập nhật. Pipeline chuẩn hóa được trình bày trong [Pipeline_Phan2.docx](../reports/Pipeline_Phan2.docx); thao tác `$out` có thể thay thế collection đích.
+
+## Thí nghiệm và Power BI
+
+- **Isolation Forest Python:** mở `experiments/isolation-forest/sosanhpythonvaorange.ipynb` bằng Jupyter, với thư mục làm việc là thư mục chứa notebook. Đầu vào nằm trong `dataset`; CSV kết quả nằm ở `reports/experiments/isolation-forest`. Cần giữ cấu trúc thư mục này khi chạy trên Colab.
+- **Orange:** mở `experiments/isolation-forest/isolation_forest.ows`, chọn lại `dataset/tikilens_vn.clean_products.csv` tại CSV File Import. Dùng năm biến `price`, `discount_rate`, `quantity_sold`, `revenue_estimate`, `review_count`, contamination `0.02`. Đối chiếu tham số và mã sản phẩm khi so sánh kết quả với Python.
+- **Phân cụm/dự báo:** chạy `python experiments/seller-clustering-forecast/seller_clustering_forecast.py`. Script tự đọc hai CSV sản phẩm và nhà bán trong `dataset`, in thống kê và mở biểu đồ Matplotlib. Đóng cửa sổ biểu đồ để tiếp tục nếu chương trình đang chờ.
+- **Power BI:** mở `powerbi/TIKILENS_VN.pbix` bằng Power BI Desktop; cấu hình lại nguồn khi cần làm mới dữ liệu.
+
+Đặc trưng phân cụm nhà bán được tính từ ảnh chụp sản phẩm, không phải lịch sử giao dịch RFM. Hồi quy ước lượng lượng bán từ thuộc tính sản phẩm, không phải dự báo doanh số theo chuỗi thời gian. Kết quả Isolation Forest cần được kiểm tra thêm trước khi diễn giải nghiệp vụ.
+
+## Kiểm thử
+
+Tại thư mục `source-code`, chạy `python -m unittest discover -s tests`.
