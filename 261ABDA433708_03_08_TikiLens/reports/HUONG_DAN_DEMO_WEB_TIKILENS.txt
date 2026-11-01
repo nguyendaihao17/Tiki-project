@@ -5,7 +5,7 @@ https://tikilens.streamlit.app/
 
 2. Tài khoản trình diễn
 Tên đăng nhập: admin
-Mã PIN: nhóm cung cấp riêng.
+Mã PIN: 123456
 
 3. Giới thiệu hệ thống
 TikiLens là ứng dụng web được xây dựng bằng Streamlit, phục vụ việc phân tích dữ liệu kinh doanh trên sàn thương mại điện tử Tiki. Ứng dụng khai thác dữ liệu sản phẩm và đánh giá đã qua xử lý để hỗ trợ theo dõi, khám phá và phân tích dữ liệu.
