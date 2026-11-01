@@ -5,6 +5,7 @@ import os
 import re
 import sqlite3
 from contextlib import closing
+from datetime import datetime, timezone
 from pathlib import Path
 
 import bcrypt
@@ -178,6 +179,14 @@ def create_initial_admin(username, display_name, password):
     return True, "Đã tạo tài khoản quản trị. Vui lòng đăng nhập."
 
 
+def _login_failure_age_seconds(failure, now):
+    updated_at = failure.get("updated_at", now)
+    # PyMongo returns UTC dates without tzinfo by default.
+    if updated_at.tzinfo is None:
+        updated_at = updated_at.replace(tzinfo=timezone.utc)
+    return (now - updated_at).total_seconds()
+
+
 def authenticate(username, password):
     normalized, error = _validate_username(username)
     if error:
@@ -188,9 +197,8 @@ def authenticate(username, password):
         username_key = normalized.casefold()
         failures = database["login_failures"].find_one({"_id": username_key})
         if failures:
-            from datetime import datetime, timezone
             now = datetime.now(timezone.utc)
-            if (now - failures.get("updated_at", now)).total_seconds() >= 900:
+            if _login_failure_age_seconds(failures, now) >= 900:
                 database["login_failures"].delete_one({"_id": username_key})
             elif failures.get("count", 0) >= 10:
                 return None
@@ -234,12 +242,10 @@ def authenticate(username, password):
 
 
 def _record_login_failure(database, username_key):
-    from datetime import datetime, timezone
-
     now = datetime.now(timezone.utc)
     failures = database["login_failures"]
     current = failures.find_one({"_id": username_key})
-    if current and (now - current.get("updated_at", now)).total_seconds() < 900:
+    if current and _login_failure_age_seconds(current, now) < 900:
         failures.update_one({"_id": username_key}, {"$inc": {"count": 1}, "$set": {"updated_at": now}})
     else:
         failures.replace_one({"_id": username_key}, {"_id": username_key, "count": 1, "updated_at": now}, upsert=True)
